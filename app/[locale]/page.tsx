@@ -1,27 +1,35 @@
-import { useTranslations } from 'next-intl'
+import { setRequestLocale } from 'next-intl/server'
 import { getFeaturedActivities } from '@/lib/data'
 import { ActivityCard } from '@/components/ui/ActivityCard'
-import { Link } from '@/components/ui/Link'
-import type { Activity } from '@/types'
+import { locales } from '@/i18n'
+import NextLink from 'next/link'
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
 
 export const revalidate = 300
 
 const CATEGORIES = [
-  { id: 'self-guided', emoji: '⛵', bg: '#dbeafe', count: 4 },
-  { id: 'canal-tour',  emoji: '🚣', bg: '#dcfce7', count: 3 },
-  { id: 'watersport',  emoji: '🏄', bg: '#fef9c3', count: 3 },
-  { id: 'private',     emoji: '🍾', bg: '#ede9fe', count: 2 },
-  { id: 'unique',      emoji: '🧘', bg: '#fce7f3', count: 2 },
+  { id: 'self-guided', emoji: '⛵', bg: '#dbeafe', label: 'Self-guided',     count: 4 },
+  { id: 'canal-tour',  emoji: '🚣', bg: '#dcfce7', label: 'Canal tours',     count: 3 },
+  { id: 'watersport',  emoji: '🏄', bg: '#fef9c3', label: 'Watersport',      count: 3 },
+  { id: 'private',     emoji: '🍾', bg: '#ede9fe', label: 'Private & events', count: 2 },
+  { id: 'unique',      emoji: '🧘', bg: '#fce7f3', label: 'Unique',          count: 2 },
 ]
 
 const REVIEWS = [
-  { stars: 5, text: "We had the most amazing afternoon on the electric sloep. Super easy to book — everything in one place.", name: 'Sophie van Dijk', origin: 'Amsterdam', activity: 'Electric boat hire', initials: 'SvD', color: '#0f5e7a', source: 'Google Reviews' },
+  { stars: 5, text: "We had the most amazing afternoon on the electric sloep. Super easy to book — everything in one place. Saw parts of the city we'd never have found otherwise.", name: 'Sophie van Dijk', origin: 'Amsterdam', activity: 'Electric boat hire', initials: 'SvD', color: '#0f5e7a', source: 'Google Reviews' },
   { stars: 5, text: "Finally one website that shows everything! Booked the SUP lesson for my partner's birthday. Easy and exactly as expected.", name: 'Thomas Meyer', origin: 'Berlin, Germany', activity: 'SUP lesson', initials: 'TM', color: '#d97706', source: 'Trustpilot' },
   { stars: 5, text: "We organized a hen party on a private cruise — booked in 5 minutes. The canal at sunset was absolutely stunning.", name: 'Anouk Peeters', origin: 'Antwerp, Belgium', activity: 'Private cruise', initials: 'AP', color: '#7c3aed', source: 'Google Reviews' },
 ]
 
-export default async function HomePage() {
-  const t = useTranslations
+function lhref(locale: string, path: string) {
+  return locale === 'en' ? path : `/${locale}${path}`
+}
+
+export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale)
   const featured = await getFeaturedActivities()
 
   return (
@@ -57,12 +65,12 @@ export default async function HomePage() {
               <div className="flex items-center gap-3 px-4 flex-1 min-w-0">
                 <span className="text-slate-400">🔍</span>
                 <input type="text" placeholder="Boat hire, canal tour, SUP lesson..."
-                  className="flex-1 py-4 text-sm text-slate-700 placeholder-slate-300 outline-none bg-transparent font-body min-w-0" />
+                  className="flex-1 py-4 text-sm text-slate-700 placeholder-slate-300 outline-none bg-transparent min-w-0" />
               </div>
               <div className="w-px h-7 bg-stone-200 flex-shrink-0" />
               <div className="flex items-center gap-2 px-4 flex-shrink-0">
                 <span>📅</span>
-                <select className="text-sm font-medium text-slate-600 bg-transparent outline-none cursor-pointer font-body">
+                <select className="text-sm font-medium text-slate-600 bg-transparent outline-none cursor-pointer">
                   <option>Today</option>
                   <option>This weekend</option>
                   <option>Next week</option>
@@ -104,22 +112,22 @@ export default async function HomePage() {
               <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Choose your adventure</p>
               <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>What suits you?</h2>
             </div>
-            <Link href="/activities" className="text-sm font-semibold text-canal hover:text-canal-dark transition-colors hidden sm:block">
+            <NextLink href={lhref(locale, '/activities')} className="text-sm font-semibold text-canal hover:text-canal-dark transition-colors hidden sm:block">
               All categories →
-            </Link>
+            </NextLink>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
             {CATEGORIES.map((cat) => (
-              <Link key={cat.id} href={`/activities?cat=${cat.id}`}
+              <NextLink key={cat.id} href={lhref(locale, `/activities?cat=${cat.id}`)}
                 className="card-hover bg-white rounded-2xl border border-stone-200 overflow-hidden text-center">
                 <div className="h-24 flex items-center justify-center text-4xl" style={{ backgroundColor: cat.bg }}>
                   {cat.emoji}
                 </div>
                 <div className="px-2 py-2.5">
-                  <p className="text-xs font-bold text-canal-dark leading-tight">{cat.id.replace('-', ' ')}</p>
+                  <p className="text-xs font-bold text-canal-dark leading-tight">{cat.label}</p>
                   <p className="text-[11px] text-slate-400 mt-0.5">{cat.count} options</p>
                 </div>
-              </Link>
+              </NextLink>
             ))}
           </div>
         </div>
@@ -133,9 +141,9 @@ export default async function HomePage() {
               <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Popular this week</p>
               <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>Top activities</h2>
             </div>
-            <Link href="/activities" className="text-sm font-semibold text-canal hover:text-canal-dark transition-colors hidden sm:block">
+            <NextLink href={lhref(locale, '/activities')} className="text-sm font-semibold text-canal hover:text-canal-dark transition-colors hidden sm:block">
               All activities →
-            </Link>
+            </NextLink>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {featured.map((activity, i) => (
@@ -173,6 +181,33 @@ export default async function HomePage() {
                     <p className="text-white/50 text-xs mt-1">{lbl}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── MAP ── */}
+      <section className="bg-[#f2ece1] py-14">
+        <div className="max-w-6xl mx-auto px-5">
+          <div className="mb-7">
+            <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Find your spot</p>
+            <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>Departure points</h2>
+          </div>
+          <div className="relative rounded-2xl overflow-hidden border border-stone-200"
+            style={{ height: 360, backgroundImage: "url('https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="absolute inset-0 bg-canal-dark/35 flex items-center justify-center">
+              <div className="bg-white/96 backdrop-blur rounded-2xl p-7 text-center max-w-sm w-[90%] shadow-xl">
+                <h3 className="font-display font-bold text-canal-dark text-xl mb-2">15+ locations across Amsterdam</h3>
+                <p className="text-sm text-slate-500 mb-5 leading-relaxed">All departure points in one map — filter by activity type and find what's nearest to you.</p>
+                <div className="flex flex-wrap gap-2 justify-center mb-5">
+                  {['📍 Prinsengracht','📍 Centraal Station','📍 Keizersgracht','📍 Amstelpark','📍 Singel'].map(pin => (
+                    <span key={pin} className="text-xs font-medium text-canal bg-canal-light border border-blue-100 px-3 py-1 rounded-full">{pin}</span>
+                  ))}
+                </div>
+                <button className="w-full bg-canal hover:bg-canal-dark text-white font-bold text-sm py-3 rounded-xl transition-colors">
+                  Open interactive map →
+                </button>
               </div>
             </div>
           </div>
@@ -224,12 +259,12 @@ export default async function HomePage() {
           Pick an activity, grab a spot, and experience Amsterdam the way it was meant to be seen — from the water.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/activities" className="bg-amber hover:bg-amber-dark text-white font-bold text-[15px] px-8 py-4 rounded-xl transition-colors">
+          <NextLink href={lhref(locale, '/activities')} className="bg-amber hover:bg-amber-dark text-white font-bold text-[15px] px-8 py-4 rounded-xl transition-colors">
             Browse all activities →
-          </Link>
-          <Link href="/contact" className="text-white/80 hover:text-white border border-white/25 hover:border-white/50 font-medium text-[15px] px-8 py-4 rounded-xl transition-all">
+          </NextLink>
+          <NextLink href={lhref(locale, '/contact')} className="text-white/80 hover:text-white border border-white/25 hover:border-white/50 font-medium text-[15px] px-8 py-4 rounded-xl transition-all">
             Are you a provider?
-          </Link>
+          </NextLink>
         </div>
       </section>
     </>
