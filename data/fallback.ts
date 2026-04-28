@@ -46,7 +46,7 @@ export const fallbackActivities: Activity[] = [
     description: 'Learn stand-up paddleboarding on the calm Amstel. A certified instructor guides you step by step. Spectacular views of Amsterdam from the water.',
     highlights: ['Certified instructor', 'Small group (max 8)', 'All equipment included', 'On the Amstel river'],
     included: ['Paddleboard & paddle', 'Life vest', '2h instruction', 'Dry bag'],
-    bookingUrl: 'https://www.sup-amsterdam.nl', provider: 'SUP Amsterdam', providerUrl: 'https://www.sup-amsterdam.nl',
+    bookingUrl: 'https://amsterdam-suppen.nl/', provider: 'Amsterdam Suppen', providerUrl: 'https://www.sup-amsterdam.nl',
     popular: false, isNew: true, tags: ['sport', 'active', 'summer'],
   },
   {
