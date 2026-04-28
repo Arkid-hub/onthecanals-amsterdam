@@ -49,7 +49,8 @@ export default async function HomePage() {
             <em className="text-canal not-italic font-display">in one place</em>
           </h1>
 
-          <p className="text-slate-800 font-light leading-relaxed mb-8 max-w-lg" style={{ fontSize: 'clamp(15px,2vw,17px)' }}>
+          <p className="text-slate-900 font-medium leading-relaxed mb-8 max-w-lg drop-shadow-sm
+" style={{ fontSize: 'clamp(15px,2vw,17px)' }}>
             From electric boat hire to sunset cruises — discover, compare and book every water activity on the Amsterdam canals.
           </p>
 
