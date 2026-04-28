@@ -74,7 +74,6 @@ export async function getAllActivities(): Promise<Activity[]> {
     database_id: DATABASE_ID,
     sorts: [
       { property: 'Popular', direction: 'descending' },
-      { property: 'ReviewCount', direction: 'descending' },
     ],
   })
   return response.results.map(mapPage)
@@ -98,7 +97,7 @@ export async function getFeaturedActivities(): Promise<Activity[]> {
         { property: 'IsNew',   checkbox: { equals: true } },
       ],
     },
-    sorts: [{ property: 'ReviewCount', direction: 'descending' }],
+    sorts: [{ property: 'Popular', direction: 'descending' }],
     page_size: 6,
   })
   return response.results.map(mapPage)
