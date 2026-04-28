@@ -159,7 +159,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative rounded-2xl overflow-hidden h-80 md:h-96 fade-up">
               <div className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80')" }} />
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1635156684296-0f18c2f2e914?q=80')" }} />
               <div className="absolute inset-0 bg-gradient-to-t from-canal-dark/60 to-transparent" />
               <div className="absolute bottom-4 left-4 bg-white/15 backdrop-blur border border-white/20 rounded-xl p-3">
                 <p className="text-2xl font-bold font-display text-white">100 km</p>
