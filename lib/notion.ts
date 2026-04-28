@@ -1,14 +1,9 @@
 import { Client } from '@notionhq/client'
 import type { Activity } from '@/types'
 
-// ─── Client ────────────────────────────────────────────────────────────────
-const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
-})
-
+const notion = new Client({ auth: process.env.NOTION_TOKEN })
 const DATABASE_ID = process.env.NOTION_DATABASE_ID!
 
-// ─── Helper: safely get text from a Notion property ───────────────────────
 function text(prop: any): string {
   if (!prop) return ''
   if (prop.type === 'title')       return prop.title?.[0]?.plain_text ?? ''
@@ -22,19 +17,12 @@ function text(prop: any): string {
   return ''
 }
 
-function num(prop: any): number {
-  return prop?.number ?? 0
-}
-
-function bool(prop: any): boolean {
-  return prop?.checkbox ?? false
-}
-
+function num(prop: any): number { return prop?.number ?? 0 }
+function bool(prop: any): boolean { return prop?.checkbox ?? false }
 function multi(prop: any): string[] {
   return prop?.multi_select?.map((t: any) => t.name) ?? []
 }
 
-// ─── Map a Notion page → Activity ─────────────────────────────────────────
 function mapPage(page: any): Activity {
   const p = page.properties
   return {
@@ -67,16 +55,16 @@ function mapPage(page: any): Activity {
   }
 }
 
-// ─── Public fetch functions ────────────────────────────────────────────────
-
+// No sorts — we sort in code to avoid Notion API errors
 export async function getAllActivities(): Promise<Activity[]> {
-  const response = await notion.databases.query({
-    database_id: DATABASE_ID,
-    sorts: [
-      { property: 'Popular', direction: 'descending' },
-    ],
-  })
-  return response.results.map(mapPage)
+  const response = await notion.databases.query({ database_id: DATABASE_ID })
+  return response.results
+    .map(mapPage)
+    .sort((a, b) => {
+      if (a.popular && !b.popular) return -1
+      if (!a.popular && b.popular) return 1
+      return b.reviewCount - a.reviewCount
+    })
 }
 
 export async function getActivityBySlug(slug: string): Promise<Activity | null> {
@@ -89,18 +77,11 @@ export async function getActivityBySlug(slug: string): Promise<Activity | null> 
 }
 
 export async function getFeaturedActivities(): Promise<Activity[]> {
-  const response = await notion.databases.query({
-    database_id: DATABASE_ID,
-    filter: {
-      or: [
-        { property: 'Popular', checkbox: { equals: true } },
-        { property: 'IsNew',   checkbox: { equals: true } },
-      ],
-    },
-    sorts: [{ property: 'Popular', direction: 'descending' }],
-    page_size: 6,
-  })
-  return response.results.map(mapPage)
+  const response = await notion.databases.query({ database_id: DATABASE_ID })
+  return response.results
+    .map(mapPage)
+    .filter(a => a.popular || a.isNew)
+    .slice(0, 6)
 }
 
 export async function getAllSlugs(): Promise<string[]> {

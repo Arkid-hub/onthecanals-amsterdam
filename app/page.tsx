@@ -210,7 +210,7 @@ export default async function HomePage() {
           </div>
           <div
             className="relative rounded-2xl overflow-hidden border border-stone-200"
-            style={{ height: 360, backgroundImage: "url('https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80", backgroundSize: 'cover', backgroundPosition: 'center' }}
+            style={{ height: 360, backgroundImage: "url('https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
             <div className="absolute inset-0 bg-canal-dark/35 flex items-center justify-center">
               <div className="bg-white/96 backdrop-blur rounded-2xl p-7 text-center max-w-sm w-[90%] shadow-xl">
