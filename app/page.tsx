@@ -171,7 +171,7 @@ export default async function HomePage() {
             <div className="relative rounded-2xl overflow-hidden h-80 md:h-96 fade-up">
               <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80')" }}
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1763274939543-303db6365931?q=80')" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-canal-dark/60 to-transparent" />
               <div className="absolute bottom-4 left-4 bg-white/15 backdrop-blur border border-white/20 rounded-xl p-3">
@@ -210,7 +210,7 @@ export default async function HomePage() {
           </div>
           <div
             className="relative rounded-2xl overflow-hidden border border-stone-200"
-            style={{ height: 360, backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=70')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+            style={{ height: 360, backgroundImage: "url('https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80", backgroundSize: 'cover', backgroundPosition: 'center' }}
           >
             <div className="absolute inset-0 bg-canal-dark/35 flex items-center justify-center">
               <div className="bg-white/96 backdrop-blur rounded-2xl p-7 text-center max-w-sm w-[90%] shadow-xl">
