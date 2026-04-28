@@ -55,13 +55,13 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  function switchLocale(next: string) {
-    setLangOpen(false)
-    const stripped = pathname.replace(/^\/(en|de|fr|it|es|zh|nl)/, '') || '/'
-    const newPath  = next === 'en' ? stripped : `/${next}${stripped}`
-    startTransition(() => router.push(newPath))
-  }
-
+function switchLocale(next: string) {
+  setLangOpen(false)
+  // Strip ALL locale prefixes including /en/
+  const stripped = pathname.replace(/^\/(en|de|fr|it|es|zh|nl)(\/|$)/, '/') || '/'
+  const newPath  = next === 'en' ? stripped : `/${next}${stripped === '/' ? '' : stripped}`
+  startTransition(() => router.push(newPath))
+}
   const isLight = scrolled
   const linkCls = `text-sm font-medium transition-colors ${isLight ? 'text-slate-600 hover:text-canal-dark' : 'text-white/90 hover:text-white drop-shadow-sm'}`
 
