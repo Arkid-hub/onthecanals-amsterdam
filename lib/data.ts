@@ -9,9 +9,12 @@ async function withFallback<T>(
     return fallback
   }
   try {
-    return await fn()
+    const result = await fn()
+    // If Notion returns empty array, use fallback
+    if (Array.isArray(result) && result.length === 0) return fallback
+    return result
   } catch (err) {
-    console.warn('[onthecanals] Notion fetch failed, using fallback:', err)
+    console.warn('[onthecanals] Notion fetch failed, using fallback')
     return fallback
   }
 }
