@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "activities": "Activities",
+    "selfGuided": "Self-guided",
+    "groups": "Groups",
+    "bookNow": "Book now"
+  },
+  "hero": {
+    "who": "Amsterdam canals · All water activities · One platform",
+    "title": "Everything on the canals,",
+    "titleEm": "in one place",
+    "sub": "From electric boat hire to sunset cruises — discover, compare and book every water activity on the Amsterdam canals.",
+    "searchPlaceholder": "Boat hire, canal tour, SUP lesson...",
+    "today": "Today",
+    "weekend": "This weekend",
+    "nextWeek": "Next week",
+    "anyDate": "Any date",
+    "search": "Search →",
+    "chips": {
+      "boat": "Boat hire",
+      "tour": "Canal tour",
+      "sup": "SUP lesson",
+      "cruise": "Private cruise",
+      "kayak": "Kayak",
+      "bike": "Water bike"
+    }
+  },
+  "trust": {
+    "rating": "avg. rating",
+    "activities": "activities",
+    "providers": "verified providers",
+    "location": "city centre",
+    "booking": "Book safely with verified providers",
+    "languages": "Available in 7 languages"
+  },
+  "categories": {
+    "label": "Choose your adventure",
+    "title": "What suits you?",
+    "all": "All categories →",
+    "selfGuided": "Self-guided",
+    "canalTour": "Canal tours",
+    "watersport": "Watersport",
+    "private": "Private & events",
+    "unique": "Unique"
+  },
+  "activities": {
+    "label": "Popular this week",
+    "title": "Top activities",
+    "seeAll": "All activities →",
+    "book": "Book →",
+    "reviews": "reviews",
+    "people": "people",
+    "hrs": "hrs"
+  },
+  "story": {
+    "label": "Why the canals?",
+    "title": "Amsterdam is best seen",
+    "titleEm": "from the water",
+    "text": "The Grachtengordel — Amsterdam's famous canal ring — is a UNESCO World Heritage site. Over 400 years old, lined with merchant houses, hidden courtyards, and drawbridges that only open by water. No bus or bike gives you this view.",
+    "canals": "canals",
+    "houseboats": "houseboats",
+    "bridges": "bridges",
+    "km": "km of navigable canals"
+  },
+  "map": {
+    "label": "Find your spot",
+    "title": "Departure points",
+    "heading": "15+ locations across Amsterdam",
+    "sub": "All departure points in one map — filter by activity and find what's nearest to you.",
+    "open": "Open interactive map →"
+  },
+  "reviews": {
+    "label": "What visitors say",
+    "title": "Real experiences",
+    "average": "average",
+    "reviews": "reviews"
+  },
+  "cta": {
+    "label": "Ready to go?",
+    "title": "The canals are waiting",
+    "sub": "Pick an activity, grab a spot, and experience Amsterdam the way it was meant to be seen — from the water.",
+    "browse": "Browse all activities →",
+    "provider": "Are you a provider?"
+  },
+  "footer": {
+    "desc": "The platform for all water activities on the Amsterdam canals. Compare, discover and book — in 7 languages.",
+    "activitiesTitle": "Activities",
+    "platformTitle": "Platform",
+    "about": "About us",
+    "becomeProvider": "Become a provider",
+    "contact": "Contact",
+    "privacy": "Privacy policy",
+    "rights": "All rights reserved.",
+    "privacyLink": "Privacy",
+    "terms": "Terms",
+    "sitemap": "Sitemap"
+  }
+}

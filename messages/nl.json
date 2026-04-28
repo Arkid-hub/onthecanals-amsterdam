@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "activities": "Activiteiten",
+    "selfGuided": "Zelf varen",
+    "groups": "Groepen",
+    "bookNow": "Boek nu"
+  },
+  "hero": {
+    "who": "Amsterdamse grachten · Alle wateractiviteiten · Één platform",
+    "title": "Alles op de grachten,",
+    "titleEm": "op één plek",
+    "sub": "Van sloepverhuur tot zonsondergangcruise — ontdek, vergelijk en boek alle wateractiviteiten in Amsterdam.",
+    "searchPlaceholder": "Sloep huren, rondvaart, SUP-les...",
+    "today": "Vandaag",
+    "weekend": "Dit weekend",
+    "nextWeek": "Volgende week",
+    "anyDate": "Elke datum",
+    "search": "Zoeken →",
+    "chips": {
+      "boat": "Sloep huren",
+      "tour": "Rondvaart",
+      "sup": "SUP-les",
+      "cruise": "Privécruise",
+      "kayak": "Kajak",
+      "bike": "Waterfiets"
+    }
+  },
+  "trust": {
+    "rating": "gem. beoordeling",
+    "activities": "activiteiten",
+    "providers": "geverifieerde aanbieders",
+    "location": "stadscentrum",
+    "booking": "Veilig boeken bij geverifieerde aanbieders",
+    "languages": "Beschikbaar in 7 talen"
+  },
+  "categories": {
+    "label": "Kies je avontuur",
+    "title": "Wat past bij jou?",
+    "all": "Alle categorieën →",
+    "selfGuided": "Zelf varen",
+    "canalTour": "Rondvaarten",
+    "watersport": "Watersport",
+    "private": "Privé & events",
+    "unique": "Uniek"
+  },
+  "activities": {
+    "label": "Populair deze week",
+    "title": "Top activiteiten",
+    "seeAll": "Alle activiteiten →",
+    "book": "Boek →",
+    "reviews": "beoordelingen",
+    "people": "personen",
+    "hrs": "uur"
+  },
+  "story": {
+    "label": "Waarom de grachten?",
+    "title": "Amsterdam zie je het best",
+    "titleEm": "vanaf het water",
+    "text": "De Grachtengordel — Amsterdams beroemde grachtengordel — is een UNESCO Werelderfgoed. Meer dan 400 jaar oud, omzoomd met koopmanspanden, verborgen hofjes en bruggen die alleen over water te bereiken zijn.",
+    "canals": "grachten",
+    "houseboats": "woonboten",
+    "bridges": "bruggen",
+    "km": "km bevaarbaar water"
+  },
+  "map": {
+    "label": "Vind je plek",
+    "title": "Vertrekpunten",
+    "heading": "15+ locaties door Amsterdam",
+    "sub": "Alle vertrekpunten op één kaart — filter op activiteit en vind wat het dichtst bij je is.",
+    "open": "Open interactieve kaart →"
+  },
+  "reviews": {
+    "label": "Wat bezoekers zeggen",
+    "title": "Echte ervaringen",
+    "average": "gemiddeld",
+    "reviews": "beoordelingen"
+  },
+  "cta": {
+    "label": "Klaar om te gaan?",
+    "title": "De grachten wachten",
+    "sub": "Kies een activiteit, claim je plek en beleef Amsterdam zoals het bedoeld is — vanaf het water.",
+    "browse": "Bekijk alle activiteiten →",
+    "provider": "Ben jij een aanbieder?"
+  },
+  "footer": {
+    "desc": "Het platform voor alle wateractiviteiten op de Amsterdamse grachten. Vergelijk, ontdek en boek — in 7 talen.",
+    "activitiesTitle": "Activiteiten",
+    "platformTitle": "Platform",
+    "about": "Over ons",
+    "becomeProvider": "Aanbieder worden",
+    "contact": "Contact",
+    "privacy": "Privacybeleid",
+    "rights": "Alle rechten voorbehouden.",
+    "privacyLink": "Privacy",
+    "terms": "Voorwaarden",
+    "sitemap": "Sitemap"
+  }
+}
