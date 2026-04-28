@@ -30,7 +30,8 @@ function lhref(locale: string, path: string) {
 
 export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
-  const featured = await getFeaturedActivities()
+  const { fallbackActivities } = await import('@/data/fallback')
+const featured = fallbackActivities.filter((a: any) => a.popular || a.isNew)
 
   return (
     <>
