@@ -49,12 +49,12 @@ export function Navbar() {
   const pathname = usePathname()
   const active   = LANGS.find(l => l.code === locale) || LANGS[0]
 
-useEffect(() => {
-  const fn = () => setScrolled(window.scrollY > 10)
-  window.addEventListener('scroll', fn, { passive: true })
-  fn() // check direct bij mount
-  return () => window.removeEventListener('scroll', fn)
-}, [])
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', fn, { passive: true })
+    fn()
+    return () => window.removeEventListener('scroll', fn)
+  }, [])
 
   function switchLocale(next: string) {
     setLangOpen(false)
@@ -71,7 +71,9 @@ useEffect(() => {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-stone-100' : ''}`}>
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
 
-          <NextLink href={lhref(locale, '/')}><Logo scrolled={scrolled} /></NextLink>
+          <NextLink href={lhref(locale, '/')} aria-label="OnTheCanals Amsterdam — homepage">
+            <Logo scrolled={scrolled} />
+          </NextLink>
 
           <nav className="hidden md:flex items-center gap-6">
             <NextLink href={lhref(locale, '/activities')} className={linkCls}>Activities</NextLink>
@@ -81,7 +83,6 @@ useEffect(() => {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* Language switcher */}
             <div className="relative">
               <button onClick={() => setLangOpen(!langOpen)}
                 className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full transition-all ${
@@ -111,7 +112,11 @@ useEffect(() => {
               Book now
             </NextLink>
 
-            <button className={`md:hidden p-1 ${scrolled ? 'text-slate-700' : 'text-white'}`} onClick={() => setMenuOpen(!menuOpen)}>
+            <button
+              className={`md:hidden p-1 ${scrolled ? 'text-slate-700' : 'text-white'}`}
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}>
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {menuOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                           : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}

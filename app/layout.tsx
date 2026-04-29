@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html className={`${playfair.variable} ${dmSans.variable} ${caveat.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${caveat.variable}`}>
       <head>
         <link rel="alternate" hrefLang="x-default" href={siteUrl} />
         {locales.map((locale) => (

@@ -43,7 +43,7 @@ export function Footer() {
 
           {/* Activities */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">Activities</h4>
+            <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">Activities</p>
             <ul className="space-y-2">
               {ACTIVITIES.map(([label, href]) => (
                 <li key={href}>
@@ -55,7 +55,7 @@ export function Footer() {
 
           {/* Platform */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">Platform</h4>
+            <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">Platform</p>
             <ul className="space-y-2">
               {PLATFORM.map(([label, href]) => (
                 <li key={href}>

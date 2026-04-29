@@ -8,7 +8,12 @@ const nextConfig = {
       { protocol: 'https', hostname: 'res.cloudinary.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: '**.notion.so' },
+      { protocol: 'https', hostname: 'onthecanals.nl' },
     ],
+  },
+  experimental: {
+    // Target modern browsers only — no legacy polyfills
+    browsersListForSwc: true,
   },
 }
 

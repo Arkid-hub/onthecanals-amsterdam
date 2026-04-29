@@ -1,0 +1,8 @@
+[production]
+Chrome >= 80
+Firefox >= 80
+Safari >= 14
+Edge >= 80
+iOS >= 14
+not IE 11
+not dead
