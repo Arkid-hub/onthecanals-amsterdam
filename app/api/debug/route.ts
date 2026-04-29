@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getFeaturedActivities, getAllActivities } from '@/lib/data'
+import { getFeaturedActivities, getAllActivitiesData as getAllActivities } from '@/lib/data'
 
 export const dynamic = 'force-dynamic'
 
