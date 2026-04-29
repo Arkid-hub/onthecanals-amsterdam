@@ -93,3 +93,21 @@ export async function getAllSlugs(): Promise<string[]> {
     .map((p: any) => p.properties?.Slug?.rich_text?.[0]?.plain_text)
     .filter(Boolean)
 }
+
+// ─── Site Settings ────────────────────────────────────────────────────────────
+const SETTINGS_DATABASE_ID = process.env.NOTION_SETTINGS_DATABASE_ID!
+
+export async function getSiteSettings(): Promise<Record<string, string>> {
+  const response = await notion.databases.query({
+    database_id: SETTINGS_DATABASE_ID,
+  })
+  
+  const settings: Record<string, string> = {}
+  for (const page of response.results) {
+    const p = (page as any).properties
+    const key = p['Key']?.title?.[0]?.plain_text
+    const value = p['Value']?.rich_text?.[0]?.plain_text
+    if (key && value) settings[key] = value
+  }
+  return settings
+}

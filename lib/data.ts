@@ -40,3 +40,13 @@ export async function getAllSlugs(): Promise<string[]> {
     fallbackActivities.map((a) => a.slug)
   )
 }
+
+export async function getSiteSettings(): Promise<Record<string, string>> {
+  if (!hasNotion) return {}
+  try {
+    const { getSiteSettings } = await import('./notion')
+    return getSiteSettings()
+  } catch {
+    return {}
+  }
+}

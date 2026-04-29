@@ -1,5 +1,5 @@
 import { setRequestLocale } from 'next-intl/server'
-import { getFeaturedActivities } from '@/lib/data'
+import { getFeaturedActivities, getSiteSettings } from '@/lib/data'
 import { ActivityCard } from '@/components/ui/ActivityCard'
 import { WebsiteJsonLd, ActivityListJsonLd } from '@/components/seo/JsonLd'
 import { locales } from '@/i18n'
@@ -9,7 +9,7 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 300
 
 const CATEGORIES = [
   { id: 'self-guided', emoji: '⛵', bg: '#dbeafe', label: 'Self-guided',     count: 4 },
@@ -32,6 +32,7 @@ function lhref(locale: string, path: string) {
 export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const featured = await getFeaturedActivities()
+  const settings = await getSiteSettings()
 
   return (
     <>
@@ -40,7 +41,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
       {/* ── HERO ── */}
       <section className="relative min-h-svh flex items-end overflow-hidden">
         <div className="slow-zoom absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1600&q=85')" }} />
+          style={{ backgroundImage: `url('${settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1600&q=85'}')` }} />
         <div className="absolute inset-0 bg-gradient-to-t from-[#faf7f2]/95 via-[#faf7f2]/40 to-transparent" />
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-canal-dark/40 to-transparent" />
 
@@ -162,7 +163,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative rounded-2xl overflow-hidden h-80 md:h-96 fade-up">
               <div className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80')" }} />
+                style={{ backgroundImage: `url('${settings.whyCanalsPhoto || 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80'}')` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-canal-dark/60 to-transparent" />
               <div className="absolute bottom-4 left-4 bg-white/15 backdrop-blur border border-white/20 rounded-xl p-3">
                 <p className="text-2xl font-bold font-display text-white">100 km</p>
@@ -198,7 +199,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
             <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>Departure points</h2>
           </div>
           <div className="relative rounded-2xl overflow-hidden border border-stone-200"
-            style={{ height: 360, backgroundImage: "url('https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            style={{ height: 360, backgroundImage: `url('${settings.departurePhoto || 'https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80'}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="absolute inset-0 bg-canal-dark/35 flex items-center justify-center">
               <div className="bg-white/96 backdrop-blur rounded-2xl p-7 text-center max-w-sm w-[90%] shadow-xl">
                 <h3 className="font-display font-bold text-canal-dark text-xl mb-2">15+ locations across Amsterdam</h3>
