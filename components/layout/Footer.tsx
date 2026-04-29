@@ -23,9 +23,19 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
           {/* Brand */}
           <div>
-            <p className="font-display font-bold text-white text-lg mb-3">
-              OnThe<span className="text-sky-300">Canals</span>.Amsterdam
-            </p>
+            <div className="mb-3">
+              <svg width="200" height="52" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="4"  y1="2"  x2="18" y2="16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+                <line x1="18" y1="2"  x2="4"  y2="16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+                <line x1="4"  y1="20" x2="18" y2="34" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+                <line x1="18" y1="20" x2="4"  y2="34" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+                <line x1="4"  y1="38" x2="18" y2="52" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+                <line x1="18" y1="38" x2="4"  y2="52" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+                <path d="M6,59 C8,55 10,62 11,59 C12,56 14,61 16,59" stroke="#7dd3ea" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.85"/>
+                <text x="28" y="30" fontFamily="var(--font-caveat), cursive" fontSize="34" fontWeight="700" fill="white" letterSpacing="-0.5">OnTheCanals</text>
+                <text x="33" y="47" fontFamily="var(--font-dm-sans), sans-serif" fontSize="9" fill="rgba(255,255,255,0.35)" letterSpacing="2.5">of Amsterdam</text>
+              </svg>
+            </div>
             <p className="text-sm leading-relaxed max-w-xs">
               The platform for all water activities on the Amsterdam canals. Compare, discover and book — in 7 languages.
             </p>
