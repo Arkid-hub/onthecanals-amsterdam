@@ -1,5 +1,6 @@
 import { Playfair_Display, DM_Sans, Caveat } from 'next/font/google'
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -55,7 +56,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         ))}
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script
+          src="https://widget.getyourguide.com/dist/pa.umd.production.min.js"
+          data-gyg-partner-id="SA8A0PZ"
+          strategy="lazyOnload"
+        />
+      </body>
     </html>
   )
 }
