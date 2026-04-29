@@ -43,7 +43,10 @@ export async function getFeaturedActivities(): Promise<Activity[]> {
   return withFallback(
     async () => {
       const { getFeaturedActivities } = await import('./notion')
-      return getFeaturedActivities()
+      const result = await getFeaturedActivities()
+      console.log('[Notion] getFeaturedActivities returned:', result.length, 'items')
+      if (result.length > 0) console.log('[Notion] first item provider:', result[0].provider)
+      return result
     },
     fallbackActivities.filter((a) => a.popular || a.isNew)
   )
