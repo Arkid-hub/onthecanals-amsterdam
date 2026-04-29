@@ -32,8 +32,8 @@ function Logo({ scrolled }: { scrolled: boolean }) {
       <line x1="4"  y1="38" x2="18" y2="52" stroke={c} strokeWidth="3" strokeLinecap="round"/>
       <line x1="18" y1="38" x2="4"  y2="52" stroke={c} strokeWidth="3" strokeLinecap="round"/>
       <path d="M6,59 C8,55 10,62 11,59 C12,56 14,61 16,59" stroke={w} strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.85"/>
-      <text x="28" y="30" fontFamily="Caveat, cursive" fontSize="34" fontWeight="700" fill={c} letterSpacing="-0.5">OnTheCanals</text>
-      <text x="33" y="47" fontFamily="sans-serif" fontSize="9" fill={s} letterSpacing="2.5">of Amsterdam</text>
+      <text x="28" y="30" fontFamily="var(--font-caveat), cursive" fontSize="34" fontWeight="700" fill={c} letterSpacing="-0.5">OnTheCanals</text>
+      <text x="33" y="47" fontFamily="var(--font-dm-sans), sans-serif" fontSize="9" fill={s} letterSpacing="2.5">of Amsterdam</text>
     </svg>
   )
 }
@@ -55,19 +55,18 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-function switchLocale(next: string) {
-  setLangOpen(false)
-  // Strip ALL locale prefixes including /en/
-  const stripped = pathname.replace(/^\/(en|de|fr|it|es|zh|nl)(\/|$)/, '/') || '/'
-  const newPath  = next === 'en' ? stripped : `/${next}${stripped === '/' ? '' : stripped}`
-  startTransition(() => router.push(newPath))
-}
+  function switchLocale(next: string) {
+    setLangOpen(false)
+    const stripped = pathname.replace(/^\/(en|de|fr|it|es|zh|nl)/, '') || '/'
+    const newPath  = next === 'en' ? stripped : `/${next}${stripped}`
+    startTransition(() => router.push(newPath))
+  }
+
   const isLight = scrolled
   const linkCls = `text-sm font-medium transition-colors ${isLight ? 'text-slate-600 hover:text-canal-dark' : 'text-white/90 hover:text-white drop-shadow-sm'}`
 
   return (
     <>
-      <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-stone-100' : ''}`}>
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
 

@@ -200,7 +200,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           </div>
           <div className="relative rounded-2xl overflow-hidden border border-stone-200"
             style={{ height: 360, backgroundImage: `url('${settings.departurePhoto || 'https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80'}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <div className="absolute inset-0 bg-canal-dark/35 flex items-center justify-center">
+            <div className="absolute inset-0 bg-canal-dark/65 flex items-center justify-center">
               <div className="bg-white/96 backdrop-blur rounded-2xl p-7 text-center max-w-sm w-[90%] shadow-xl">
                 <h3 className="font-display font-bold text-canal-dark text-xl mb-2">15+ locations across Amsterdam</h3>
                 <p className="text-sm text-slate-500 mb-5 leading-relaxed">All departure points in one map — filter by activity type and find what's nearest to you.</p>
