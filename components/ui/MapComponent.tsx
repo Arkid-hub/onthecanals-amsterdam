@@ -80,6 +80,7 @@ export function MapComponent({ locale }: { locale: string }) {
 
       map.on('load', () => {
         map.resize()
+        setTimeout(() => map.resize(), 100)
         mapRef.current = map
         setMapReady(true)
       })
@@ -159,12 +160,17 @@ export function MapComponent({ locale }: { locale: string }) {
 
   return (
     <div
-      className="relative w-full rounded-2xl overflow-hidden border border-stone-200"
-      style={{ height: '480px' }}
+      className="relative w-full border border-stone-200"
+      style={{ height: '480px', borderRadius: '16px' }}
     >
       <div
         ref={mapContainer}
-        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+        style={{
+          position: 'absolute',
+          top: 0, left: 0, right: 0, bottom: 0,
+          borderRadius: '16px',
+          overflow: 'hidden',
+        }}
       />
 
       {!mapReady && (
