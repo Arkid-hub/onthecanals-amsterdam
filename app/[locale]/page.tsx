@@ -4,12 +4,18 @@ import { ActivityCard } from '@/components/ui/ActivityCard'
 import { WebsiteJsonLd, ActivityListJsonLd } from '@/components/seo/JsonLd'
 import { locales } from '@/i18n'
 import NextLink from 'next/link'
+import nextDynamic from 'next/dynamic'
+
+const MapComponent = nextDynamic(
+  () => import('@/components/ui/MapComponent').then(m => m.MapComponent),
+  { ssr: false, loading: () => <div className="w-full rounded-2xl bg-canal-light animate-pulse" style={{ height: 480 }} /> }
+)
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export const revalidate = 300
+export const dynamic = 'force-dynamic'
 
 const CATEGORIES = [
   { id: 'self-guided', emoji: '⛵', bg: '#dbeafe', label: 'Self-guided',     count: 4 },
@@ -38,6 +44,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
     <>
       <WebsiteJsonLd />
       <ActivityListJsonLd activities={featured} />
+
       {/* ── HERO ── */}
       <section className="relative min-h-svh flex items-end overflow-hidden">
         <div className="slow-zoom absolute inset-0 bg-cover bg-center"
@@ -74,7 +81,8 @@ export default async function HomePage({ params: { locale } }: { params: { local
               <div className="w-px h-7 bg-stone-200 flex-shrink-0" />
               <div className="flex items-center gap-2 px-4 flex-shrink-0">
                 <span>📅</span>
-                <select className="text-sm font-medium text-slate-600 bg-transparent outline-none cursor-pointer">
+                <label htmlFor="date-select" className="sr-only">Select date</label>
+                <select id="date-select" className="text-sm font-medium text-slate-600 bg-transparent outline-none cursor-pointer">
                   <option>Today</option>
                   <option>This weekend</option>
                   <option>Next week</option>
@@ -101,8 +109,8 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <div className="bg-white border-b border-stone-100 overflow-x-auto scrollbar-hide">
         <div className="flex items-center gap-6 px-5 py-3.5 max-w-6xl mx-auto">
           {[['⭐','4.8','avg. rating'],['🌊','9+','activities'],['⚓','15+','verified providers'],['📍','Amsterdam','city centre'],['🔒','Safe','book with verified providers'],['🌍','7 languages','available']].map(([icon,val,label]) => (
-            <div key={label} className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-400 flex-shrink-0">
-              <span>{icon}</span><strong className="text-slate-700 font-semibold">{val}</strong><span>{label}</span>
+            <div key={label} className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-500 flex-shrink-0">
+              <span>{icon}</span><strong className="text-slate-800 font-semibold">{val}</strong><span className="text-slate-600">{label}</span>
             </div>
           ))}
         </div>
@@ -197,24 +205,9 @@ export default async function HomePage({ params: { locale } }: { params: { local
           <div className="mb-7">
             <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Find your spot</p>
             <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>Departure points</h2>
+            <p className="text-slate-500 text-sm mt-1">Click a pin to see details. Filter by activity type.</p>
           </div>
-          <div className="relative rounded-2xl overflow-hidden border border-stone-200"
-            style={{ height: 360, backgroundImage: `url('${settings.departurePhoto || 'https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80'}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <div className="absolute inset-0 bg-canal-dark/65 flex items-center justify-center">
-              <div className="bg-white/96 backdrop-blur rounded-2xl p-7 text-center max-w-sm w-[90%] shadow-xl">
-                <h3 className="font-display font-bold text-white text-xl mb-2">15+ locations across Amsterdam</h3>
-                <p className="text-sm text-slate-700 mb-5 leading-relaxed">All departure points in one map — filter by activity type and find what's nearest to you.</p>
-                <div className="flex flex-wrap gap-2 justify-center mb-5">
-                  {['📍 Prinsengracht','📍 Centraal Station','📍 Keizersgracht','📍 Amstelpark','📍 Singel'].map(pin => (
-                    <span key={pin} className="text-xs font-medium text-canal bg-canal-light border border-blue-100 px-3 py-1 rounded-full">{pin}</span>
-                  ))}
-                </div>
-                <button className="w-full bg-canal hover:bg-canal-dark text-white font-bold text-sm py-3 rounded-xl transition-colors">
-                  Open interactive map →
-                </button>
-              </div>
-            </div>
-          </div>
+          <MapComponent locale={locale} />
         </div>
       </section>
 
