@@ -175,7 +175,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
               <h2 className="font-display font-bold text-white leading-tight mb-4" style={{ fontSize: 'clamp(26px,3.5vw,38px)' }}>
                 Amsterdam is best seen<br /><em className="text-sky-300">from the water</em>
               </h2>
-              <p className="text-white/65 font-light leading-relaxed text-[15px] mb-8">
+              <p className="text-white/90 font-light leading-relaxed text-[17px] mb-8">
                 The Grachtengordel — Amsterdam's famous canal ring — is a UNESCO World Heritage site. Over 400 years old, lined with merchant houses, hidden courtyards, and drawbridges that only open by water.
               </p>
               <div className="grid grid-cols-3 gap-4">
@@ -202,8 +202,8 @@ export default async function HomePage({ params: { locale } }: { params: { local
             style={{ height: 360, backgroundImage: `url('${settings.departurePhoto || 'https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80'}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="absolute inset-0 bg-canal-dark/65 flex items-center justify-center">
               <div className="bg-white/96 backdrop-blur rounded-2xl p-7 text-center max-w-sm w-[90%] shadow-xl">
-                <h3 className="font-display font-bold text-canal-dark text-xl mb-2">15+ locations across Amsterdam</h3>
-                <p className="text-sm text-slate-500 mb-5 leading-relaxed">All departure points in one map — filter by activity type and find what's nearest to you.</p>
+                <h3 className="font-display font-bold text-white text-xl mb-2">15+ locations across Amsterdam</h3>
+                <p className="text-sm text-slate-700 mb-5 leading-relaxed">All departure points in one map — filter by activity type and find what's nearest to you.</p>
                 <div className="flex flex-wrap gap-2 justify-center mb-5">
                   {['📍 Prinsengracht','📍 Centraal Station','📍 Keizersgracht','📍 Amstelpark','📍 Singel'].map(pin => (
                     <span key={pin} className="text-xs font-medium text-canal bg-canal-light border border-blue-100 px-3 py-1 rounded-full">{pin}</span>
@@ -259,7 +259,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
         <h2 className="font-display font-bold text-white mb-3" style={{ fontSize: 'clamp(26px,4vw,42px)' }}>
           The canals are waiting
         </h2>
-        <p className="text-white/65 text-base font-light max-w-md mx-auto mb-8 leading-relaxed">
+        <p className="text-white/85 text-base font-bold max-w-md mx-auto mb-8 leading-relaxed">
           Pick an activity, grab a spot, and experience Amsterdam the way it was meant to be seen — from the water.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

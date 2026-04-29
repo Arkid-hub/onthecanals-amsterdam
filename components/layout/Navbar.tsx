@@ -49,11 +49,12 @@ export function Navbar() {
   const pathname = usePathname()
   const active   = LANGS.find(l => l.code === locale) || LANGS[0]
 
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', fn, { passive: true })
-    return () => window.removeEventListener('scroll', fn)
-  }, [])
+useEffect(() => {
+  const fn = () => setScrolled(window.scrollY > 10)
+  window.addEventListener('scroll', fn, { passive: true })
+  fn() // check direct bij mount
+  return () => window.removeEventListener('scroll', fn)
+}, [])
 
   function switchLocale(next: string) {
     setLangOpen(false)
