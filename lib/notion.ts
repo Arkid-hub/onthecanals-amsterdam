@@ -33,6 +33,7 @@ function mapPage(page: any): Activity {
     category:     text(p['Category']) as Activity['category'],
     emoji:        text(p['Emoji']),
     photo:        text(p['Photo']),
+    photoAlt:     text(p['PhotoAlt']),
     bgColor:      text(p['BgColor']) || '#e0f4fb',
     price:        num(p['Price']),
     priceUnit:    text(p['PriceUnit']) as Activity['priceUnit'],

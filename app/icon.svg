@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#0a3d52"/>
+  <!-- X1 -->
+  <line x1="6" y1="4" x2="14" y2="11" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="14" y1="4" x2="6" y2="11" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- X2 -->
+  <line x1="6" y1="13" x2="14" y2="20" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="14" y1="13" x2="6" y2="20" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- X3 -->
+  <line x1="6" y1="22" x2="14" y2="29" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="14" y1="22" x2="6" y2="29" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Wave -->
+  <path d="M18,26 C20,23 22,28 24,26 C26,23 28,28 30,26" stroke="#7dd3ea" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- OTC text -->
+  <text x="18" y="16" font-family="Georgia, serif" font-size="10" font-weight="700" fill="white">OTC</text>
+</svg>

@@ -9,6 +9,7 @@ export interface Activity {
   category: Category
   emoji: string
   photo: string
+  photoAlt?: string
   bgColor: string
   price: number
   priceUnit: 'hr' | 'p.p.' | 'boat' | 'day'

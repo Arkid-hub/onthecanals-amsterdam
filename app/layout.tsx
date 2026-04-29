@@ -1,4 +1,5 @@
 import { Playfair_Display, DM_Sans, Caveat } from 'next/font/google'
+import type { Metadata } from 'next'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -25,6 +26,20 @@ const caveat = Caveat({
 
 const siteUrl = 'https://onthecanals.nl'
 const locales = ['en', 'de', 'fr', 'it', 'es', 'zh', 'nl']
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | OnTheCanals Amsterdam',
+    default: 'OnTheCanals Amsterdam — All water activities in one place',
+  },
+  description: 'Discover, compare and book every water activity on the Amsterdam canals. Electric boat hire, canal tours, SUP lessons, kayak, private cruises and more.',
+  metadataBase: new URL(siteUrl),
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

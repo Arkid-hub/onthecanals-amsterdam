@@ -35,6 +35,8 @@ export function ActivityCard({ activity, delay = 0 }: Props) {
         <div
           className="photo-zoom absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${activity.photo}')` }}
+          role="img"
+          aria-label={activity.photoAlt || activity.title}
         />
         {/* Scrim */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent" />
