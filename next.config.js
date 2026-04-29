@@ -11,10 +11,6 @@ const nextConfig = {
       { protocol: 'https', hostname: 'onthecanals.nl' },
     ],
   },
-  experimental: {
-    // Target modern browsers only — no legacy polyfills
-    browsersListForSwc: true,
-  },
 }
 
 module.exports = withNextIntl(nextConfig)
