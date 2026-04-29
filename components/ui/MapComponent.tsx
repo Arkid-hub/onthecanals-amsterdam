@@ -42,7 +42,6 @@ type Location = typeof LOCATIONS[0]
 export function MapComponent({ locale }: { locale: string }) {
   const mapContainer = useRef<HTMLDivElement>(null)
   const mapRef = useRef<any>(null)
-  const markersRef = useRef<any[]>([])
   const [activeCategory, setActiveCategory] = useState('all')
   const [selected, setSelected] = useState<Location | null>(null)
   const [mapReady, setMapReady] = useState(false)
@@ -51,8 +50,28 @@ export function MapComponent({ locale }: { locale: string }) {
     return locale === 'en' ? path : `/${locale}${path}`
   }
 
+  function getGeoJSON(category: string) {
+    const filtered = category === 'all' ? LOCATIONS : LOCATIONS.filter(l => l.category === category)
+    return {
+      type: 'FeatureCollection' as const,
+      features: filtered.map(loc => ({
+        type: 'Feature' as const,
+        geometry: { type: 'Point' as const, coordinates: [loc.lng, loc.lat] },
+        properties: {
+          id: loc.id,
+          name: loc.name,
+          category: loc.category,
+          address: loc.address,
+          price: loc.price,
+          slug: loc.slug,
+          color: CATEGORY_COLORS[loc.category] || '#0a3d52',
+        },
+      })),
+    }
+  }
+
   useEffect(() => {
-    if (!mapContainer.current || mapRef.current) return
+    if (!mapContainer.current) return
 
     if (!document.getElementById('mapbox-css')) {
       const link = document.createElement('link')
@@ -62,14 +81,11 @@ export function MapComponent({ locale }: { locale: string }) {
       document.head.appendChild(link)
     }
 
-    let map: any = null
-    let ro: ResizeObserver | null = null
-
     import('mapbox-gl').then((mod) => {
       const mapboxgl = mod.default
       mapboxgl.accessToken = MAPBOX_TOKEN
 
-      map = new mapboxgl.Map({
+      const map = new mapboxgl.Map({
         container: mapContainer.current!,
         style: 'mapbox://styles/mapbox/light-v11',
         center: [4.9041, 52.3676],
@@ -79,106 +95,84 @@ export function MapComponent({ locale }: { locale: string }) {
       map.addControl(new mapboxgl.NavigationControl(), 'top-right')
 
       map.on('load', () => {
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            map.resize()
-            mapRef.current = map
-            setMapReady(true)
-          })
+        // Add GeoJSON source
+        map.addSource('locations', {
+          type: 'geojson',
+          data: getGeoJSON('all'),
         })
-      })
 
-      ro = new ResizeObserver(() => {
-        if (map) map.resize()
+        // Circle layer
+        map.addLayer({
+          id: 'location-circles',
+          type: 'circle',
+          source: 'locations',
+          paint: {
+            'circle-radius': 14,
+            'circle-color': ['get', 'color'],
+            'circle-stroke-width': 3,
+            'circle-stroke-color': '#ffffff',
+            'circle-opacity': 0.95,
+          },
+        })
+
+        // Label layer
+        map.addLayer({
+          id: 'location-labels',
+          type: 'symbol',
+          source: 'locations',
+          layout: {
+            'text-field': ['get', 'name'],
+            'text-size': 11,
+            'text-offset': [0, 1.8],
+            'text-anchor': 'top',
+            'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+          },
+          paint: {
+            'text-color': '#1e3a5f',
+            'text-halo-color': '#ffffff',
+            'text-halo-width': 2,
+          },
+        })
+
+        // Click handler
+        map.on('click', 'location-circles', (e: any) => {
+          const props = e.features[0].properties
+          const loc = LOCATIONS.find(l => l.id === props.id)
+          if (loc) setSelected(loc)
+        })
+
+        // Cursor
+        map.on('mouseenter', 'location-circles', () => {
+          map.getCanvas().style.cursor = 'pointer'
+        })
+        map.on('mouseleave', 'location-circles', () => {
+          map.getCanvas().style.cursor = ''
+        })
+
+        mapRef.current = map
+        setMapReady(true)
       })
-      if (mapContainer.current) ro.observe(mapContainer.current)
     })
 
     return () => {
-      if (ro) ro.disconnect()
-      markersRef.current.forEach(m => m.remove())
-      markersRef.current = []
-      if (map) {
-        map.remove()
+      if (mapRef.current) {
+        mapRef.current.remove()
         mapRef.current = null
       }
     }
   }, [])
 
+  // Update filter
   useEffect(() => {
     if (!mapReady || !mapRef.current) return
-
-    import('mapbox-gl').then((mod) => {
-      const mapboxgl = mod.default
-
-      markersRef.current.forEach(m => m.remove())
-      markersRef.current = []
-
-      const filtered = activeCategory === 'all'
-        ? LOCATIONS
-        : LOCATIONS.filter(l => l.category === activeCategory)
-
-      requestAnimationFrame(() => {
-        mapRef.current.resize()
-
-        filtered.forEach(location => {
-          const color = CATEGORY_COLORS[location.category] || '#0a3d52'
-
-          const el = document.createElement('div')
-          el.style.cssText = [
-            'width:38px',
-            'height:38px',
-            'border-radius:50% 50% 50% 0',
-            `background-color:${color}`,
-            'border:3px solid white',
-            'box-shadow:0 2px 8px rgba(0,0,0,0.35)',
-            'transform:rotate(-45deg)',
-            'cursor:pointer',
-            'display:flex',
-            'align-items:center',
-            'justify-content:center',
-            'transition:transform 0.15s ease,box-shadow 0.15s ease',
-          ].join(';')
-
-          const inner = document.createElement('span')
-          inner.style.cssText = 'transform:rotate(45deg);font-size:15px;line-height:1;display:block'
-          inner.textContent = location.emoji
-          el.appendChild(inner)
-
-          el.addEventListener('mouseenter', () => {
-            el.style.transform = 'rotate(-45deg) scale(1.25)'
-            el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.45)'
-          })
-          el.addEventListener('mouseleave', () => {
-            el.style.transform = 'rotate(-45deg) scale(1)'
-            el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.35)'
-          })
-          el.addEventListener('click', () => setSelected(location))
-
-          const marker = new mapboxgl.Marker({ element: el })
-            .setLngLat([location.lng, location.lat])
-            .addTo(mapRef.current)
-
-          markersRef.current.push(marker)
-        })
-      })
-    })
+    const source = mapRef.current.getSource('locations')
+    if (source) source.setData(getGeoJSON(activeCategory))
+    setSelected(null)
   }, [mapReady, activeCategory])
 
   return (
-    <div
-      className="relative w-full border border-stone-200"
-      style={{ height: '480px', borderRadius: '16px' }}
-    >
-      <div
-        ref={mapContainer}
-        style={{
-          position: 'absolute',
-          top: 0, left: 0, right: 0, bottom: 0,
-          borderRadius: '16px',
-          overflow: 'hidden',
-        }}
-      />
+    <div className="relative w-full rounded-2xl overflow-hidden border border-stone-200" style={{ height: '480px' }}>
+      <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
 
       {!mapReady && (
         <div className="absolute inset-0 bg-slate-100 flex items-center justify-center z-10">
@@ -191,7 +185,7 @@ export function MapComponent({ locale }: { locale: string }) {
           {CATEGORIES.map(cat => (
             <button
               key={cat.id}
-              onClick={() => { setActiveCategory(cat.id); setSelected(null) }}
+              onClick={() => setActiveCategory(cat.id)}
               className="px-3 py-1.5 rounded-full text-xs font-semibold shadow-md transition-all"
               style={{
                 backgroundColor: activeCategory === cat.id ? cat.color : 'white',
@@ -210,13 +204,11 @@ export function MapComponent({ locale }: { locale: string }) {
           <button
             onClick={() => setSelected(null)}
             className="absolute top-2 right-3 text-slate-400 hover:text-slate-700 text-xl font-light leading-none"
-          >
-            ×
-          </button>
+          >×</button>
           <div className="flex items-center gap-3 mb-3">
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
-              style={{ backgroundColor: (CATEGORY_COLORS[selected.category] || '#0a3d52') + '20' }}
+              style={{ backgroundColor: (CATEGORY_COLORS[selected.category] || '#0a3d52') + '25' }}
             >
               {selected.emoji}
             </div>
