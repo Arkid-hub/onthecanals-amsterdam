@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
 import { getFeaturedActivities } from '@/lib/data'
 import { ActivityCard } from '@/components/ui/ActivityCard'
+import { WebsiteJsonLd, ActivityListJsonLd } from '@/components/seo/JsonLd'
 import { locales } from '@/i18n'
 import NextLink from 'next/link'
 
@@ -30,11 +31,12 @@ function lhref(locale: string, path: string) {
 
 export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
-  const { fallbackActivities } = await import('@/data/fallback')
-const featured = fallbackActivities.filter((a: any) => a.popular || a.isNew)
+  const featured = await getFeaturedActivities()
 
   return (
     <>
+      <WebsiteJsonLd />
+      <ActivityListJsonLd activities={featured} />
       {/* ── HERO ── */}
       <section className="relative min-h-svh flex items-end overflow-hidden">
         <div className="slow-zoom absolute inset-0 bg-cover bg-center"
@@ -160,7 +162,7 @@ const featured = fallbackActivities.filter((a: any) => a.popular || a.isNew)
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative rounded-2xl overflow-hidden h-80 md:h-96 fade-up">
               <div className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1635156684296-0f18c2f2e914?q=80')" }} />
+                style={{ backgroundImage: "url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80')" }} />
               <div className="absolute inset-0 bg-gradient-to-t from-canal-dark/60 to-transparent" />
               <div className="absolute bottom-4 left-4 bg-white/15 backdrop-blur border border-white/20 rounded-xl p-3">
                 <p className="text-2xl font-bold font-display text-white">100 km</p>
@@ -197,24 +199,17 @@ const featured = fallbackActivities.filter((a: any) => a.popular || a.isNew)
           </div>
           <div className="relative rounded-2xl overflow-hidden border border-stone-200"
             style={{ height: 360, backgroundImage: "url('https://images.unsplash.com/photo-1529943247435-a5974e63d6e4?q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <div className="absolute inset-0 bg-canal-dark/60 flex items-center justify-center">
+            <div className="absolute inset-0 bg-canal-dark/35 flex items-center justify-center">
               <div className="bg-white/96 backdrop-blur rounded-2xl p-7 text-center max-w-sm w-[90%] shadow-xl">
-                <h3 className="font-display font-bold text-white text-xl mb-2">15+ locations across Amsterdam</h3>
-                <p className="text-sm text-white/80 mb-5 leading-relaxed">All departure points in one map — filter by activity type and find what's nearest to you.</p>
+                <h3 className="font-display font-bold text-canal-dark text-xl mb-2">15+ locations across Amsterdam</h3>
+                <p className="text-sm text-slate-500 mb-5 leading-relaxed">All departure points in one map — filter by activity type and find what's nearest to you.</p>
                 <div className="flex flex-wrap gap-2 justify-center mb-5">
                   {['📍 Prinsengracht','📍 Centraal Station','📍 Keizersgracht','📍 Amstelpark','📍 Singel'].map(pin => (
                     <span key={pin} className="text-xs font-medium text-canal bg-canal-light border border-blue-100 px-3 py-1 rounded-full">{pin}</span>
                   ))}
                 </div>
                 <button className="w-full bg-canal hover:bg-canal-dark text-white font-bold text-sm py-3 rounded-xl transition-colors">
-                
-<a href="https://www.google.com/maps/search/Amsterdam+canals/@52.3676,4.9041,14z" 
-   target="_blank" rel="noopener noreferrer"
-   className="block w-full bg-canal hover:bg-canal-dark text-white font-bold text-sm py-3 rounded-xl transition-colors text-center">
-  Open interactive map →
-</a>
-
-
+                  Open interactive map →
                 </button>
               </div>
             </div>
