@@ -77,19 +77,22 @@ export function MapComponent({ locale }: { locale: string }) {
       map.addControl(new mapboxgl.NavigationControl(), 'top-right')
 
       map.on('load', () => {
+        map.resize()
         mapRef.current = map
         setMapReady(true)
       })
-    })
 
-    return () => {
-      markersRef.current.forEach(m => m.remove())
-      markersRef.current = []
-      if (mapRef.current) {
-        mapRef.current.remove()
+      // Resize when container changes size
+      const ro = new ResizeObserver(() => map.resize())
+      if (mapContainer.current) ro.observe(mapContainer.current)
+
+      return () => {
+        ro.disconnect()
+        markersRef.current.forEach(m => m.remove())
+        markersRef.current = []
+        map.remove()
         mapRef.current = null
       }
-    }
   }, [])
 
   // Add markers when map is ready or category changes
@@ -151,8 +154,8 @@ export function MapComponent({ locale }: { locale: string }) {
   }, [mapReady, activeCategory])
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden border border-stone-200" style={{ height: 480 }}>
-      <div ref={mapContainer} style={{ position: 'absolute', inset: 0 }} />
+    <div className="relative w-full rounded-2xl overflow-hidden border border-stone-200" style={{ height: '480px', minHeight: '480px' }}>
+      <div ref={mapContainer} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%' }} />
 
       {/* Loading */}
       {!mapReady && (
