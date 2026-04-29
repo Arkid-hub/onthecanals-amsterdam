@@ -79,10 +79,13 @@ export function MapComponent({ locale }: { locale: string }) {
       map.addControl(new mapboxgl.NavigationControl(), 'top-right')
 
       map.on('load', () => {
-        map.resize()
-        setTimeout(() => map.resize(), 100)
-        mapRef.current = map
-        setMapReady(true)
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            map.resize()
+            mapRef.current = map
+            setMapReady(true)
+          })
+        })
       })
 
       ro = new ResizeObserver(() => {
@@ -115,45 +118,49 @@ export function MapComponent({ locale }: { locale: string }) {
         ? LOCATIONS
         : LOCATIONS.filter(l => l.category === activeCategory)
 
-      filtered.forEach(location => {
-        const color = CATEGORY_COLORS[location.category] || '#0a3d52'
+      requestAnimationFrame(() => {
+        mapRef.current.resize()
 
-        const el = document.createElement('div')
-        el.style.cssText = [
-          'width:38px',
-          'height:38px',
-          'border-radius:50% 50% 50% 0',
-          `background-color:${color}`,
-          'border:3px solid white',
-          'box-shadow:0 2px 8px rgba(0,0,0,0.35)',
-          'transform:rotate(-45deg)',
-          'cursor:pointer',
-          'display:flex',
-          'align-items:center',
-          'justify-content:center',
-          'transition:transform 0.15s ease,box-shadow 0.15s ease',
-        ].join(';')
+        filtered.forEach(location => {
+          const color = CATEGORY_COLORS[location.category] || '#0a3d52'
 
-        const inner = document.createElement('span')
-        inner.style.cssText = 'transform:rotate(45deg);font-size:15px;line-height:1;display:block'
-        inner.textContent = location.emoji
-        el.appendChild(inner)
+          const el = document.createElement('div')
+          el.style.cssText = [
+            'width:38px',
+            'height:38px',
+            'border-radius:50% 50% 50% 0',
+            `background-color:${color}`,
+            'border:3px solid white',
+            'box-shadow:0 2px 8px rgba(0,0,0,0.35)',
+            'transform:rotate(-45deg)',
+            'cursor:pointer',
+            'display:flex',
+            'align-items:center',
+            'justify-content:center',
+            'transition:transform 0.15s ease,box-shadow 0.15s ease',
+          ].join(';')
 
-        el.addEventListener('mouseenter', () => {
-          el.style.transform = 'rotate(-45deg) scale(1.25)'
-          el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.45)'
+          const inner = document.createElement('span')
+          inner.style.cssText = 'transform:rotate(45deg);font-size:15px;line-height:1;display:block'
+          inner.textContent = location.emoji
+          el.appendChild(inner)
+
+          el.addEventListener('mouseenter', () => {
+            el.style.transform = 'rotate(-45deg) scale(1.25)'
+            el.style.boxShadow = '0 4px 16px rgba(0,0,0,0.45)'
+          })
+          el.addEventListener('mouseleave', () => {
+            el.style.transform = 'rotate(-45deg) scale(1)'
+            el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.35)'
+          })
+          el.addEventListener('click', () => setSelected(location))
+
+          const marker = new mapboxgl.Marker({ element: el })
+            .setLngLat([location.lng, location.lat])
+            .addTo(mapRef.current)
+
+          markersRef.current.push(marker)
         })
-        el.addEventListener('mouseleave', () => {
-          el.style.transform = 'rotate(-45deg) scale(1)'
-          el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.35)'
-        })
-        el.addEventListener('click', () => setSelected(location))
-
-        const marker = new mapboxgl.Marker({ element: el })
-          .setLngLat([location.lng, location.lat])
-          .addTo(mapRef.current)
-
-        markersRef.current.push(marker)
       })
     })
   }, [mapReady, activeCategory])
