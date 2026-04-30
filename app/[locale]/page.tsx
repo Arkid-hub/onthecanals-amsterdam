@@ -49,25 +49,25 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <section className="relative overflow-hidden" style={{ minHeight: 'clamp(560px, 75vh, 800px)' }}>
         <div className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1600&q=85'}')` }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#faf7f2]/98 via-[#faf7f2]/60 to-[#faf7f2]/10" />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-canal-dark/40 to-transparent" />
+        {/* Dark overlay for contrast — stronger at bottom where text is */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-6 pt-28">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-canal/10 rounded-full px-4 py-1.5 mb-4 self-start">
-            <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
-            <span className="text-xs font-semibold text-canal tracking-wide">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-8 pt-32">
+          <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 mb-4 self-start">
+            <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
+            <span className="text-xs font-semibold text-white/90 tracking-wide">
               Amsterdam canals · All water activities · One platform
             </span>
           </div>
 
           <h1 className="font-display font-black text-white leading-[1.05] tracking-tight mb-3"
-            style={{ fontSize: 'clamp(34px,5vw,58px)' }}>
+            style={{ fontSize: 'clamp(34px,5vw,58px)', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
             Everything on the canals,<br />
-            <em className="text-white not-italic font-display">in one place</em>
+            <em className="text-sky-300 not-italic font-display">in one place</em>
           </h1>
 
-          <p className="text-white/90 font-medium leading-relaxed mb-5 max-w-xl [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"
-            style={{ fontSize: 'clamp(14px,1.6vw,16px)' }}>
+          <p className="text-white/90 font-medium leading-relaxed mb-5 max-w-xl"
+            style={{ fontSize: 'clamp(14px,1.6vw,16px)', textShadow: '0 1px 6px rgba(0,0,0,0.5)' }}>
             From electric boat hire to sunset cruises — discover, compare and book every water activity on the Amsterdam canals. Prices from €14 p.p.
           </p>
 
@@ -95,15 +95,15 @@ export default async function HomePage({ params: { locale } }: { params: { local
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-5">
             {['⛵ Boat hire','🚣 Canal tour','🏄 SUP lesson','🍾 Private cruise','🛶 Kayak','🚲 Water bike'].map((chip) => (
-              <button key={chip} className="text-xs font-semibold text-canal border-[1.5px] border-canal/20 bg-white/75 backdrop-blur rounded-full px-4 py-1.5 hover:bg-canal hover:text-white hover:border-canal transition-all">
+              <button key={chip} className="text-xs font-semibold text-white border-[1.5px] border-white/30 bg-white/15 backdrop-blur rounded-full px-4 py-1.5 hover:bg-white hover:text-canal-dark transition-all">
                 {chip}
               </button>
             ))}
           </div>
 
-          {/* Trust bar — inline in hero */}
+          {/* Trust bar */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {[['⭐','4.8','avg. rating'],['⚓','15+','verified providers'],['🌊','14+','activities'],['🌍','7 languages','available']].map(([icon,val,label]) => (
               <div key={label} className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/70">
