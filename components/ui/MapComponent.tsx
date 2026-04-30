@@ -5,58 +5,66 @@ import { useEffect, useRef, useState } from 'react'
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!
 
 const LOCATIONS = [
-  // ── MOKUMBOOT (7 locaties) ─────────────────────────────────────────────────
-  { id: 1,  name: 'Mokumboot Centrum',    category: 'self-guided', emoji: '⛵', address: 'Nassaukade 351',         lat: 52.3728, lng: 4.8823, price: '€97.50/boat', slug: 'electric-boat-hire-mokumboot' },
-  { id: 2,  name: 'Mokumboot De Pijp',    category: 'self-guided', emoji: '⛵', address: 'Jozef Israëlskade',      lat: 52.3523, lng: 4.8940, price: '€97.50/boat', slug: 'electric-boat-hire-mokumboot' },
-  { id: 3,  name: 'Mokumboot Amstel',     category: 'self-guided', emoji: '⛵', address: 'Mauritskade 1-E',        lat: 52.3598, lng: 4.9193, price: '€97.50/boat', slug: 'electric-boat-hire-mokumboot' },
-  { id: 4,  name: 'Mokumboot Oost',       category: 'self-guided', emoji: '⛵', address: 'Mauritskade 65',         lat: 52.3627, lng: 4.9258, price: '€97.50/boat', slug: 'electric-boat-hire-mokumboot' },
-  { id: 5,  name: 'Mokumboot RAI',        category: 'self-guided', emoji: '⛵', address: 'Wielingenstraat 9',      lat: 52.3415, lng: 4.8939, price: '€97.50/boat', slug: 'electric-boat-hire-mokumboot' },
-  { id: 6,  name: 'Mokumboot Weesper',    category: 'self-guided', emoji: '⛵', address: 'Schollenbrugstraat 1',   lat: 52.3564, lng: 4.9209, price: '€97.50/boat', slug: 'electric-boat-hire-mokumboot' },
-  { id: 7,  name: 'Mokumboot Zuid',       category: 'self-guided', emoji: '⛵', address: 'Stadionkade 73b',        lat: 52.3403, lng: 4.8774, price: '€97.50/boat', slug: 'electric-boat-hire-mokumboot' },
+  // ── SELF-GUIDED ───────────────────────────────────────────────────────────
 
-  // ── SLOEPDELEN (2 locaties) ────────────────────────────────────────────────
-  { id: 8,  name: 'Sloepdelen West',      category: 'self-guided', emoji: '⛵', address: 'Nassaukade 69',          lat: 52.3686, lng: 4.8771, price: '€70/hr',      slug: 'electric-boat-hire-sloepdelen' },
-  { id: 9,  name: 'Sloepdelen Oost',      category: 'self-guided', emoji: '⛵', address: 'Mauritskade 3',          lat: 52.3602, lng: 4.9194, price: '€70/hr',      slug: 'electric-boat-hire-sloepdelen' },
+  // Canal Motorboats (5 locaties)
+  { id: 1,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Zandhoek 22',            lat: 52.3879, lng: 4.8903, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
+  { id: 2,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Nassaukade 341',         lat: 52.3678, lng: 4.8768, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
+  { id: 3,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Westerdoksdijk 705',     lat: 52.3891, lng: 4.8913, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
+  { id: 4,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Polonceaukade 20',       lat: 52.3858, lng: 4.8719, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
+  { id: 5,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Borneosteiger 8',        lat: 52.3698, lng: 4.9377, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
 
-  // ── BOATY ─────────────────────────────────────────────────────────────────
-  { id: 10, name: 'Boaty',                category: 'self-guided', emoji: '⛵', address: 'Leidsekade 97',          lat: 52.3629, lng: 4.8820, price: '€89/boat',    slug: 'electric-boat-hire-boaty' },
+  // Eco Boats / Captain For a Day
+  { id: 6,  name: 'Captain For a Day',    category: 'self-guided', emoji: '♻️', address: 'Zandhoek 22',           lat: 52.3880, lng: 4.8905, price: '€50/hr',    slug: 'captain-for-a-day-eco-boats' },
 
-  // ── ECO BOATS ─────────────────────────────────────────────────────────────
-  { id: 11, name: 'Eco Boats Amsterdam',  category: 'self-guided', emoji: '♻️', address: 'Zandhoek 22',           lat: 52.3812, lng: 4.8910, price: '€60/hr',      slug: 'electric-boat-hire-eco-boats' },
+  // Boaty
+  { id: 7,  name: 'Boaty',               category: 'self-guided', emoji: '⛵', address: 'Leidsekade 97',          lat: 52.3629, lng: 4.8820, price: '€89/boat',  slug: 'electric-boat-hire-boaty' },
 
-  // ── CANAL BIKE ────────────────────────────────────────────────────────────
-  { id: 12, name: 'Canal Bike Leidseplein',category: 'self-guided',emoji: '🚲', address: 'Keizersgracht',         lat: 52.3635, lng: 4.8826, price: '€24/boot',    slug: 'water-bike-canal-bike' },
-  { id: 13, name: 'Canal Bike Rijksmuseum',category: 'self-guided',emoji: '🚲', address: 'Stadhouderskade',       lat: 52.3596, lng: 4.8885, price: '€24/boot',    slug: 'water-bike-canal-bike' },
+  // Boats4rent
+  { id: 8,  name: 'Boats4rent',          category: 'self-guided', emoji: '⛵', address: 'Nassaukade 155',         lat: 52.3714, lng: 4.8741, price: '€69/boat',  slug: 'self-drive-boat-rental-boats4rent' },
 
-  // ── LOVERS CANAL CRUISES ─────────────────────────────────────────────────
-  { id: 14, name: 'Lovers Canal Cruises', category: 'canal-tour',  emoji: '🚣', address: 'Prins Hendrikkade 25',  lat: 52.3779, lng: 4.9003, price: '€18/p.p.',   slug: 'classic-canal-tour-lovers' },
+  // Canal Bike (waterfiets)
+  { id: 9,  name: 'Canal Bike',          category: 'self-guided', emoji: '🚲', address: 'Keizersgracht',         lat: 52.3635, lng: 4.8826, price: '€24/boot',  slug: 'water-bike-rental-canal-bike' },
+  { id: 10, name: 'Canal Bike',          category: 'self-guided', emoji: '🚲', address: 'Rijksmuseum / Stadhouderskade', lat: 52.3596, lng: 4.8885, price: '€24/boot', slug: 'water-bike-rental-canal-bike' },
 
-  // ── REDERIJ KOOIJ ─────────────────────────────────────────────────────────
-  { id: 15, name: 'Rederij Kooij',        category: 'canal-tour',  emoji: '🚣', address: 'Rokin 125',             lat: 52.3690, lng: 4.8945, price: '€14/p.p.',   slug: 'classic-canal-tour-rederij-kooij' },
+  // ── CANAL TOURS ───────────────────────────────────────────────────────────
 
-  // ── STROMMA ───────────────────────────────────────────────────────────────
-  { id: 16, name: 'Stromma Damrak',       category: 'canal-tour',  emoji: '🚣', address: 'Damrak Pier 4',         lat: 52.3756, lng: 4.8989, price: '€14/p.p.',   slug: 'classic-canal-tour-stromma' },
+  // Stromma
+  { id: 11, name: 'Stromma Canal Tour',  category: 'canal-tour',  emoji: '🚣', address: 'Damrak Pier 4',         lat: 52.3756, lng: 4.8989, price: '€14/p.p.',  slug: 'classic-canal-tour-stromma' },
 
-  // ── FLAGSHIP AMSTERDAM (3 locaties) ──────────────────────────────────────
-  { id: 17, name: 'Flagship Centraal Station', category: 'private', emoji: '🍾', address: 'Prins Hendrikkade 33A', lat: 52.3783, lng: 4.9007, price: '€50/p.p.',  slug: 'cruise-flagship-amsterdam' },
-  { id: 18, name: 'Flagship Rijksmuseum', category: 'private',     emoji: '🍾', address: 'Museumbrug 1',          lat: 52.3597, lng: 4.8852, price: '€50/p.p.',   slug: 'cruise-flagship-amsterdam' },
-  { id: 19, name: 'Flagship Anne Frank',  category: 'private',     emoji: '🍾', address: 'Prinsengracht 267',     lat: 52.3752, lng: 4.8839, price: '€50/p.p.',   slug: 'cruise-flagship-amsterdam' },
+  // Lovers / NEMO combo
+  { id: 12, name: 'Lovers / NEMO Cruise',category: 'canal-tour',  emoji: '🚣', address: 'Prins Hendrikkade 25',  lat: 52.3779, lng: 4.9003, price: '€32/p.p.',  slug: 'canal-cruise-nemo-science-museum' },
 
-  // ── CAPTAIN JACK (3 locaties) ─────────────────────────────────────────────
-  { id: 20, name: 'Captain Jack Centraal', category: 'private',    emoji: '🍾', address: 'Prins Hendrikkade 33A', lat: 52.3784, lng: 4.9009, price: '€40/p.p.',   slug: 'cruise-captain-jack' },
-  { id: 21, name: 'Captain Jack Rijksmuseum', category: 'private', emoji: '🍾', address: 'Museumbrug 2',          lat: 52.3596, lng: 4.8855, price: '€40/p.p.',   slug: 'cruise-captain-jack' },
+  // ── PRIVATE & DRINKS ──────────────────────────────────────────────────────
 
-  // ── VOYAGE AMSTERDAM ──────────────────────────────────────────────────────
-  { id: 22, name: 'Voyage Amsterdam',     category: 'private',     emoji: '⚓', address: 'Op aanvraag',           lat: 52.3690, lng: 4.8970, price: '€150/boat',  slug: 'cruise-voyage-amsterdam' },
+  // Flagship Amsterdam (3 locaties)
+  { id: 13, name: 'Flagship Amsterdam',  category: 'private',     emoji: '🍾', address: 'Prins Hendrikkade 33A', lat: 52.3783, lng: 4.9007, price: '€50/p.p.',  slug: 'cruise-flagship-amsterdam' },
+  { id: 14, name: 'Flagship Amsterdam',  category: 'private',     emoji: '🍾', address: 'Museumbrug 1',          lat: 52.3597, lng: 4.8852, price: '€50/p.p.',  slug: 'cruise-flagship-amsterdam' },
+  { id: 15, name: 'Flagship Amsterdam',  category: 'private',     emoji: '🍾', address: 'Prinsengracht 267',     lat: 52.3752, lng: 4.8839, price: '€50/p.p.',  slug: 'cruise-flagship-amsterdam' },
 
-  // ── KAYAK ─────────────────────────────────────────────────────────────────
-  { id: 23, name: 'Kayak in Amsterdam',   category: 'watersport',  emoji: '🛶', address: 'Nieuwe Herengracht 49', lat: 52.3662, lng: 4.9089, price: '€55/p.p.',   slug: 'kayak-tour-kayak-in-amsterdam' },
-  { id: 24, name: 'Zeebaard Kayak',       category: 'watersport',  emoji: '🛶', address: 'Amstel',                lat: 52.3581, lng: 4.9072, price: '€45/p.p.',   slug: 'kayak-tour-zeebaard' },
+  // Captain Jack (2 locaties)
+  { id: 16, name: 'Captain Jack',        category: 'private',     emoji: '🍾', address: 'Prins Hendrikkade 33A', lat: 52.3784, lng: 4.9009, price: '€40/p.p.',  slug: 'cruise-captain-jack' },
+  { id: 17, name: 'Captain Jack',        category: 'private',     emoji: '🍾', address: 'Museumbrug 2',          lat: 52.3596, lng: 4.8855, price: '€40/p.p.',  slug: 'cruise-captain-jack' },
 
-  // ── SUP ───────────────────────────────────────────────────────────────────
-  { id: 25, name: 'Amsterdam Suppen',     category: 'watersport',  emoji: '🏄', address: 'Amstelpark',            lat: 52.3334, lng: 4.8974, price: '€35/p.p.',   slug: 'sup-lesson-amsterdam-suppen' },
-  { id: 26, name: 'SUP SUP CLUB Marineterrein', category: 'watersport', emoji: '🏄', address: 'Marineterrein', lat: 52.3697, lng: 4.9234, price: '€15/hr',       slug: 'sup-rental-supsupclub' },
-  { id: 27, name: 'SUP Rental Amstel',    category: 'watersport',  emoji: '🏄', address: 'Amsteldijk 132A',       lat: 52.3458, lng: 4.9145, price: '€13/hr',     slug: 'sup-rental-berlage' },
+  // Stromma Pizza Cruise
+  { id: 18, name: 'Pizza Cruise Stromma',category: 'private',     emoji: '🍕', address: 'Damrak Pier 4',         lat: 52.3757, lng: 4.8990, price: '€42/p.p.',  slug: 'cruise-pizza-stromma' },
+
+  // Voyage Amsterdam
+  { id: 19, name: 'Voyage Amsterdam',    category: 'private',     emoji: '⚓', address: 'Op aanvraag',           lat: 52.3690, lng: 4.8970, price: '€150/boot', slug: 'cruise-voyage-amsterdam' },
+
+  // Those Dam Boat Guys — saloon cruise
+  { id: 20, name: 'Saloon Cruise',       category: 'private',     emoji: '🧀', address: 'Centraal Station steiger', lat: 52.3784, lng: 4.8977, price: '€35/p.p.', slug: 'classic-saloon-boat-cruise-cheese-wine' },
+  { id: 21, name: 'Saloon Cruise',       category: 'private',     emoji: '🧀', address: 'Anne Frank House',       lat: 52.3752, lng: 4.8840, price: '€35/p.p.',  slug: 'classic-saloon-boat-cruise-cheese-wine' },
+
+  // ── WATERSPORT ────────────────────────────────────────────────────────────
+
+  // SUP canal tour Westerpark
+  { id: 22, name: 'SUP Canal Tour',      category: 'watersport',  emoji: '🏄', address: 'Westerpark / Bakkerswinkel', lat: 52.3878, lng: 4.8719, price: '€49/p.p.', slug: 'sup-canal-tour-westerpark' },
+
+  // ── UNIQUE ────────────────────────────────────────────────────────────────
+
+  // Sunset canoe tour
+  { id: 23, name: 'Sunset Canoe Tour',   category: 'unique',      emoji: '🛶', address: 'Amsterdam Noord (metro)', lat: 52.4022, lng: 4.9325, price: '€49/p.p.',  slug: 'sunset-canoe-tour-dutch-countryside' },
 ]
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -64,6 +72,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   'canal-tour':  '#10b981',
   'watersport':  '#f59e0b',
   'private':     '#8b5cf6',
+  'unique':      '#ec4899',
 }
 
 const CATEGORIES = [
@@ -71,7 +80,8 @@ const CATEGORIES = [
   { id: 'self-guided', label: 'Boat hire',       color: '#3b82f6' },
   { id: 'canal-tour',  label: 'Canal tours',     color: '#10b981' },
   { id: 'watersport',  label: 'Watersport',      color: '#f59e0b' },
-  { id: 'private',     label: 'Private cruises', color: '#8b5cf6' },
+  { id: 'private',     label: 'Cruises',         color: '#8b5cf6' },
+  { id: 'unique',      label: 'Unique',          color: '#ec4899' },
 ]
 
 type Location = typeof LOCATIONS[0]
@@ -212,7 +222,7 @@ export function MapComponent({ locale }: { locale: string }) {
       )}
 
       {mapReady && (
-        <div className="absolute top-3 left-3 z-10 flex flex-wrap gap-2 max-w-xs">
+        <div className="absolute top-3 left-3 z-10 flex flex-wrap gap-2 max-w-sm">
           {CATEGORIES.map(cat => (
             <button
               key={cat.id}
