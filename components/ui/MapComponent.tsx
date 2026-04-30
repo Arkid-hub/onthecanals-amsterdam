@@ -135,8 +135,8 @@ export function MapComponent({ locale }: { locale: string }) {
       const map = new mapboxgl.Map({
         container: mapContainer.current!,
         style: 'mapbox://styles/mapbox/light-v11',
-        center: [4.9041, 52.3676],
-        zoom: 12.5,
+        center: [4.9200, 52.3580],
+        zoom: 11.5,
       })
 
       map.addControl(new mapboxgl.NavigationControl(), 'top-right')

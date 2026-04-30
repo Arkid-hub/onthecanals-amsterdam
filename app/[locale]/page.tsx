@@ -52,7 +52,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
         {/* Dark overlay for contrast — stronger at bottom where text is */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-8 pt-32">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-2 pt-32">
           <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 mb-4 self-start">
             <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
             <span className="text-xs font-semibold text-white/90 tracking-wide">
