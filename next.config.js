@@ -11,6 +11,16 @@ const nextConfig = {
       { protocol: 'https', hostname: 'onthecanals.nl' },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Prevent mapbox-gl from being bundled on server
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'mapbox-gl': 'mapbox-gl',
+      }
+    }
+    return config
+  },
 }
 
 module.exports = withNextIntl(nextConfig)
