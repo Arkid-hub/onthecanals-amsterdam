@@ -46,29 +46,29 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <ActivityListJsonLd activities={featured} />
 
       {/* ── HERO ── */}
-      <section className="relative min-h-svh flex items-end overflow-hidden">
+      <section className="relative overflow-hidden" style={{ minHeight: 'clamp(560px, 75vh, 800px)' }}>
         <div className="slow-zoom absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1600&q=85'}')` }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#faf7f2]/95 via-[#faf7f2]/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#faf7f2]/98 via-[#faf7f2]/60 to-[#faf7f2]/10" />
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-canal-dark/40 to-transparent" />
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 pb-14 pt-24">
-          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-canal/10 rounded-full px-4 py-1.5 mb-5">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-10 pt-24">
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-canal/10 rounded-full px-4 py-1.5 mb-4 self-start">
             <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
             <span className="text-xs font-semibold text-canal tracking-wide">
               Amsterdam canals · All water activities · One platform
             </span>
           </div>
 
-          <h1 className="font-display font-black text-canal-dark leading-[1.05] tracking-tight mb-4"
-            style={{ fontSize: 'clamp(38px,6vw,64px)' }}>
+          <h1 className="font-display font-black text-canal-dark leading-[1.05] tracking-tight mb-3"
+            style={{ fontSize: 'clamp(34px,5vw,58px)' }}>
             Everything on the canals,<br />
             <em className="text-canal not-italic font-display">in one place</em>
           </h1>
 
-          <p className="text-slate-800 font-medium leading-relaxed mb-8 max-w-lg drop-shadow-sm"
-            style={{ fontSize: 'clamp(15px,2vw,17px)' }}>
-            From electric boat hire to sunset cruises — discover, compare and book every water activity on the Amsterdam canals.
+          <p className="text-slate-700 font-medium leading-relaxed mb-5 max-w-xl"
+            style={{ fontSize: 'clamp(14px,1.6vw,16px)' }}>
+            From electric boat hire to sunset cruises — discover, compare and book every water activity on the Amsterdam canals. Prices from €14 p.p.
           </p>
 
           <div className="bg-white rounded-2xl shadow-lg border border-canal/10 overflow-hidden max-w-[560px] mb-4">
@@ -95,26 +95,24 @@ export default async function HomePage({ params: { locale } }: { params: { local
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-6">
             {['⛵ Boat hire','🚣 Canal tour','🏄 SUP lesson','🍾 Private cruise','🛶 Kayak','🚲 Water bike'].map((chip) => (
               <button key={chip} className="text-xs font-semibold text-canal border-[1.5px] border-canal/20 bg-white/75 backdrop-blur rounded-full px-4 py-1.5 hover:bg-canal hover:text-white hover:border-canal transition-all">
                 {chip}
               </button>
             ))}
           </div>
+
+          {/* Trust bar — inline in hero */}
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            {[['⭐','4.8','avg. rating'],['⚓','15+','verified providers'],['🌊','14+','activities'],['🌍','7 languages','available']].map(([icon,val,label]) => (
+              <div key={label} className="flex items-center gap-1.5 whitespace-nowrap text-xs text-slate-500">
+                <span>{icon}</span><strong className="text-slate-700 font-semibold">{val}</strong><span>{label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-
-      {/* ── TRUST BAR ── */}
-      <div className="bg-white border-b border-stone-100 overflow-x-auto scrollbar-hide">
-        <div className="flex items-center gap-6 px-5 py-3.5 max-w-6xl mx-auto">
-          {[['⭐','4.8','avg. rating'],['🌊','9+','activities'],['⚓','15+','verified providers'],['📍','Amsterdam','city centre'],['🔒','Safe','book with verified providers'],['🌍','7 languages','available']].map(([icon,val,label]) => (
-            <div key={label} className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-500 flex-shrink-0">
-              <span>{icon}</span><strong className="text-slate-800 font-semibold">{val}</strong><span className="text-slate-600">{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* ── CATEGORIES ── */}
       <section className="bg-[#f2ece1] py-14">
