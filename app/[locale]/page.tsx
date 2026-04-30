@@ -46,7 +46,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <ActivityListJsonLd activities={featured} />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: 'clamp(560px, 75vh, 800px)' }}>
+      <section className="relative overflow-hidden" style={{ minHeight: 'clamp(520px, 65vh, 680px)' }}>
         <div className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1600&q=85'}')` }} />
         {/* Dark overlay for contrast — stronger at bottom where text is */}
