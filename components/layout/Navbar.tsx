@@ -22,7 +22,7 @@ function lhref(locale: string, path: string) {
 function Logo({ scrolled }: { scrolled: boolean }) {
   const c = scrolled ? '#0a3d52' : 'white'
   const w = scrolled ? '#0f7a9e' : '#7dd3ea'
-  const s = scrolled ? '#9ca3af' : 'rgba(255,255,255,0.35)'
+  const s = scrolled ? '#9ca3af' : 'rgba(255,255,255,0.6)'
   return (
     <svg width="230" height="56" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="4"  y1="2"  x2="18" y2="16" stroke={c} strokeWidth="3" strokeLinecap="round"/>
@@ -64,7 +64,7 @@ export function Navbar() {
   }
 
   const isLight = scrolled
-  const linkCls = `text-sm font-medium transition-colors ${isLight ? 'text-slate-600 hover:text-canal-dark' : 'text-white/90 hover:text-white drop-shadow-sm'}`
+  const linkCls = `text-sm font-semibold transition-colors ${isLight ? 'text-slate-700 hover:text-canal-dark' : 'text-white hover:text-white/80'}`
 
   return (
     <>

@@ -51,6 +51,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           style={{ backgroundImage: `url('${settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1600&q=85'}')` }} />
         {/* Dark overlay for contrast — stronger at bottom where text is */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/60 to-transparent" />
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-2 pt-32">
           <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 mb-4 self-start">
