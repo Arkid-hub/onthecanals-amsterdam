@@ -98,10 +98,18 @@ export default async function HomePage({ params: { locale } }: { params: { local
           </div>
 
           <div className="flex flex-wrap gap-2 mb-5">
-            {['⛵ Boat hire','🚣 Canal tour','🏄 SUP lesson','🍾 Private cruise','🛶 Kayak','🚲 Water bike'].map((chip) => (
-              <button key={chip} className="text-xs font-semibold text-white border-[1.5px] border-white/30 bg-white/15 backdrop-blur rounded-full px-4 py-1.5 hover:bg-white hover:text-canal-dark transition-all">
-                {chip}
-              </button>
+            {[
+              ['⛵ Boat hire', 'self-guided'],
+              ['🚣 Canal tour', 'canal-tour'],
+              ['🏄 SUP lesson', 'watersport'],
+              ['🍾 Private cruise', 'private'],
+              ['🛶 Kayak', 'watersport'],
+              ['🚲 Water bike', 'self-guided'],
+            ].map(([label, cat]) => (
+              <NextLink key={label} href={lhref(locale, `/activities?cat=${cat}`)}
+                className="text-xs font-semibold text-white border-[1.5px] border-white/30 bg-white/15 backdrop-blur rounded-full px-4 py-1.5 hover:bg-white hover:text-canal-dark transition-all">
+                {label}
+              </NextLink>
             ))}
           </div>
 

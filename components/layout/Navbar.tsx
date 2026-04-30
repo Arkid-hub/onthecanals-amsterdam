@@ -49,12 +49,19 @@ export function Navbar() {
   const pathname = usePathname()
   const active   = LANGS.find(l => l.code === locale) || LANGS[0]
 
+  // Only homepage gets transparent navbar — all other pages start solid
+  const isHomePage = pathname === '/' || /^\/(de|fr|it|es|zh|nl)\/?$/.test(pathname)
+
   useEffect(() => {
+    if (!isHomePage) {
+      setScrolled(true)
+      return
+    }
     const fn = () => setScrolled(window.scrollY > 10)
     window.addEventListener('scroll', fn, { passive: true })
     fn()
     return () => window.removeEventListener('scroll', fn)
-  }, [])
+  }, [isHomePage])
 
   function switchLocale(next: string) {
     setLangOpen(false)
