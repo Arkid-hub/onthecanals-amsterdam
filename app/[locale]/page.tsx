@@ -47,8 +47,14 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden" style={{ minHeight: 'clamp(520px, 65vh, 680px)' }}>
-        <div className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1600&q=85'}')` }} />
+        <img
+          src={settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1200&q=75&fm=webp'}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
         {/* Dark overlay for contrast — stronger at bottom where text is */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/60 to-transparent" />

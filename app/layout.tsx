@@ -46,6 +46,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${caveat.variable}`}>
       <head>
+        {/* Preconnect to image CDNs for faster LCP */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://api.mapbox.com" />
+        <link rel="dns-prefetch" href="https://api.mapbox.com" />
         <link rel="alternate" hrefLang="x-default" href={siteUrl} />
         {locales.map((locale) => (
           <link

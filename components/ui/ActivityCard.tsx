@@ -1,6 +1,18 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Activity } from '@/types'
+
+function optimizeImage(url: string): string {
+  if (!url) return url
+  // Add Cloudinary transformations
+  if (url.includes('res.cloudinary.com') && url.includes('/upload/')) {
+    return url.replace('/upload/', '/upload/w_600,q_auto,f_auto/')
+  }
+  // Add Unsplash optimization
+  if (url.includes('images.unsplash.com')) {
+    return url.includes('?') ? url.replace(/w=\d+/, 'w=600').replace(/q=\d+/, 'q=75') + '&fm=webp' : url + '?w=600&q=75&fm=webp'
+  }
+  return url
+}
 
 function Stars({ rating }: { rating: number }) {
   const full  = Math.floor(rating)
@@ -24,6 +36,7 @@ interface Props {
 
 export function ActivityCard({ activity, delay = 0 }: Props) {
   const avatarBg = avatarColors[activity.reviewAuthor] || '#0f5e7a'
+  const altText = activity.photoAlt || `${activity.title} — wateractiviteit Amsterdam`
 
   return (
     <article
@@ -34,9 +47,9 @@ export function ActivityCard({ activity, delay = 0 }: Props) {
       <div className="relative h-44 overflow-hidden flex-shrink-0">
         <div
           className="photo-zoom absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${activity.photo}')` }}
+          style={{ backgroundImage: `url('${optimizeImage(activity.photo)}')` }}
           role="img"
-          aria-label={activity.photoAlt || activity.title}
+          aria-label={altText}
         />
         {/* Scrim */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent" />
