@@ -19,7 +19,7 @@ export default function PrivacyPage({ params: { locale } }: { params: { locale: 
 
           <section>
             <h2 className="font-display font-bold text-canal-dark text-lg mb-3">1. Who we are</h2>
-            <p>OnTheCanals Amsterdam (<strong>onthecanals.nl</strong>) is an independent platform that helps visitors discover and compare water activities on the Amsterdam canals. We are based in Amsterdam, the Netherlands.</p>
+            <p>OnTheCanals Amsterdam is an independent platform that helps visitors discover and compare water activities on the Amsterdam canals. We are based in Amsterdam, the Netherlands.</p>
           </section>
 
           <section>
