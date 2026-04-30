@@ -4,12 +4,7 @@ import { ActivityCard } from '@/components/ui/ActivityCard'
 import { WebsiteJsonLd, ActivityListJsonLd } from '@/components/seo/JsonLd'
 import { locales } from '@/i18n'
 import NextLink from 'next/link'
-import nextDynamic from 'next/dynamic'
-
-const MapComponent = nextDynamic(
-  () => import('@/components/ui/MapComponent').then(m => m.MapComponent),
-  { ssr: false, loading: () => <div className="w-full rounded-2xl bg-canal-light animate-pulse" style={{ height: 480 }} /> }
-)
+import { LazyMap } from '@/components/ui/LazyMap'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -212,7 +207,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
             <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>Departure points</h2>
             <p className="text-slate-500 text-sm mt-1">Click a pin to see details. Filter by activity type.</p>
           </div>
-          <MapComponent locale={locale} />
+          <LazyMap locale={locale} />
         </div>
       </section>
 
