@@ -1,12 +1,12 @@
 import Link from 'next/link'
 
 const ACTIVITIES = [
-  ['Electric boat hire',    '/activities/electric-boat-hire'],
-  ['Classic canal tour',    '/activities/classic-canal-tour'],
-  ['SUP lesson',            '/activities/sup-lesson-beginners'],
-  ['Private cruise',        '/activities/private-borrel-cruise'],
-  ['Water bike rental',     '/activities/water-bike-rental'],
-  ['Kayak rental',          '/activities/kayak-rental'],
+  ['Electric boat hire',    '/activities/electric-boat-hire-mokumboot'],
+  ['Classic canal tour',    '/activities/classic-canal-tour-stromma'],
+  ['SUP canal tour',        '/activities/sup-canal-tour-westerpark'],
+  ['Private cruise',        '/activities/cruise-flagship-amsterdam'],
+  ['Water bike rental',     '/activities/water-bike-rental-canal-bike'],
+  ['Sunset canoe tour',     '/activities/sunset-canoe-tour-dutch-countryside'],
 ]
 
 const PLATFORM = [
@@ -14,6 +14,7 @@ const PLATFORM = [
   ['Become a provider', '/contact#provider'],
   ['Contact',           '/contact'],
   ['Privacy policy',    '/privacy'],
+  ['Terms',             '/terms'],
 ]
 
 export function Footer() {
@@ -38,6 +39,10 @@ export function Footer() {
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
               The platform for all water activities on the Amsterdam canals. Compare, discover and book — in 7 languages.
+            </p>
+            <p className="text-xs text-white/30 leading-relaxed max-w-xs mt-3">
+              This site contains affiliate links. When you book via our links, we may earn a small commission — at no extra cost to you.{' '}
+              <Link href="/privacy#affiliate" className="underline hover:text-white/60 transition-colors">Learn more</Link>
             </p>
           </div>
 

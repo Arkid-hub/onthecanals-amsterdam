@@ -1,106 +1,86 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import { locales } from '@/i18n'
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }))
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'Privacy policy for OnTheCanals Amsterdam — how we handle your data.',
 }
 
 export default function PrivacyPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
 
   return (
-    <div className="min-h-screen bg-[#faf7f2] pt-16">
-      <div className="bg-[#0a3d52] pt-12 pb-16 text-center">
-        <div className="max-w-3xl mx-auto px-5">
-          <h1 className="font-display font-black text-white text-4xl mb-3">Privacy Policy</h1>
-          <p className="text-white/60">Laatst bijgewerkt: april 2026</p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-[#faf7f2] pt-24 pb-16">
+      <div className="max-w-2xl mx-auto px-5">
+        <h1 className="font-display font-black text-canal-dark text-3xl mb-2">Privacy Policy</h1>
+        <p className="text-slate-400 text-sm mb-10">Last updated: April 2026</p>
 
-      <div className="bg-[#0a3d52] overflow-hidden" style={{ height: 32 }}>
-        <svg viewBox="0 0 1200 40" preserveAspectRatio="none" style={{ height: 32, width: '100%' }}>
-          <path d="M0,20 C200,40 400,0 600,20 C800,40 1000,0 1200,20 L1200,40 L0,40 Z" fill="#faf7f2" />
-        </svg>
-      </div>
-
-      <div className="max-w-3xl mx-auto px-5 py-12 prose prose-slate">
-        <div className="space-y-8 text-slate-700 leading-relaxed">
+        <div className="prose prose-slate max-w-none space-y-8 text-slate-600 text-sm leading-relaxed">
 
           <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">1. Wie zijn wij?</h2>
-            <p>OnTheCanals.Amsterdam is een platform dat wateractiviteiten op de Amsterdamse grachten verzamelt, vergelijkt en doorverwijst naar externe aanbieders. Wij zijn gevestigd in Amsterdam, Nederland en zijn bereikbaar via info@onthecanals.amsterdam.</p>
+            <h2 className="font-display font-bold text-canal-dark text-lg mb-3">1. Who we are</h2>
+            <p>OnTheCanals Amsterdam (<strong>onthecanals.nl</strong>) is an independent platform that helps visitors discover and compare water activities on the Amsterdam canals. We are based in Amsterdam, the Netherlands.</p>
           </section>
 
           <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">2. Welke gegevens verzamelen wij?</h2>
-            <p>Wij verzamelen alleen de gegevens die u zelf aan ons verstrekt via het contactformulier:</p>
-            <ul className="list-disc pl-6 space-y-1 mt-2">
-              <li>Naam</li>
-              <li>E-mailadres</li>
-              <li>Uw bericht</li>
-              <li>Het type gebruiker (bezoeker, aanbieder, pers)</li>
+            <h2 className="font-display font-bold text-canal-dark text-lg mb-3">2. What data we collect</h2>
+            <p>We collect minimal data. Specifically:</p>
+            <ul className="list-disc pl-5 space-y-1 mt-2">
+              <li><strong>Contact form submissions</strong> — name, email address and your message, when you use our contact form.</li>
+              <li><strong>Analytics data</strong> — anonymised page views and visitor statistics via our analytics provider.</li>
+              <li><strong>Affiliate tracking</strong> — when you click a booking link, our affiliate partner (GetYourGuide) may set cookies to track the referral. See section 4 below.</li>
             </ul>
-            <p className="mt-3">Wij verwerken geen betalingsgegevens. Boekingen vinden plaats via de externe websites van de aanbieders.</p>
+            <p className="mt-3">We do not collect payment information. All bookings are completed on the provider's own website or platform.</p>
           </section>
 
           <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">3. Waarvoor gebruiken wij uw gegevens?</h2>
-            <p>Uw gegevens worden uitsluitend gebruikt om:</p>
-            <ul className="list-disc pl-6 space-y-1 mt-2">
-              <li>Uw contactverzoek te beantwoorden</li>
-              <li>U te informeren over uw aanvraag als aanbieder</li>
+            <h2 className="font-display font-bold text-canal-dark text-lg mb-3">3. How we use your data</h2>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>To respond to contact form submissions</li>
+              <li>To understand how our platform is used (anonymised analytics)</li>
+              <li>To improve the platform and the information we provide</li>
             </ul>
-            <p className="mt-3">Wij verkopen uw gegevens niet aan derden en gebruiken ze niet voor commerciële mailings zonder uw toestemming.</p>
+            <p className="mt-3">We do not sell your data to third parties. We do not use your data for automated decision-making or profiling.</p>
           </section>
 
-          <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">4. Grondslag voor verwerking</h2>
-            <p>De verwerking van uw persoonsgegevens is gebaseerd op uw toestemming (artikel 6 lid 1 sub a AVG) en op de uitvoering van een overeenkomst of het nemen van precontractuele maatregelen (artikel 6 lid 1 sub b AVG).</p>
-          </section>
-
-          <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">5. Bewaartermijn</h2>
-            <p>Wij bewaren uw gegevens niet langer dan noodzakelijk voor het doel waarvoor ze zijn verzameld. Contactverzoeken worden maximaal 12 maanden bewaard, tenzij een wettelijke bewaarplicht anders vereist.</p>
-          </section>
-
-          <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">6. Cookies en analytics</h2>
-            <p>OnTheCanals.Amsterdam maakt gebruik van functionele cookies die noodzakelijk zijn voor het functioneren van de website. Wij kunnen gebruik maken van geanonimiseerde analysediensten om het gebruik van de website te meten. Er worden geen tracking cookies geplaatst zonder uw toestemming.</p>
-          </section>
-
-          <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">7. Uw rechten</h2>
-            <p>Op grond van de Algemene Verordening Gegevensbescherming (AVG) heeft u de volgende rechten:</p>
-            <ul className="list-disc pl-6 space-y-1 mt-2">
-              <li>Recht op inzage in uw persoonsgegevens</li>
-              <li>Recht op rectificatie van onjuiste gegevens</li>
-              <li>Recht op verwijdering van uw gegevens</li>
-              <li>Recht op beperking van de verwerking</li>
-              <li>Recht op overdraagbaarheid van gegevens</li>
-              <li>Recht van bezwaar tegen de verwerking</li>
+          <section id="affiliate">
+            <h2 className="font-display font-bold text-canal-dark text-lg mb-3">4. Affiliate links & partner tracking</h2>
+            <p>Some booking links on OnTheCanals.Amsterdam are <strong>affiliate links</strong>. This means that when you click a link and make a booking, we may receive a small commission from the booking platform — at no additional cost to you.</p>
+            <p className="mt-3">Our current affiliate partners include:</p>
+            <ul className="list-disc pl-5 space-y-1 mt-2">
+              <li><strong>GetYourGuide</strong> (getyourguide.com) — affiliate partner ID: SA8A0PZ</li>
             </ul>
-            <p className="mt-3">U kunt deze rechten uitoefenen door contact op te nemen via info@onthecanals.amsterdam. Wij reageren binnen 30 dagen op uw verzoek.</p>
+            <p className="mt-3">When you click a GetYourGuide link, GetYourGuide may place cookies on your device to track the referral and attribute any resulting booking to our account. This tracking is subject to <a href="https://www.getyourguide.com/pages/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-canal hover:underline">GetYourGuide's privacy policy</a>.</p>
+            <p className="mt-3">Affiliate commissions help us keep OnTheCanals.Amsterdam free and independent. Our editorial recommendations are not influenced by commercial relationships — we list activities based on quality and relevance to visitors.</p>
+            <p className="mt-3">This disclosure is made in accordance with Dutch consumer protection law (Wet oneerlijke handelspraktijken) and the guidelines of the Autoriteit Consument & Markt (ACM).</p>
           </section>
 
           <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">8. Klachten</h2>
-            <p>Heeft u een klacht over de verwerking van uw persoonsgegevens? Dan kunt u een klacht indienen bij de Autoriteit Persoonsgegevens via <a href="https://www.autoriteitpersoonsgegevens.nl" className="text-canal underline" target="_blank" rel="noopener noreferrer">autoriteitpersoonsgegevens.nl</a>.</p>
+            <h2 className="font-display font-bold text-canal-dark text-lg mb-3">5. Cookies</h2>
+            <p>We use the following types of cookies:</p>
+            <ul className="list-disc pl-5 space-y-1 mt-2">
+              <li><strong>Functional cookies</strong> — required for the website to work correctly.</li>
+              <li><strong>Analytics cookies</strong> — anonymised visitor statistics.</li>
+              <li><strong>Third-party affiliate cookies</strong> — set by GetYourGuide when you click a booking link.</li>
+            </ul>
+            <p className="mt-3">You can disable cookies in your browser settings. Disabling cookies may affect some functionality of the site.</p>
           </section>
 
           <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">9. Beveiliging</h2>
-            <p>Wij nemen passende technische en organisatorische maatregelen om uw persoonsgegevens te beveiligen tegen verlies, diefstal of onbevoegde toegang. Onze website maakt gebruik van een beveiligde HTTPS-verbinding.</p>
+            <h2 className="font-display font-bold text-canal-dark text-lg mb-3">6. Your rights (AVG / GDPR)</h2>
+            <p>Under the General Data Protection Regulation (GDPR / AVG), you have the right to:</p>
+            <ul className="list-disc pl-5 space-y-1 mt-2">
+              <li>Access the personal data we hold about you</li>
+              <li>Request correction or deletion of your data</li>
+              <li>Object to processing of your data</li>
+              <li>Lodge a complaint with the Dutch data protection authority (<a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer" className="text-canal hover:underline">Autoriteit Persoonsgegevens</a>)</li>
+            </ul>
+            <p className="mt-3">To exercise your rights, contact us via the <a href="/contact" className="text-canal hover:underline">contact page</a>.</p>
           </section>
 
           <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">10. Wijzigingen</h2>
-            <p>Wij behouden ons het recht voor deze privacyverklaring te wijzigen. De meest actuele versie is altijd te vinden op onthecanals.nl/privacy. Wij raden u aan deze pagina regelmatig te raadplegen.</p>
-          </section>
-
-          <section>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-3">11. Contact</h2>
-            <p>Voor vragen over deze privacyverklaring kunt u contact opnemen via:</p>
-            <p className="mt-2"><strong>OnTheCanals.Amsterdam</strong><br />Amsterdam, Nederland<br />info@onthecanals.amsterdam</p>
+            <h2 className="font-display font-bold text-canal-dark text-lg mb-3">7. Contact</h2>
+            <p>For privacy-related questions, please use our <a href="/contact" className="text-canal hover:underline">contact form</a> or email us at <a href="mailto:hello@onthecanals.nl" className="text-canal hover:underline">hello@onthecanals.nl</a>.</p>
           </section>
 
         </div>
