@@ -47,7 +47,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden" style={{ minHeight: 'clamp(560px, 75vh, 800px)' }}>
-        <div className="slow-zoom absolute inset-0 bg-cover bg-center"
+        <div className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1600&q=85'}')` }} />
         <div className="absolute inset-0 bg-gradient-to-t from-[#faf7f2]/98 via-[#faf7f2]/60 to-[#faf7f2]/10" />
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-canal-dark/40 to-transparent" />
@@ -63,7 +63,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           <h1 className="font-display font-black text-white leading-[1.05] tracking-tight mb-3"
             style={{ fontSize: 'clamp(34px,5vw,58px)' }}>
             Everything on the canals,<br />
-            <em className="text-canal not-italic font-display">in one place</em>
+            <em className="text-white not-italic font-display">in one place</em>
           </h1>
 
           <p className="text-white/90 font-medium leading-relaxed mb-5 max-w-xl [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"
