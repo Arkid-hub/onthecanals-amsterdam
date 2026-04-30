@@ -52,7 +52,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
         <div className="absolute inset-0 bg-gradient-to-t from-[#faf7f2]/98 via-[#faf7f2]/60 to-[#faf7f2]/10" />
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-canal-dark/40 to-transparent" />
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-10 pt-24">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-6 pt-28">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur border border-canal/10 rounded-full px-4 py-1.5 mb-4 self-start">
             <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
             <span className="text-xs font-semibold text-canal tracking-wide">
@@ -60,13 +60,13 @@ export default async function HomePage({ params: { locale } }: { params: { local
             </span>
           </div>
 
-          <h1 className="font-display font-black text-canal-dark leading-[1.05] tracking-tight mb-3"
+          <h1 className="font-display font-black text-white leading-[1.05] tracking-tight mb-3"
             style={{ fontSize: 'clamp(34px,5vw,58px)' }}>
             Everything on the canals,<br />
             <em className="text-canal not-italic font-display">in one place</em>
           </h1>
 
-          <p className="text-slate-700 font-medium leading-relaxed mb-5 max-w-xl"
+          <p className="text-white/90 font-medium leading-relaxed mb-5 max-w-xl [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]"
             style={{ fontSize: 'clamp(14px,1.6vw,16px)' }}>
             From electric boat hire to sunset cruises — discover, compare and book every water activity on the Amsterdam canals. Prices from €14 p.p.
           </p>
@@ -106,8 +106,8 @@ export default async function HomePage({ params: { locale } }: { params: { local
           {/* Trust bar — inline in hero */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {[['⭐','4.8','avg. rating'],['⚓','15+','verified providers'],['🌊','14+','activities'],['🌍','7 languages','available']].map(([icon,val,label]) => (
-              <div key={label} className="flex items-center gap-1.5 whitespace-nowrap text-xs text-slate-500">
-                <span>{icon}</span><strong className="text-slate-700 font-semibold">{val}</strong><span>{label}</span>
+              <div key={label} className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/70">
+                <span>{icon}</span><strong className="text-white font-semibold">{val}</strong><span>{label}</span>
               </div>
             ))}
           </div>
