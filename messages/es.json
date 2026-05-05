@@ -1,12 +1,98 @@
 {
-  "nav": { "activities": "Actividades", "selfGuided": "Autoguiado", "groups": "Grupos", "bookNow": "Reservar" },
-  "hero": { "who": "Canales de Ámsterdam · Todas las actividades · Una plataforma", "title": "Todo en los canales,", "titleEm": "en un solo lugar", "sub": "Desde alquiler de barcas hasta cruceros al atardecer — descubre y reserva todas las actividades acuáticas en Ámsterdam.", "searchPlaceholder": "Alquiler barca, tour canal, SUP...", "today": "Hoy", "weekend": "Este fin de semana", "nextWeek": "Próxima semana", "anyDate": "Cualquier fecha", "search": "Buscar →", "chips": { "boat": "Alquiler barca", "tour": "Tour canal", "sup": "Clase SUP", "cruise": "Crucero privado", "kayak": "Kayak", "bike": "Bici acuática" } },
-  "trust": { "rating": "valoración media", "activities": "actividades", "providers": "proveedores verificados", "location": "centro ciudad", "booking": "Reserva de forma segura con proveedores verificados", "languages": "Disponible en 7 idiomas" },
-  "categories": { "label": "Elige tu aventura", "title": "¿Qué te va?", "all": "Todas las categorías →", "selfGuided": "Autoguiado", "canalTour": "Tours en canal", "watersport": "Deportes acuáticos", "private": "Privado & eventos", "unique": "Único" },
-  "activities": { "label": "Popular esta semana", "title": "Actividades top", "seeAll": "Todas las actividades →", "book": "Reservar →", "reviews": "reseñas", "people": "personas", "hrs": "h" },
-  "story": { "label": "¿Por qué los canales?", "title": "Ámsterdam se ve mejor", "titleEm": "desde el agua", "text": "El Grachtengordel — el famoso anillo de canales de Ámsterdam — es Patrimonio de la Humanidad de la UNESCO. Con más de 400 años.", "canals": "canales", "houseboats": "casas flotantes", "bridges": "puentes", "km": "km de canales navegables" },
-  "map": { "label": "Encuentra tu lugar", "title": "Puntos de salida", "heading": "Más de 15 lugares en Ámsterdam", "sub": "Todos los puntos de salida en un mapa — filtra por actividad.", "open": "Abrir mapa interactivo →" },
-  "reviews": { "label": "Qué dicen los visitantes", "title": "Experiencias reales", "average": "media", "reviews": "reseñas" },
-  "cta": { "label": "¿Listo?", "title": "Los canales te esperan", "sub": "Elige una actividad y vive Ámsterdam desde el agua.", "browse": "Ver todas las actividades →", "provider": "¿Eres proveedor?" },
-  "footer": { "desc": "La plataforma para todas las actividades acuáticas en los canales de Ámsterdam.", "activitiesTitle": "Actividades", "platformTitle": "Plataforma", "about": "Sobre nosotros", "becomeProvider": "Conviértete en proveedor", "contact": "Contacto", "privacy": "Política de privacidad", "rights": "Todos los derechos reservados.", "privacyLink": "Privacidad", "terms": "Términos", "sitemap": "Mapa del sitio" }
+  "nav": {
+    "activities": "Actividades",
+    "selfGuided": "Autónomo",
+    "groups": "Grupos",
+    "bookNow": "Reservar"
+  },
+  "hero": {
+    "who": "Canales de Ámsterdam · Todas las actividades acuáticas · Una plataforma",
+    "title": "Todo en los canales,",
+    "titleEm": "en un solo lugar",
+    "sub": "Desde alquiler de barcos hasta cruceros al atardecer — descubre, compara y reserva cualquier actividad acuática en los canales de Ámsterdam.",
+    "searchPlaceholder": "Alquiler barco, crucero, SUP...",
+    "today": "Hoy",
+    "weekend": "Este fin de semana",
+    "nextWeek": "La semana que viene",
+    "anyDate": "Cualquier fecha",
+    "search": "Buscar →",
+    "chips": {
+      "boat": "Alquiler barco",
+      "tour": "Tour en canal",
+      "sup": "Clase SUP",
+      "cruise": "Crucero privado",
+      "kayak": "Kayak",
+      "bike": "Bici acuática"
+    }
+  },
+  "trust": {
+    "rating": "valoración media",
+    "activities": "actividades",
+    "providers": "proveedores verificados",
+    "location": "centro ciudad",
+    "booking": "Reserva con proveedores verificados",
+    "languages": "Disponible en 7 idiomas"
+  },
+  "categories": {
+    "label": "Elige tu aventura",
+    "title": "¿Qué te va?",
+    "all": "Todas las categorías →",
+    "selfGuided": "Autónomo",
+    "canalTour": "Tours en canal",
+    "watersport": "Deportes acuáticos",
+    "private": "Privado y eventos",
+    "unique": "Único"
+  },
+  "activities": {
+    "label": "Popular esta semana",
+    "title": "Mejores actividades",
+    "seeAll": "Todas las actividades →",
+    "book": "Reservar →",
+    "reviews": "reseñas",
+    "people": "personas",
+    "hrs": "h"
+  },
+  "story": {
+    "label": "¿Por qué los canales?",
+    "title": "Ámsterdam se ve mejor",
+    "titleEm": "desde el agua",
+    "text": "La Grachtengordel — el famoso anillo de canales de Ámsterdam — es Patrimonio Mundial de la UNESCO. Con más de 400 años de antigüedad, bordeada de casas de comerciantes, patios escondidos y puentes levadizos.",
+    "canals": "canales",
+    "houseboats": "casas flotantes",
+    "bridges": "puentes",
+    "km": "km de canales navegables"
+  },
+  "map": {
+    "label": "Encuentra tu punto",
+    "title": "Puntos de salida",
+    "heading": "15+ ubicaciones en Ámsterdam",
+    "sub": "Todos los puntos de salida en un mapa — filtra por actividad y encuentra el más cercano.",
+    "open": "Abrir mapa interactivo →"
+  },
+  "reviews": {
+    "label": "Qué dicen los visitantes",
+    "title": "Experiencias reales",
+    "average": "media",
+    "reviews": "reseñas"
+  },
+  "cta": {
+    "label": "¿Listos para ir?",
+    "title": "Los canales te esperan",
+    "sub": "Elige una actividad, reserva un lugar y vive Ámsterdam como debe ser — desde el agua.",
+    "browse": "Ver todas las actividades →",
+    "provider": "¿Eres proveedor?"
+  },
+  "footer": {
+    "desc": "La plataforma para todas las actividades acuáticas en los canales de Ámsterdam. Compara, descubre y reserva — en 7 idiomas.",
+    "activitiesTitle": "Actividades",
+    "platformTitle": "Plataforma",
+    "about": "Sobre nosotros",
+    "becomeProvider": "Hazte proveedor",
+    "contact": "Contacto",
+    "privacy": "Política de privacidad",
+    "rights": "Todos los derechos reservados.",
+    "privacyLink": "Privacidad",
+    "terms": "Términos",
+    "sitemap": "Mapa del sitio"
+  }
 }

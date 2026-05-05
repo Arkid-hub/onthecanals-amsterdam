@@ -1,12 +1,98 @@
 {
-  "nav": { "activities": "活动", "selfGuided": "自驾游船", "groups": "团体", "bookNow": "立即预订" },
-  "hero": { "who": "阿姆斯特丹运河 · 所有水上活动 · 一个平台", "title": "运河上的一切，", "titleEm": "尽在一处", "sub": "从电动船出租到日落游船 — 探索、比较并预订阿姆斯特丹所有水上活动。", "searchPlaceholder": "租船、运河游览、SUP课程...", "today": "今天", "weekend": "本周末", "nextWeek": "下周", "anyDate": "任意日期", "search": "搜索 →", "chips": { "boat": "租船", "tour": "运河游览", "sup": "SUP课程", "cruise": "私人游船", "kayak": "皮划艇", "bike": "水上自行车" } },
-  "trust": { "rating": "平均评分", "activities": "项活动", "providers": "家认证供应商", "location": "市中心", "booking": "通过认证供应商安全预订", "languages": "支持7种语言" },
-  "categories": { "label": "选择你的冒险", "title": "哪种适合你？", "all": "所有类别 →", "selfGuided": "自驾游船", "canalTour": "运河观光", "watersport": "水上运动", "private": "私人活动", "unique": "特色体验" },
-  "activities": { "label": "本周热门", "title": "热门活动", "seeAll": "所有活动 →", "book": "预订 →", "reviews": "条评价", "people": "人", "hrs": "小时" },
-  "story": { "label": "为什么选择运河？", "title": "阿姆斯特丹最美的角度", "titleEm": "在水上", "text": "格拉赫滕戈德尔 — 阿姆斯特丹著名的运河环 — 是联合国教科文组织世界遗产。拥有400多年历史，两岸林立着商人宅邸、隐秘庭院和吊桥。", "canals": "条运河", "houseboats": "艘船屋", "bridges": "座桥梁", "km": "公里可通航运河" },
-  "map": { "label": "找到你的位置", "title": "出发地点", "heading": "阿姆斯特丹15+个地点", "sub": "所有出发地点一览无余 — 按活动类型筛选。", "open": "打开互动地图 →" },
-  "reviews": { "label": "游客怎么说", "title": "真实体验", "average": "平均分", "reviews": "条评价" },
-  "cta": { "label": "准备好了吗？", "title": "运河在等你", "sub": "选择一项活动，在水上感受真正的阿姆斯特丹。", "browse": "浏览所有活动 →", "provider": "你是服务提供商吗？" },
-  "footer": { "desc": "阿姆斯特丹运河水上活动一站式平台，支持7种语言。", "activitiesTitle": "活动", "platformTitle": "平台", "about": "关于我们", "becomeProvider": "成为供应商", "contact": "联系我们", "privacy": "隐私政策", "rights": "版权所有。", "privacyLink": "隐私", "terms": "条款", "sitemap": "网站地图" }
+  "nav": {
+    "activities": "活动",
+    "selfGuided": "自驾游",
+    "groups": "团体",
+    "bookNow": "立即预订"
+  },
+  "hero": {
+    "who": "阿姆斯特丹运河 · 所有水上活动 · 一个平台",
+    "title": "运河上的一切，",
+    "titleEm": "尽在一处",
+    "sub": "从租船到日落游轮——在阿姆斯特丹运河上探索、比较和预订各种水上活动。",
+    "searchPlaceholder": "租船、运河游、SUP冲浪...",
+    "today": "今天",
+    "weekend": "本周末",
+    "nextWeek": "下周",
+    "anyDate": "任意日期",
+    "search": "搜索 →",
+    "chips": {
+      "boat": "租船",
+      "tour": "运河游",
+      "sup": "SUP课程",
+      "cruise": "私人游轮",
+      "kayak": "皮划艇",
+      "bike": "水上自行车"
+    }
+  },
+  "trust": {
+    "rating": "平均评分",
+    "activities": "项活动",
+    "providers": "家认证供应商",
+    "location": "市中心",
+    "booking": "安全预订认证供应商",
+    "languages": "支持7种语言"
+  },
+  "categories": {
+    "label": "选择您的冒险",
+    "title": "哪种适合您？",
+    "all": "所有类别 →",
+    "selfGuided": "自驾游",
+    "canalTour": "运河游览",
+    "watersport": "水上运动",
+    "private": "私人和活动",
+    "unique": "独特体验"
+  },
+  "activities": {
+    "label": "本周热门",
+    "title": "热门活动",
+    "seeAll": "所有活动 →",
+    "book": "预订 →",
+    "reviews": "条评价",
+    "people": "人",
+    "hrs": "小时"
+  },
+  "story": {
+    "label": "为何选择运河？",
+    "title": "游览阿姆斯特丹的最佳方式",
+    "titleEm": "从水上出发",
+    "text": "格拉赫滕戈德尔——阿姆斯特丹著名的运河环——是联合国教科文组织世界遗产。有400多年历史，两岸林立着商人住宅、隐秘庭院和只能从水上通过的吊桥。",
+    "canals": "条运河",
+    "houseboats": "艘船屋",
+    "bridges": "座桥梁",
+    "km": "公里可通航运河"
+  },
+  "map": {
+    "label": "找到您的出发点",
+    "title": "出发地点",
+    "heading": "阿姆斯特丹15+个地点",
+    "sub": "所有出发点一图览尽——按活动类型筛选，找到最近的地点。",
+    "open": "打开互动地图 →"
+  },
+  "reviews": {
+    "label": "游客怎么说",
+    "title": "真实体验",
+    "average": "平均",
+    "reviews": "条评价"
+  },
+  "cta": {
+    "label": "准备出发？",
+    "title": "运河在等着您",
+    "sub": "选择一项活动，预订位置，以最美的方式体验阿姆斯特丹——从水上。",
+    "browse": "浏览所有活动 →",
+    "provider": "您是供应商？"
+  },
+  "footer": {
+    "desc": "阿姆斯特丹运河所有水上活动的平台。比较、发现并预订——支持7种语言。",
+    "activitiesTitle": "活动",
+    "platformTitle": "平台",
+    "about": "关于我们",
+    "becomeProvider": "成为供应商",
+    "contact": "联系我们",
+    "privacy": "隐私政策",
+    "rights": "版权所有。",
+    "privacyLink": "隐私",
+    "terms": "条款",
+    "sitemap": "网站地图"
+  }
 }

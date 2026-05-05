@@ -9,19 +9,19 @@
     "who": "Amsterdamse grachten · Alle wateractiviteiten · Één platform",
     "title": "Alles op de grachten,",
     "titleEm": "op één plek",
-    "sub": "Van sloepverhuur tot zonsondergangcruise — ontdek, vergelijk en boek alle wateractiviteiten in Amsterdam.",
-    "searchPlaceholder": "Sloep huren, rondvaart, SUP-les...",
+    "sub": "Van sloep huren tot zonsondergangcruises — ontdek, vergelijk en boek elke wateractiviteit op de Amsterdamse grachten.",
+    "searchPlaceholder": "Sloep huren, rondvaart, SUP les...",
     "today": "Vandaag",
     "weekend": "Dit weekend",
     "nextWeek": "Volgende week",
     "anyDate": "Elke datum",
     "search": "Zoeken →",
     "chips": {
-      "boat": "Sloep huren",
+      "boat": "Boot huren",
       "tour": "Rondvaart",
-      "sup": "SUP-les",
+      "sup": "SUP les",
       "cruise": "Privécruise",
-      "kayak": "Kajak",
+      "kayak": "Kayak",
       "bike": "Waterfiets"
     }
   },
@@ -34,13 +34,13 @@
     "languages": "Beschikbaar in 7 talen"
   },
   "categories": {
-    "label": "Kies je avontuur",
+    "label": "Kies jouw avontuur",
     "title": "Wat past bij jou?",
     "all": "Alle categorieën →",
     "selfGuided": "Zelf varen",
     "canalTour": "Rondvaarten",
     "watersport": "Watersport",
-    "private": "Privé & events",
+    "private": "Privé & evenementen",
     "unique": "Uniek"
   },
   "activities": {
@@ -48,7 +48,7 @@
     "title": "Top activiteiten",
     "seeAll": "Alle activiteiten →",
     "book": "Boek →",
-    "reviews": "beoordelingen",
+    "reviews": "reviews",
     "people": "personen",
     "hrs": "uur"
   },
@@ -56,29 +56,29 @@
     "label": "Waarom de grachten?",
     "title": "Amsterdam zie je het best",
     "titleEm": "vanaf het water",
-    "text": "De Grachtengordel — Amsterdams beroemde grachtengordel — is een UNESCO Werelderfgoed. Meer dan 400 jaar oud, omzoomd met koopmanspanden, verborgen hofjes en bruggen die alleen over water te bereiken zijn.",
+    "text": "De Grachtengordel — Amsterdams beroemde grachtenring — is UNESCO Werelderfgoed. Meer dan 400 jaar oud, omzoomd door grachtenpanden, verborgen binnenplaatsen en ophaalbrug endie alleen over het water bereikbaar zijn.",
     "canals": "grachten",
     "houseboats": "woonboten",
     "bridges": "bruggen",
     "km": "km bevaarbaar water"
   },
   "map": {
-    "label": "Vind je plek",
+    "label": "Vind jouw plek",
     "title": "Vertrekpunten",
     "heading": "15+ locaties door Amsterdam",
-    "sub": "Alle vertrekpunten op één kaart — filter op activiteit en vind wat het dichtst bij je is.",
+    "sub": "Alle vertrekpunten op één kaart — filter op activiteit en vind wat het dichtst bij jou is.",
     "open": "Open interactieve kaart →"
   },
   "reviews": {
     "label": "Wat bezoekers zeggen",
     "title": "Echte ervaringen",
     "average": "gemiddeld",
-    "reviews": "beoordelingen"
+    "reviews": "reviews"
   },
   "cta": {
     "label": "Klaar om te gaan?",
     "title": "De grachten wachten",
-    "sub": "Kies een activiteit, claim je plek en beleef Amsterdam zoals het bedoeld is — vanaf het water.",
+    "sub": "Kies een activiteit, pak een plekje en ervaar Amsterdam zoals het bedoeld is — vanaf het water.",
     "browse": "Bekijk alle activiteiten →",
     "provider": "Ben jij een aanbieder?"
   },
@@ -87,7 +87,7 @@
     "activitiesTitle": "Activiteiten",
     "platformTitle": "Platform",
     "about": "Over ons",
-    "becomeProvider": "Aanbieder worden",
+    "becomeProvider": "Word aanbieder",
     "contact": "Contact",
     "privacy": "Privacybeleid",
     "rights": "Alle rechten voorbehouden.",

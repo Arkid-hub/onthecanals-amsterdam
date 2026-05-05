@@ -112,3 +112,59 @@ export async function getSiteSettings(): Promise<Record<string, string>> {
   }
   return settings
 }
+
+// ─── Blog ─────────────────────────────────────────────────────────────────────
+const BLOG_DATABASE_ID = process.env.NOTION_BLOG_DATABASE_ID!
+
+export interface BlogPost {
+  id: string
+  slug: string
+  title: string
+  description: string
+  coverImage: string
+  coverImageAlt: string
+  category: string
+  publishedAt: string
+  body: string
+  tags: string[]
+}
+
+function mapBlogPost(page: any): BlogPost {
+  const p = page.properties
+  return {
+    id:            page.id,
+    slug:          text(p['Slug']),
+    title:         text(p['Title']),
+    description:   text(p['Description']),
+    coverImage:    text(p['CoverImage']),
+    coverImageAlt: text(p['CoverImageAlt']),
+    category:      text(p['Category']),
+    publishedAt:   p['PublishedAt']?.date?.start ?? '',
+    body:          text(p['Body']),
+    tags:          multi(p['Tags']),
+  }
+}
+
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
+  const response = await notion.databases.query({
+    database_id: BLOG_DATABASE_ID,
+    filter: { property: 'Published', checkbox: { equals: true } },
+  })
+  return response.results
+    .map(mapBlogPost)
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+}
+
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const response = await notion.databases.query({
+    database_id: BLOG_DATABASE_ID,
+    filter: {
+      and: [
+        { property: 'Slug', rich_text: { equals: slug } },
+        { property: 'Published', checkbox: { equals: true } },
+      ],
+    },
+  })
+  if (!response.results.length) return null
+  return mapBlogPost(response.results[0])
+}
