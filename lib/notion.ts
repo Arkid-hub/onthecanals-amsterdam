@@ -168,3 +168,43 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   if (!response.results.length) return null
   return mapBlogPost(response.results[0])
 }
+
+export async function getBlogPostBlocks(pageId: string): Promise<string> {
+  const response = await notion.blocks.children.list({ block_id: pageId })
+  
+  const lines: string[] = []
+  
+  for (const block of response.results as any[]) {
+    const b = block as any
+    switch (b.type) {
+      case 'paragraph':
+        const text = b.paragraph.rich_text.map((t: any) => t.plain_text).join('')
+        if (text) lines.push(text)
+        break
+      case 'heading_1':
+        lines.push('# ' + b.heading_1.rich_text.map((t: any) => t.plain_text).join(''))
+        break
+      case 'heading_2':
+        lines.push('## ' + b.heading_2.rich_text.map((t: any) => t.plain_text).join(''))
+        break
+      case 'heading_3':
+        lines.push('### ' + b.heading_3.rich_text.map((t: any) => t.plain_text).join(''))
+        break
+      case 'bulleted_list_item':
+        lines.push('• ' + b.bulleted_list_item.rich_text.map((t: any) => t.plain_text).join(''))
+        break
+      case 'numbered_list_item':
+        lines.push('- ' + b.numbered_list_item.rich_text.map((t: any) => t.plain_text).join(''))
+        break
+      case 'quote':
+        lines.push('"' + b.quote.rich_text.map((t: any) => t.plain_text).join('') + '"')
+        break
+      case 'divider':
+        lines.push('---')
+        break
+    }
+  }
+  
+  return lines.join('\n')
+}
+
