@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
 import NextLink from 'next/link'
 import { getBlogPostBySlug, getBlogPostBlocks } from '@/lib/notion'
+import type { BlogBlock, BlogInline } from '@/lib/notion'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
@@ -31,28 +32,67 @@ function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
-function renderBlocks(content: string) {
-  return content.split('\n').filter(Boolean).map((line, i) => {
-    if (line.startsWith('# ')) {
-      return <h2 key={i} className="font-display font-bold text-canal-dark text-2xl mt-8 mb-3">{line.slice(2)}</h2>
-    }
-    if (line.startsWith('## ')) {
-      return <h3 key={i} className="font-display font-bold text-canal-dark text-xl mt-6 mb-2">{line.slice(3)}</h3>
-    }
-    if (line.startsWith('### ')) {
-      return <h4 key={i} className="font-semibold text-canal-dark text-lg mt-5 mb-2">{line.slice(4)}</h4>
-    }
-    if (line.startsWith('• ')) {
-      return <li key={i} className="flex items-start gap-2 text-slate-600 text-base leading-relaxed mb-1"><span className="text-canal mt-1 flex-shrink-0">•</span><span>{line.slice(2)}</span></li>
-    }
-    if (line.startsWith('"') && line.endsWith('"')) {
-      return <blockquote key={i} className="border-l-4 border-canal pl-4 italic text-slate-500 my-4">{line}</blockquote>
-    }
-    if (line === '---') {
-      return <hr key={i} className="border-stone-200 my-6" />
-    }
-    return <p key={i} className="text-slate-600 text-base leading-relaxed mb-4">{line}</p>
-  })
+function Inline({ segment }: { segment: BlogInline }) {
+  let content: React.ReactNode = segment.text
+  if (segment.bold) content = <strong>{content}</strong>
+  if (segment.italic) content = <em>{content}</em>
+  if (segment.underline) content = <u>{content}</u>
+  if (segment.href) {
+    content = (
+      <a href={segment.href} className="text-canal underline hover:text-canal-dark transition-colors"
+        target={segment.href.startsWith('http') ? '_blank' : undefined}
+        rel={segment.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+        {content}
+      </a>
+    )
+  }
+  return <>{content}</>
+}
+
+function Block({ block, index }: { block: BlogBlock; index: number }) {
+  const inlines = block.content.map((s, i) => <Inline key={i} segment={s} />)
+
+  switch (block.type) {
+    case 'heading_1':
+      return <h2 className="font-display font-bold text-canal-dark text-2xl mt-10 mb-3">{inlines}</h2>
+    case 'heading_2':
+      return <h3 className="font-display font-bold text-canal-dark text-xl mt-8 mb-2">{inlines}</h3>
+    case 'heading_3':
+      return <h4 className="font-semibold text-canal-dark text-lg mt-6 mb-2">{inlines}</h4>
+    case 'paragraph':
+      // Bold-only paragraphs from Notion are treated as section headings
+      const allBold = block.content.length > 0 && block.content.every(s => s.bold)
+      if (allBold) {
+        return <h3 className="font-display font-bold text-canal-dark text-xl mt-8 mb-2">{inlines}</h3>
+      }
+      return <p className="text-slate-600 text-base leading-relaxed mb-4">{inlines}</p>
+    case 'bulleted_list_item':
+      return (
+        <li className="flex items-start gap-2 text-slate-600 text-base leading-relaxed mb-2">
+          <span className="text-canal mt-1 flex-shrink-0">•</span>
+          <span>{inlines}</span>
+        </li>
+      )
+    case 'numbered_list_item':
+      return (
+        <li className="flex items-start gap-2 text-slate-600 text-base leading-relaxed mb-2">
+          <span className="text-canal font-bold mt-0.5 flex-shrink-0 w-5">{index + 1}.</span>
+          <span>{inlines}</span>
+        </li>
+      )
+    case 'quote':
+      return (
+        <blockquote className="border-l-4 border-canal pl-5 py-1 italic text-slate-500 my-5 text-base leading-relaxed">
+          {inlines}
+        </blockquote>
+      )
+    case 'divider':
+      return <hr className="border-stone-200 my-8" />
+    case 'empty':
+      return <div className="h-3" />
+    default:
+      return null
+  }
 }
 
 export default async function BlogPostPage({ params: { locale, slug } }: Props) {
@@ -60,11 +100,10 @@ export default async function BlogPostPage({ params: { locale, slug } }: Props) 
   const post = await getBlogPostBySlug(slug)
   if (!post) notFound()
 
-  const content = await getBlogPostBlocks(post.id)
+  const blocks = await getBlogPostBlocks(post.id)
 
   return (
     <div className="min-h-screen bg-[#faf7f2] pt-16">
-      {/* Hero */}
       {post.coverImage && (
         <div className="relative h-72 md:h-96 overflow-hidden">
           <img
@@ -103,17 +142,16 @@ export default async function BlogPostPage({ params: { locale, slug } }: Props) 
           )}
         </div>
 
-        {/* Lead */}
         {post.description && (
           <p className="text-lg text-slate-500 leading-relaxed mb-8 font-medium">{post.description}</p>
         )}
 
-        {/* Body from page blocks */}
-        <div className="space-y-1">
-          {renderBlocks(content)}
+        <div>
+          {blocks.map((block, i) => (
+            <Block key={i} block={block} index={i} />
+          ))}
         </div>
 
-        {/* CTA */}
         <div className="mt-12 bg-canal-dark rounded-2xl p-8 text-center">
           <h3 className="font-display font-bold text-white text-xl mb-2">Ready to explore the canals?</h3>
           <p className="text-white/60 text-sm mb-5">Browse all water activities in Amsterdam</p>
