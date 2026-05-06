@@ -125,7 +125,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
       </section>
 
       {/* ── CATEGORIES ── */}
-      <section className="bg-[#f2ece1] py-14">
+      <section className="bg-white py-14">
         <div className="max-w-6xl mx-auto px-5">
           <div className="flex items-end justify-between mb-7">
             <div>
