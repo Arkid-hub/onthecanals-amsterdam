@@ -169,42 +169,63 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   return mapBlogPost(response.results[0])
 }
 
-export async function getBlogPostBlocks(pageId: string): Promise<string> {
+export interface BlogBlock {
+  type: 'paragraph' | 'heading_1' | 'heading_2' | 'heading_3' | 'bulleted_list_item' | 'numbered_list_item' | 'quote' | 'divider' | 'empty'
+  content: BlogInline[]
+}
+
+export interface BlogInline {
+  text: string
+  bold: boolean
+  italic: boolean
+  underline: boolean
+  href?: string
+}
+
+function parseRichText(richText: any[]): BlogInline[] {
+  if (!richText?.length) return []
+  return richText.map((t: any) => ({
+    text: t.plain_text || '',
+    bold: t.annotations?.bold || false,
+    italic: t.annotations?.italic || false,
+    underline: t.annotations?.underline || false,
+    href: t.href || undefined,
+  }))
+}
+
+export async function getBlogPostBlocks(pageId: string): Promise<BlogBlock[]> {
   const response = await notion.blocks.children.list({ block_id: pageId })
-  
-  const lines: string[] = []
-  
+  const blocks: BlogBlock[] = []
+
   for (const block of response.results as any[]) {
     const b = block as any
     switch (b.type) {
       case 'paragraph':
-        const text = b.paragraph.rich_text.map((t: any) => t.plain_text).join('')
-        if (text) lines.push(text)
+        const pText = parseRichText(b.paragraph?.rich_text)
+        blocks.push({ type: pText.length ? 'paragraph' : 'empty', content: pText })
         break
       case 'heading_1':
-        lines.push('# ' + b.heading_1.rich_text.map((t: any) => t.plain_text).join(''))
+        blocks.push({ type: 'heading_1', content: parseRichText(b.heading_1?.rich_text) })
         break
       case 'heading_2':
-        lines.push('## ' + b.heading_2.rich_text.map((t: any) => t.plain_text).join(''))
+        blocks.push({ type: 'heading_2', content: parseRichText(b.heading_2?.rich_text) })
         break
       case 'heading_3':
-        lines.push('### ' + b.heading_3.rich_text.map((t: any) => t.plain_text).join(''))
+        blocks.push({ type: 'heading_3', content: parseRichText(b.heading_3?.rich_text) })
         break
       case 'bulleted_list_item':
-        lines.push('• ' + b.bulleted_list_item.rich_text.map((t: any) => t.plain_text).join(''))
+        blocks.push({ type: 'bulleted_list_item', content: parseRichText(b.bulleted_list_item?.rich_text) })
         break
       case 'numbered_list_item':
-        lines.push('- ' + b.numbered_list_item.rich_text.map((t: any) => t.plain_text).join(''))
+        blocks.push({ type: 'numbered_list_item', content: parseRichText(b.numbered_list_item?.rich_text) })
         break
       case 'quote':
-        lines.push('"' + b.quote.rich_text.map((t: any) => t.plain_text).join('') + '"')
+        blocks.push({ type: 'quote', content: parseRichText(b.quote?.rich_text) })
         break
       case 'divider':
-        lines.push('---')
+        blocks.push({ type: 'divider', content: [] })
         break
     }
   }
-  
-  return lines.join('\n')
+  return blocks
 }
-
