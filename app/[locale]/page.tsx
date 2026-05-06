@@ -208,7 +208,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
       </section>
 
       {/* ── MAP ── */}
-      <section className="bg-[#f2ece1] py-14">
+      <section id="map" className="bg-[#f2ece1] py-14 scroll-mt-16">
         <div className="max-w-6xl mx-auto px-5">
           <div className="mb-7">
             <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Find your spot</p>

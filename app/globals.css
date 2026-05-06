@@ -53,3 +53,5 @@ body {
 /* Photo zoom on card hover */
 .photo-zoom { transition: transform 0.4s ease; }
 .card-hover:hover .photo-zoom { transform: scale(1.06); }
+
+html { scroll-behavior: smooth; }
