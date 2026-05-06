@@ -10,6 +10,7 @@ const ACTIVITIES = [
 ]
 
 const PLATFORM = [
+  ['Canal Guide',       '/blog'],
   ['About us',          '/about'],
   ['Become a provider', '/contact#provider'],
   ['Contact',           '/contact'],

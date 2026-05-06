@@ -86,6 +86,7 @@ export function Navbar() {
             <NextLink href={lhref(locale, '/activities')} className={linkCls}>Activities</NextLink>
             <NextLink href={lhref(locale, '/activities?cat=self-guided')} className={linkCls}>Self-guided</NextLink>
             <NextLink href={lhref(locale, '/activities?cat=private')} className={linkCls}>Groups</NextLink>
+            <NextLink href={lhref(locale, '/blog')} className={linkCls}>Canal Guide</NextLink>
             <NextLink href={lhref(locale, '/about')} className={linkCls}>About</NextLink>
           </nav>
 
