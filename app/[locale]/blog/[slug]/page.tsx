@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params: { locale, slug } }: Props) 
           <img
             src={post.coverImage}
             alt={post.coverImageAlt || post.title}
-            className="absolute inset-0 w-full h-full object-cover object-[25%]"
+            className="absolute inset-0 w-full h-full object-cover object-[55%]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 max-w-3xl mx-auto px-5 pb-8">
