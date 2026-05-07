@@ -56,6 +56,14 @@ const LOCATIONS = [
   { id: 20, name: 'Saloon Cruise',       category: 'private',     emoji: '🧀', address: 'Centraal Station steiger', lat: 52.3784, lng: 4.8977, price: '€35/p.p.', slug: 'classic-saloon-boat-cruise-cheese-wine' },
   { id: 21, name: 'Saloon Cruise',       category: 'private',     emoji: '🧀', address: 'Anne Frank House',       lat: 52.3752, lng: 4.8840, price: '€35/p.p.',  slug: 'classic-saloon-boat-cruise-cheese-wine' },
 
+  // Mokumboot (6 locaties)
+  { id: 24, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Mauritskade 1-E (Amstel)',    lat: 52.3591, lng: 4.9087, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
+  { id: 25, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Mauritskade 65 (Oost)',      lat: 52.3618, lng: 4.9201, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
+  { id: 26, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Schollenbrugstraat 1 (Weesper)', lat: 52.3647, lng: 4.9253, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
+  { id: 27, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Nassaukade 351 (Centrum)',   lat: 52.3762, lng: 4.8789, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
+  { id: 28, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Jozef Israëlskade (De Pijp)', lat: 52.3511, lng: 4.8952, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
+  { id: 29, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Stadionkade 73b (Zuid)',     lat: 52.3441, lng: 4.8731, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
+
   // ── WATERSPORT ────────────────────────────────────────────────────────────
 
   // SUP canal tour Westerpark

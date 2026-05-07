@@ -21,3 +21,10 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Local trash
+_trash/
+
+# Local-only scripts
+scripts/
+data/fallback.ts.bak
