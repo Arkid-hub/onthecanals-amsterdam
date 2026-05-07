@@ -125,7 +125,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
       </section>
 
       {/* ── CATEGORIES ── */}
-      <section className="bg-white py-14">
+      <section className="bg-[#f2ece1] py-14">
         <div className="max-w-6xl mx-auto px-5">
           <div className="flex items-end justify-between mb-7">
             <div>
@@ -191,12 +191,12 @@ export default async function HomePage({ params: { locale } }: { params: { local
               <h2 className="font-display font-bold text-white leading-tight mb-4" style={{ fontSize: 'clamp(26px,3.5vw,38px)' }}>
                 Amsterdam is best seen<br /><em className="text-sky-300">from the water</em>
               </h2>
-              <p className="text-white/90 font-light leading-relaxed text-[17px] mb-8">
-                The Grachtengordel — Amsterdam's famous canal ring — is a UNESCO World Heritage site. Over 400 years old, lined with merchant houses, hidden courtyards, and drawbridges that only open by water.
+              <p className="text-white font-medium leading-relaxed text-[17px] mb-8">
+                The Grachtengordel, Amsterdam's famous canal ring, is a UNESCO World Heritage site. Over 400 years old, lined with merchant houses, hidden courtyards, and drawbridges that only open by water.
               </p>
               <div className="grid grid-cols-3 gap-4">
                 {[['165','canals'],['1,500+','houseboats'],['400+','bridges']].map(([num,lbl]) => (
-                  <div key={lbl} className="text-center">
+                  <div key={lbl} style={{ textAlign: 'left' }}>
                     <p className="font-display font-bold text-sky-300 text-3xl">{num}</p>
                     <p className="text-white/50 text-xs mt-1">{lbl}</p>
                   </div>
@@ -208,7 +208,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
       </section>
 
       {/* ── MAP ── */}
-      <section id="map" className="bg-[#f2ece1] py-14 scroll-mt-16">
+      <section id="map" className="bg-[#f2ece1] py-14">
         <div className="max-w-6xl mx-auto px-5">
           <div className="mb-7">
             <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Find your spot</p>

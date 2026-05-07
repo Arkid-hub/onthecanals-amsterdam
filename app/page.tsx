@@ -191,7 +191,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
               <h2 className="font-display font-bold text-white leading-tight mb-4" style={{ fontSize: 'clamp(26px,3.5vw,38px)' }}>
                 Amsterdam is best seen<br /><em className="text-sky-300">from the water</em>
               </h2>
-              <p className="text-white font-medium leading-relaxed text-[17px] mb-8">
+              <p className="text-white font-medium leading-relaxed text-[18px] mb-8">
                 The Grachtengordel, Amsterdam's famous canal ring, is a UNESCO World Heritage site. Over 400 years old, lined with merchant houses, hidden courtyards, and drawbridges that only open by water.
               </p>
               <div className="grid grid-cols-3 gap-4">
@@ -261,7 +261,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           The canals are waiting
         </h2>
         <p className="text-white/85 text-base font-bold max-w-md mx-auto mb-8 leading-relaxed">
-          Pick an activity, grab a spot, and experience Amsterdam the way it was meant to be seen — from the water.
+          Pick an activity, grab a spot, and experience Amsterdam the way it was meant to be seen - from the water.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <NextLink href={lhref(locale, '/activities')} className="bg-amber hover:bg-amber-dark text-white font-bold text-[15px] px-8 py-4 rounded-xl transition-colors">
