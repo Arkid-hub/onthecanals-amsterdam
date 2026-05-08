@@ -55,13 +55,6 @@ export default async function HomePage({ params: { locale } }: { params: { local
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/60 to-transparent" />
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-2 pt-32">
-          <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-sm border border-white/15 rounded-full px-4 py-1.5 mb-4 self-start">
-            <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
-            <span className="text-xs font-semibold text-white/90 tracking-wide">
-              Amsterdam canals · All water activities · One platform
-            </span>
-          </div>
-
           <h1 className="font-display font-black text-white leading-[1.05] tracking-tight mb-3"
             style={{ fontSize: 'clamp(34px,5vw,58px)', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
             Everything on the canals,<br />
