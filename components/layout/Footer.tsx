@@ -15,7 +15,7 @@ const PLATFORM = [
   ['Become a provider', '/contact#provider'],
   ['Contact',           '/contact'],
   ['Privacy policy',    '/privacy'],
-  ['Terms',             '/terms'],
+  ['Terms & Conditions', '/terms'],
 ]
 
 export function Footer() {
@@ -78,7 +78,7 @@ export function Footer() {
           <span>© {new Date().getFullYear()} OnTheCanals.Amsterdam. All rights reserved.</span>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
             <Link href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</Link>
           </div>
         </div>
