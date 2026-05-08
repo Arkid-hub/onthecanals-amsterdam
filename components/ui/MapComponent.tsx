@@ -35,6 +35,12 @@ const LOCATIONS = [
   // Lovers / NEMO combo
   { id: 12, name: 'Lovers / NEMO Cruise',category: 'canal-tour',  emoji: '🚣', address: 'Prins Hendrikkade 25',  lat: 52.3779, lng: 4.9003, price: '€32/p.p.',  slug: 'canal-cruise-nemo-science-museum' },
 
+  // Green Saloon
+  { id: 31, name: 'The Green Saloon',    category: 'canal-tour',  emoji: '🚣', address: 'Stationsplein 18 (Central Station)', lat: 52.3791, lng: 4.8993, price: '€29/p.p.', slug: 'covered-heated-canal-cruise-bitterballen-green-saloon' },
+
+  // Blue Boat Company
+  { id: 30, name: 'Blue Boat Company',   category: 'canal-tour',  emoji: '🚣', address: 'Stadhouderskade 550 (opp. Hard Rock Cafe)', lat: 52.3607, lng: 4.8827, price: '€18/p.p.', slug: '75-minute-city-canal-cruise-blue-boat' },
+
   // ── PRIVATE & DRINKS ──────────────────────────────────────────────────────
 
   // Flagship Amsterdam (3 locaties)
@@ -63,6 +69,9 @@ const LOCATIONS = [
   { id: 27, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Nassaukade 351 (Centrum)',   lat: 52.3762, lng: 4.8789, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
   { id: 28, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Jozef Israëlskade (De Pijp)', lat: 52.3511, lng: 4.8952, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
   { id: 29, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Stadionkade 73b (Zuid)',     lat: 52.3441, lng: 4.8731, price: '€97.50/boat', slug: 'sloep-rental-mokumboot' },
+
+  // Pannenkoekboot
+  { id: 32, name: 'Pancake Boat',        category: 'unique',      emoji: '🥞', address: 'Ms. van Riemsdijkweg 33 (Noord)', lat: 52.3997, lng: 4.8982, price: '€26/p.p.', slug: 'pancake-river-cruise-pannenkoekboot' },
 
   // ── WATERSPORT ────────────────────────────────────────────────────────────
 
