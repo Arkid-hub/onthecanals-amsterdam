@@ -48,18 +48,18 @@ export const LOCATIONS: MapLocation[] = [
   { id: 31, name: 'The Green Saloon',    category: 'canal-tour',  emoji: '🚣', address: 'Stationsplein 18 (Central Station)', lat: 52.3791, lng: 4.8993, price: '€29/p.p.', slug: 'covered-heated-canal-cruise-bitterballen-green-saloon' },
 
   // Blue Boat Company
-  { id: 30, name: 'Blue Boat Company',   category: 'canal-tour',  emoji: '🚣', address: 'Stadhouderskade 550 (opp. Hard Rock Cafe)', lat: 52.3607, lng: 4.8827, price: '€18/p.p.', slug: '75-minute-city-canal-cruise-blue-boat' },
+  { id: 30, name: 'Blue Boat Company',   category: 'canal-tour',  emoji: '🚣', address: 'Stadhouderskade 550 (opp. Hard Rock Cafe)', lat: 52.3620, lng: 4.8810, price: '€18/p.p.', slug: '75-minute-city-canal-cruise-blue-boat' },
 
   // ── PRIVATE & DRINKS ──────────────────────────────────────────────────────
 
   // Flagship Amsterdam (3 locaties)
   { id: 13, name: 'Flagship Amsterdam',  category: 'private',     emoji: '🍾', address: 'Prins Hendrikkade 33A', lat: 52.3783, lng: 4.9007, price: '€50/p.p.',  slug: 'cruise-flagship-amsterdam' },
-  { id: 14, name: 'Flagship Amsterdam',  category: 'private',     emoji: '🍾', address: 'Museumbrug 1',          lat: 52.3597, lng: 4.8852, price: '€50/p.p.',  slug: 'cruise-flagship-amsterdam' },
+  { id: 14, name: 'Flagship Amsterdam',  category: 'private',     emoji: '🍾', address: 'Museumbrug 1',          lat: 52.3615, lng: 4.8847, price: '€50/p.p.',  slug: 'cruise-flagship-amsterdam' },
   { id: 15, name: 'Flagship Amsterdam',  category: 'private',     emoji: '🍾', address: 'Prinsengracht 267',     lat: 52.3752, lng: 4.8839, price: '€50/p.p.',  slug: 'cruise-flagship-amsterdam' },
 
   // Captain Jack (2 locaties)
   { id: 16, name: 'Captain Jack',        category: 'private',     emoji: '🍾', address: 'Prins Hendrikkade 33A', lat: 52.3784, lng: 4.9009, price: '€40/p.p.',  slug: 'cruise-captain-jack' },
-  { id: 17, name: 'Captain Jack',        category: 'private',     emoji: '🍾', address: 'Museumbrug 2',          lat: 52.3596, lng: 4.8855, price: '€40/p.p.',  slug: 'cruise-captain-jack' },
+  { id: 17, name: 'Captain Jack',        category: 'private',     emoji: '🍾', address: 'Museumbrug 2',          lat: 52.3615, lng: 4.8854, price: '€40/p.p.',  slug: 'cruise-captain-jack' },
 
   // Stromma Pizza Cruise
   { id: 18, name: 'Pizza Cruise Stromma',category: 'unique',      emoji: '🍕', address: 'Damrak Pier 4',         lat: 52.3757, lng: 4.8990, price: '€42/p.p.',  slug: 'cruise-pizza-stromma' },
@@ -72,12 +72,13 @@ export const LOCATIONS: MapLocation[] = [
   { id: 21, name: 'Saloon Cruise',       category: 'unique',      emoji: '🧀', address: 'Anne Frank House',       lat: 52.3752, lng: 4.8840, price: '€35/p.p.',  slug: 'classic-saloon-boat-cruise-cheese-wine' },
 
   // Mokumboot (6 locaties)
-  { id: 24, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Mauritskade 1-E (Amstel)',    lat: 52.3591, lng: 4.9087, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
-  { id: 25, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Mauritskade 65 (Oost)',      lat: 52.3618, lng: 4.9201, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
-  { id: 26, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Schollenbrugstraat 1 (Weesper)', lat: 52.3647, lng: 4.9253, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
-  { id: 27, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Nassaukade 351 (Centrum)',   lat: 52.3762, lng: 4.8789, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
-  { id: 28, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Jozef Israëlskade (De Pijp)', lat: 52.3511, lng: 4.8952, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
-  { id: 29, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Stadionkade 73b (Zuid)',     lat: 52.3441, lng: 4.8731, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
+  { id: 24, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Mauritskade 1-E (Amstel)',    lat: 52.3596, lng: 4.9075, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
+  { id: 25, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Mauritskade 65 (Oost)',      lat: 52.3598, lng: 4.9242, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
+  { id: 26, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Schollenbrugstraat 1 (Weesper)', lat: 52.3527, lng: 4.9132, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
+  { id: 27, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Nassaukade 351 (Centrum)',   lat: 52.3786, lng: 4.8800, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
+  { id: 28, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Jozef Israëlskade (De Pijp)', lat: 52.3470, lng: 4.8967, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
+  { id: 29, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Stadionkade 73b (Zuid)',     lat: 52.3434, lng: 4.8689, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
+  { id: 33, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Wielingenstraat 9 (RAI)',  lat: 52.3393, lng: 4.8915, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
 
   // Pannenkoekboot
   { id: 32, name: 'Pancake Boat',        category: 'unique',      emoji: '🥞', address: 'Ms. van Riemsdijkweg 33 (Noord)', lat: 52.3997, lng: 4.8982, price: '€26/p.p.', slug: 'pancake-river-cruise-pannenkoekboot' },
