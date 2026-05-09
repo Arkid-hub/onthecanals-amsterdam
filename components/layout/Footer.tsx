@@ -1,24 +1,33 @@
 import Link from 'next/link'
+import { getTranslations, getLocale } from 'next-intl/server'
 
-const ACTIVITIES = [
-  ['Electric boat hire',    '/activities/electric-boat-hire-mokumboot'],
-  ['Classic canal tour',    '/activities/classic-canal-tour-stromma'],
-  ['SUP canal tour',        '/activities/sup-canal-tour-westerpark'],
-  ['Private cruise',        '/activities/cruise-flagship-amsterdam'],
-  ['Water bike rental',     '/activities/water-bike-rental-canal-bike'],
-  ['Sunset canoe tour',     '/activities/sunset-canoe-tour-dutch-countryside'],
+const ACTIVITY_CATEGORIES: { tkey: string, href: string }[] = [
+  { tkey: 'selfGuided', href: '/activities?cat=self-guided' },
+  { tkey: 'canalTour',  href: '/activities?cat=canal-tour' },
+  { tkey: 'watersport', href: '/activities?cat=watersport' },
+  { tkey: 'private',    href: '/activities?cat=private' },
+  { tkey: 'unique',     href: '/activities?cat=unique' },
 ]
 
-const PLATFORM = [
-  ['Canal Guide',       '/blog'],
-  ['About us',          '/about'],
-  ['Become a provider', '/contact#provider'],
-  ['Contact',           '/contact'],
-  ['Privacy policy',    '/privacy'],
-  ['Terms & Conditions', '/terms'],
+const PLATFORM: { tkey: string, ns: 'nav' | 'footer', href: string }[] = [
+  { tkey: 'canalGuide',     ns: 'nav',    href: '/blog' },
+  { tkey: 'about',          ns: 'footer', href: '/about' },
+  { tkey: 'becomeProvider', ns: 'footer', href: '/contact#provider' },
+  { tkey: 'contact',        ns: 'footer', href: '/contact' },
+  { tkey: 'privacy',        ns: 'footer', href: '/privacy' },
+  { tkey: 'terms',          ns: 'footer', href: '/terms' },
 ]
 
-export function Footer() {
+function lhref(locale: string, path: string) {
+  return locale === 'en' ? path : `/${locale}${path}`
+}
+
+export async function Footer() {
+  const tFoot = await getTranslations('footer')
+  const tNav  = await getTranslations('nav')
+  const tFx   = await getTranslations('footerExtras')
+  const tCat  = await getTranslations('categories')
+  const locale = await getLocale()
   return (
     <footer className="bg-[#0a3d52] text-white/60">
       <div className="max-w-6xl mx-auto px-5 py-12">
@@ -39,47 +48,50 @@ export function Footer() {
               </svg>
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
-              The platform for all water activities on the Amsterdam canals. Compare, discover and book — in 7 languages.
+              {tFoot('desc')}
             </p>
             <p className="text-xs text-white/30 leading-relaxed max-w-xs mt-3">
-              This site contains affiliate links. When you book via our links, we may earn a small commission — at no extra cost to you.{' '}
-              <Link href="/privacy#affiliate" className="underline hover:text-white/60 transition-colors">Learn more</Link>
+              {tFx('affiliate')}{' '}
+              <Link href={lhref(locale, "/privacy#affiliate")} className="underline hover:text-white/60 transition-colors">{tFx('learnMore')}</Link>
             </p>
           </div>
 
           {/* Activities */}
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">Activities</p>
+            <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">{tFoot('activitiesTitle')}</p>
             <ul className="space-y-2">
-              {ACTIVITIES.map(([label, href]) => (
+              {ACTIVITY_CATEGORIES.map(({ tkey, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm hover:text-white transition-colors">{label}</Link>
+                  <Link href={lhref(locale, href)} className="text-sm hover:text-white transition-colors">{tCat(tkey)}</Link>
                 </li>
               ))}
+              <li>
+                <Link href={lhref(locale, '/activities')} className="text-sm font-semibold text-white/80 hover:text-white transition-colors">{tCat('all')}</Link>
+              </li>
             </ul>
           </div>
 
           {/* Platform */}
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">Platform</p>
+            <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">{tFoot('platformTitle')}</p>
             <ul className="space-y-2">
-              {PLATFORM.map(([label, href]) => (
+              {PLATFORM.map(({ tkey, ns, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm hover:text-white transition-colors">{label}</Link>
+                  <Link href={lhref(locale, href)} className="text-sm hover:text-white transition-colors">{ns === 'nav' ? tNav(tkey) : tFoot(tkey)}</Link>
                 </li>
               ))}
             </ul>
-            <p className="text-sm mt-4">📍 Amsterdam, Netherlands</p>
+            <p className="text-sm mt-4">📍 {tFx('amsterdam')}</p>
             <p className="text-sm">🌍 EN · DE · FR · IT · ES · 中文 · NL</p>
           </div>
         </div>
 
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
-          <span>© {new Date().getFullYear()} OnTheCanals.Amsterdam. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} OnTheCanals.Amsterdam. {tFoot('rights')}</span>
           <div className="flex gap-4">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
-            <Link href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</Link>
+            <Link href={lhref(locale, "/privacy")} className="hover:text-white transition-colors">{tFoot('privacyLink')}</Link>
+            <Link href={lhref(locale, "/terms")} className="hover:text-white transition-colors">{tFoot('terms')}</Link>
+            <Link href="/sitemap.xml" className="hover:text-white transition-colors">{tFoot('sitemap')}</Link>
           </div>
         </div>
       </div>

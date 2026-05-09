@@ -1,4 +1,4 @@
-import { setRequestLocale } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
 import NextLink from 'next/link'
 import { getAllBlogPosts } from '@/lib/notion'
 import type { Metadata } from 'next'
@@ -21,21 +21,28 @@ function formatDate(dateStr: string) {
 
 export default async function BlogPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
+  const t  = await getTranslations('blog')
+  const tc = await getTranslations('common')
   const posts = await getAllBlogPosts()
 
   return (
     <div className="min-h-screen bg-[#faf7f2] pt-16">
       <div className="bg-[#0a3d52] pt-12 pb-16">
         <div className="max-w-5xl mx-auto px-5">
-          <p className="text-xs font-bold tracking-widest text-sky-300 uppercase mb-3">Amsterdam on the water</p>
-          <h1 className="font-display font-black text-white text-4xl md:text-5xl mb-4">Canal Guide</h1>
-          <p className="text-white/60 text-lg max-w-xl">Tips, guides and inspiration for your Amsterdam canal experience.</p>
+          <p className="text-xs font-bold tracking-widest text-sky-300 uppercase mb-3">{t('eyebrow')}</p>
+          <h1 className="font-display font-black text-white text-4xl md:text-5xl mb-4">{t('pageTitle')}</h1>
+          <p className="text-white/60 text-lg max-w-xl">{t('pageSub')}</p>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-5 py-12">
+        {locale !== 'en' && (
+          <div className="bg-canal-light border border-blue-100 rounded-xl px-4 py-3 mb-6 text-sm text-canal-dark">
+            🌐 {tc('contentEnNotice')}
+          </div>
+        )}
         {posts.length === 0 ? (
-          <p className="text-slate-400 text-center py-20">No articles yet. Check back soon.</p>
+          <p className="text-slate-400 text-center py-20">{t('noPosts')}</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (
@@ -55,7 +62,7 @@ export default async function BlogPage({ params: { locale } }: { params: { local
                   <p className="text-sm text-slate-500 leading-relaxed mb-4 line-clamp-3">{post.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-slate-400">{formatDate(post.publishedAt)}</span>
-                    <span className="text-xs font-semibold text-canal">Read more</span>
+                    <span className="text-xs font-semibold text-canal">{t('readMore')}</span>
                   </div>
                 </div>
               </NextLink>

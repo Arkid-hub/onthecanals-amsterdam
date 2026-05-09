@@ -1,6 +1,8 @@
 import { Playfair_Display, DM_Sans, Caveat } from 'next/font/google'
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import { getLocale } from 'next-intl/server'
+import { headers } from 'next/headers'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -42,22 +44,27 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale()
+  // Build per-page hreflang URLs from the current request path
+  const headerList = headers()
+  const rawPath = headerList.get('x-pathname') || '/'
+  const pathNoLocale = rawPath.replace(/^\/(en|de|fr|it|es|zh|nl)(?=\/|$)/, '') || '/'
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${caveat.variable}`}>
+    <html lang={locale} className={`${playfair.variable} ${dmSans.variable} ${caveat.variable}`}>
       <head>
         {/* Preconnect to image CDNs for faster LCP */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://api.mapbox.com" />
         <link rel="dns-prefetch" href="https://api.mapbox.com" />
-        <link rel="alternate" hrefLang="x-default" href={siteUrl} />
-        {locales.map((locale) => (
+        <link rel="alternate" hrefLang="x-default" href={`${siteUrl}${pathNoLocale === '/' ? '' : pathNoLocale}`} />
+        {locales.map((l) => (
           <link
-            key={locale}
+            key={l}
             rel="alternate"
-            hrefLang={locale}
-            href={locale === 'en' ? siteUrl : `${siteUrl}/${locale}`}
+            hrefLang={l}
+            href={`${siteUrl}${l === 'en' ? '' : `/${l}`}${pathNoLocale === '/' ? '' : pathNoLocale}`}
           />
         ))}
       </head>

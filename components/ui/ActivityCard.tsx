@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useTranslations, useLocale } from 'next-intl'
 import type { Activity } from '@/types'
 
 function optimizeImage(url: string): string {
@@ -35,6 +36,9 @@ interface Props {
 }
 
 export function ActivityCard({ activity, delay = 0 }: Props) {
+  const t = useTranslations('activities')
+  const locale = useLocale()
+  const detailsHref = locale === 'en' ? `/activities/${activity.slug}` : `/${locale}/activities/${activity.slug}`
   const avatarBg = avatarColors[activity.reviewAuthor] || '#0f5e7a'
   const altText = activity.photoAlt || `${activity.title} — wateractiviteit Amsterdam`
 
@@ -58,12 +62,12 @@ export function ActivityCard({ activity, delay = 0 }: Props) {
         <div className="absolute top-3 right-3 flex flex-col gap-1">
           {activity.popular && (
             <span className="text-[10px] font-bold bg-amber text-white px-2.5 py-1 rounded-full">
-              Popular
+              {t('popular')}
             </span>
           )}
           {activity.isNew && (
             <span className="text-[10px] font-bold bg-canal text-white px-2.5 py-1 rounded-full">
-              New
+              {t('new')}
             </span>
           )}
         </div>
@@ -102,7 +106,7 @@ export function ActivityCard({ activity, delay = 0 }: Props) {
         <div className="flex items-center gap-1.5 mb-4 text-xs text-slate-400">
           <Stars rating={activity.rating} />
           <strong className="text-slate-700 font-semibold">{activity.rating}</strong>
-          <span>({activity.reviewCount.toLocaleString()} reviews)</span>
+          <span>({activity.reviewCount.toLocaleString()} {t('reviews')})</span>
         </div>
 
         {/* Footer */}
@@ -113,10 +117,10 @@ export function ActivityCard({ activity, delay = 0 }: Props) {
           </div>
           <div className="flex items-center gap-2">
             <Link
-              href={`/activities/${activity.slug}`}
+              href={detailsHref}
               className="text-xs font-semibold text-canal hover:text-canal-dark transition-colors"
             >
-              Details
+              {t('details')}
             </Link>
             <a
               href={activity.bookingUrl}
@@ -124,7 +128,7 @@ export function ActivityCard({ activity, delay = 0 }: Props) {
               rel="noopener noreferrer"
               className="bg-canal hover:bg-canal-dark text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors"
             >
-              Book →
+              {t('book')}
             </a>
           </div>
         </div>

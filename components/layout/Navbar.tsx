@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useTransition } from 'react'
 import NextLink from 'next/link'
-import { useLocale } from 'next-intl'
-import { useRouter, usePathname } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
 const LANGS = [
   { code: 'en', flag: '🇬🇧', label: 'English' },
@@ -45,8 +45,12 @@ export function Navbar() {
   const [, startTransition] = useTransition()
 
   const locale   = useLocale()
+  const t        = useTranslations('nav')
+  const tCat     = useTranslations('categories')
+  const tFoot    = useTranslations('footer')
   const router   = useRouter()
   const pathname = usePathname()
+  const sp       = useSearchParams()
   const active   = LANGS.find(l => l.code === locale) || LANGS[0]
 
   // Only homepage gets transparent navbar — all other pages start solid
@@ -66,8 +70,11 @@ export function Navbar() {
   function switchLocale(next: string) {
     setLangOpen(false)
     const stripped = pathname.replace(/^\/(en|de|fr|it|es|zh|nl)/, '') || '/'
-    const newPath  = next === 'en' ? stripped : `/${next}${stripped}`
-    startTransition(() => router.push(newPath))
+    const basePath = next === 'en' ? stripped : `/${next}${stripped}`
+    const qs       = sp?.toString()
+    const hash     = typeof window !== 'undefined' ? window.location.hash : ''
+    const newPath  = `${basePath}${qs ? `?${qs}` : ''}${hash}`
+    startTransition(() => router.push(newPath, { scroll: false }))
   }
 
   const isLight = scrolled
@@ -83,11 +90,11 @@ export function Navbar() {
           </NextLink>
 
           <nav className="hidden md:flex items-center gap-6">
-            <NextLink href={lhref(locale, '/activities')} className={linkCls}>Activities</NextLink>
-            <NextLink href={lhref(locale, '/activities?cat=self-guided')} className={linkCls}>Self-guided</NextLink>
-            <NextLink href={lhref(locale, '/activities?cat=private')} className={linkCls}>Groups</NextLink>
-            <NextLink href={lhref(locale, '/blog')} className={linkCls}>Canal Guide</NextLink>
-            <NextLink href={lhref(locale, '/about')} className={linkCls}>About</NextLink>
+            <NextLink href={lhref(locale, '/activities')} className={linkCls}>{t('activities')}</NextLink>
+            <NextLink href={lhref(locale, '/activities?cat=self-guided')} className={linkCls}>{t('selfGuided')}</NextLink>
+            <NextLink href={lhref(locale, '/activities?cat=private')} className={linkCls}>{t('groups')}</NextLink>
+            <NextLink href={lhref(locale, '/blog')} className={linkCls}>{t('canalGuide')}</NextLink>
+            <NextLink href={lhref(locale, '/about')} className={linkCls}>{t('about')}</NextLink>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -117,7 +124,7 @@ export function Navbar() {
 
             <NextLink href={lhref(locale, '/activities')}
               className="hidden md:inline-flex bg-amber text-white text-sm font-semibold px-4 py-2 rounded-xl hover:bg-amber-dark transition-colors">
-              Book now
+              {t('bookNow')}
             </NextLink>
 
             <button
@@ -135,14 +142,21 @@ export function Navbar() {
 
         {menuOpen && (
           <div className="md:hidden bg-white border-t border-stone-100 px-5 py-4 space-y-1">
-            {['/activities', '/activities?cat=self-guided', '/activities?cat=canal-tour', '/activities?cat=watersport', '/activities?cat=private', '/about', '/contact']
-              .map(path => (
-                <NextLink key={path} href={lhref(locale, path)}
-                  className="block px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-canal-light hover:text-canal rounded-xl transition-colors"
-                  onClick={() => setMenuOpen(false)}>
-                  {path.replace('/activities?cat=', '').replace('/activities', 'All activities').replace('/', '').replace('-', ' ') || 'Home'}
-                </NextLink>
-              ))}
+            {[
+              { path: '/activities',                      label: t('activities') },
+              { path: '/activities?cat=self-guided',      label: tCat('selfGuided') },
+              { path: '/activities?cat=canal-tour',       label: tCat('canalTour') },
+              { path: '/activities?cat=watersport',       label: tCat('watersport') },
+              { path: '/activities?cat=private',          label: tCat('private') },
+              { path: '/about',                           label: t('about') },
+              { path: '/contact',                         label: tFoot('contact') },
+            ].map(({ path, label }) => (
+              <NextLink key={path} href={lhref(locale, path)}
+                className="block px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-canal-light hover:text-canal rounded-xl transition-colors"
+                onClick={() => setMenuOpen(false)}>
+                {label}
+              </NextLink>
+            ))}
           </div>
         )}
       </header>

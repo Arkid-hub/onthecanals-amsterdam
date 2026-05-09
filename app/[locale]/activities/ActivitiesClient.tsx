@@ -1,20 +1,24 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { ActivityCard } from '@/components/ui/ActivityCard'
 import type { Activity, Category } from '@/types'
 
-const CATEGORIES = [
-  { id: 'all',          label: 'All',              emoji: '🌊' },
-  { id: 'self-guided',  label: 'Self-guided',       emoji: '⛵' },
-  { id: 'canal-tour',   label: 'Canal tours',       emoji: '🚣' },
-  { id: 'watersport',   label: 'Watersport',        emoji: '🏄' },
-  { id: 'private',      label: 'Private & events',  emoji: '🍾' },
-  { id: 'unique',       label: 'Unique',            emoji: '✨' },
+const CATEGORIES: { id: string; tkey: string; ns: 'page' | 'cat'; emoji: string }[] = [
+  { id: 'all',          tkey: 'catAll',     ns: 'page', emoji: '🌊' },
+  { id: 'self-guided',  tkey: 'selfGuided', ns: 'cat',  emoji: '⛵' },
+  { id: 'canal-tour',   tkey: 'canalTour',  ns: 'cat',  emoji: '🚣' },
+  { id: 'watersport',   tkey: 'watersport', ns: 'cat',  emoji: '🏄' },
+  { id: 'private',      tkey: 'private',    ns: 'cat',  emoji: '🍾' },
+  { id: 'unique',       tkey: 'unique',     ns: 'cat',  emoji: '✨' },
 ]
 
 export function ActivitiesClient({ activities }: { activities: Activity[] }) {
+  const t     = useTranslations('activitiesPage')
+  const tCat  = useTranslations('categories')
+  const tHero = useTranslations('hero')
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -43,12 +47,37 @@ export function ActivitiesClient({ activities }: { activities: Activity[] }) {
     let result = [...activities]
     if (activeCategory !== 'all') result = result.filter(a => a.category === activeCategory)
     if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase()
-      result = result.filter(a =>
-        a.title.toLowerCase().includes(q) ||
-        a.description?.toLowerCase().includes(q) ||
-        a.tags?.some(t => t.toLowerCase().includes(q))
-      )
+      // Strip diacritics so 'prive' matches 'privé', 'amsterdam' matches 'Ámsterdam', etc.
+      const norm = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+      const q = norm(searchQuery)
+      // Map kebab-case category to translation key
+      const catTkey: Record<string, string> = {
+        'self-guided': 'selfGuided',
+        'canal-tour':  'canalTour',
+        'watersport':  'watersport',
+        'private':     'private',
+        'unique':      'unique',
+      }
+      // Hero chip labels per category (e.g. NL 'kajak' → watersport)
+      const chipsByCat: Record<string, string[]> = {
+        'self-guided': ['boat', 'bike'],
+        'canal-tour':  ['tour'],
+        'watersport':  ['sup', 'kayak'],
+        'private':     ['cruise'],
+        'unique':      [],
+      }
+      result = result.filter(a => {
+        const chips = (chipsByCat[a.category] || []).map(k => tHero(`chips.${k}`))
+        const haystack = [
+          a.title,
+          a.subtitle ?? '',
+          a.description ?? '',
+          ...(a.tags ?? []),
+          catTkey[a.category] ? tCat(catTkey[a.category]) : '',
+          ...chips,
+        ].join(' ')
+        return norm(haystack).includes(q)
+      })
     }
     result = result.filter(a => a.price <= maxPrice)
     switch (sortBy) {
@@ -69,8 +98,8 @@ export function ActivitiesClient({ activities }: { activities: Activity[] }) {
     <div className="min-h-screen bg-[#faf7f2] pt-16">
       <div className="bg-[#0a3d52] pt-12 pb-8">
         <div className="max-w-6xl mx-auto px-5">
-          <h1 className="font-display font-black text-white text-4xl mb-2">All activities</h1>
-          <p className="text-white/60">{filtered.length} activities on the Amsterdam canals</p>
+          <h1 className="font-display font-black text-white text-4xl mb-2">{t('title')}</h1>
+          <p className="text-white/60">{t('subtitle', { count: filtered.length })}</p>
         </div>
       </div>
 
@@ -85,22 +114,22 @@ export function ActivitiesClient({ activities }: { activities: Activity[] }) {
           <div className="flex flex-col md:flex-row gap-3">
             <div className="relative flex-1">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
-              <input type="text" placeholder="Search activity, style, keyword..."
+              <input type="text" placeholder={t('searchPlaceholder')}
                 value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
                 className="w-full pl-9 pr-4 py-2.5 text-sm border border-stone-200 rounded-xl outline-none focus:border-canal bg-stone-50" />
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-500 whitespace-nowrap">Max: €{maxPrice}</span>
+              <span className="text-xs text-slate-500 whitespace-nowrap">{t('maxLabel')}: €{maxPrice}</span>
               <input type="range" min={10} max={200} step={5} value={maxPrice}
                 onChange={e => setMaxPrice(Number(e.target.value))}
                 className="w-24 accent-canal" />
             </div>
             <select value={sortBy} onChange={e => setSortBy(e.target.value as typeof sortBy)}
               className="text-sm border border-stone-200 rounded-xl px-3 py-2.5 outline-none bg-stone-50 text-slate-700">
-              <option value="popular">Most popular</option>
-              <option value="rating">Highest rated</option>
-              <option value="price-asc">Price: low → high</option>
-              <option value="price-desc">Price: high → low</option>
+              <option value="popular">{t('sortPopular')}</option>
+              <option value="rating">{t('sortRating')}</option>
+              <option value="price-asc">{t('sortPriceAsc')}</option>
+              <option value="price-desc">{t('sortPriceDesc')}</option>
             </select>
           </div>
         </div>
@@ -113,7 +142,7 @@ export function ActivitiesClient({ activities }: { activities: Activity[] }) {
                   ? 'bg-canal-dark text-white border-canal-dark shadow-sm'
                   : 'bg-white text-canal border-stone-200 hover:border-canal'
               }`}>
-              <span>{cat.emoji}</span><span>{cat.label}</span>
+              <span>{cat.emoji}</span><span>{cat.ns === 'page' ? t(cat.tkey) : tCat(cat.tkey)}</span>
             </button>
           ))}
         </div>
@@ -127,11 +156,11 @@ export function ActivitiesClient({ activities }: { activities: Activity[] }) {
         ) : (
           <div className="text-center py-20">
             <span className="text-5xl mb-4 block">🌊</span>
-            <h3 className="text-xl font-bold text-canal-dark mb-2">No results found</h3>
-            <p className="text-slate-400 text-sm mb-6">Try different keywords or adjust the filters.</p>
+            <h3 className="text-xl font-bold text-canal-dark mb-2">{t('noResultsTitle')}</h3>
+            <p className="text-slate-400 text-sm mb-6">{t('noResultsDesc')}</p>
             <button onClick={() => { setSearchQuery(''); setActiveCategory('all'); setMaxPrice(200) }}
               className="bg-canal text-white font-bold px-6 py-3 rounded-xl text-sm hover:bg-canal-dark transition-colors">
-              Clear filters
+              {t('clearFilters')}
             </button>
           </div>
         )}

@@ -1,12 +1,13 @@
-import { setRequestLocale } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { locales } from '@/i18n'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export default function TermsPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function TermsPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
+  const tc = await getTranslations('common')
 
   return (
     <div className="min-h-screen bg-[#faf7f2] pt-16">
@@ -24,6 +25,11 @@ export default function TermsPage({ params: { locale } }: { params: { locale: st
       </div>
 
       <div className="max-w-3xl mx-auto px-5 py-12">
+        {locale !== 'en' && (
+          <div className="bg-canal-light border border-blue-100 rounded-xl px-4 py-3 mb-6 text-sm text-canal-dark">
+            🌐 {tc('enOnlyNotice')}
+          </div>
+        )}
         <div className="space-y-8 text-slate-700 leading-relaxed">
 
           <section>

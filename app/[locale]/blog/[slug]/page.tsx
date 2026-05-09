@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { setRequestLocale } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
 import NextLink from 'next/link'
 import { getBlogPostBySlug, getBlogPostBlocks } from '@/lib/notion'
 import type { BlogBlock, BlogInline } from '@/lib/notion'
@@ -97,6 +97,8 @@ function Block({ block, index }: { block: BlogBlock; index: number }) {
 
 export default async function BlogPostPage({ params: { locale, slug } }: Props) {
   setRequestLocale(locale)
+  const t  = await getTranslations('blogPost')
+  const tc = await getTranslations('common')
   const post = await getBlogPostBySlug(slug)
   if (!post) notFound()
 
@@ -124,8 +126,14 @@ export default async function BlogPostPage({ params: { locale, slug } }: Props) 
       <div className="max-w-3xl mx-auto px-5 py-10">
         <NextLink href={lhref(locale, '/blog')}
           className="inline-flex items-center gap-2 text-canal text-sm font-medium mb-8 hover:text-canal-dark transition-colors">
-          Back to Canal Guide
+          {t('back')}
         </NextLink>
+
+        {locale !== 'en' && (
+          <div className="bg-canal-light border border-blue-100 rounded-xl px-4 py-3 mb-6 text-sm text-canal-dark">
+            🌐 {tc('contentEnNotice')}
+          </div>
+        )}
 
         {!post.coverImage && (
           <h1 className="font-display font-black text-canal-dark text-3xl md:text-4xl mb-4">{post.title}</h1>
@@ -153,11 +161,11 @@ export default async function BlogPostPage({ params: { locale, slug } }: Props) 
         </div>
 
         <div className="mt-12 bg-canal-dark rounded-2xl p-8 text-center">
-          <h3 className="font-display font-bold text-white text-xl mb-2">Ready to explore the canals?</h3>
-          <p className="text-white/60 text-sm mb-5">Browse all water activities in Amsterdam</p>
+          <h3 className="font-display font-bold text-white text-xl mb-2">{t('ctaTitle')}</h3>
+          <p className="text-white/60 text-sm mb-5">{t('ctaSub')}</p>
           <NextLink href={lhref(locale, '/activities')}
             className="inline-flex bg-amber hover:bg-amber-dark text-white font-bold px-6 py-3 rounded-xl transition-colors text-sm">
-            Browse activities
+            {t('ctaBtn')}
           </NextLink>
         </div>
       </div>

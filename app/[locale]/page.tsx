@@ -1,10 +1,11 @@
-import { setRequestLocale } from 'next-intl/server'
-import { getFeaturedActivities, getSiteSettings } from '@/lib/data'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
+import { getFeaturedActivities, getSiteSettings, getAllSlugs } from '@/lib/data'
 import { ActivityCard } from '@/components/ui/ActivityCard'
 import { WebsiteJsonLd, ActivityListJsonLd } from '@/components/seo/JsonLd'
 import { locales } from '@/i18n'
 import NextLink from 'next/link'
 import { LazyMap } from '@/components/ui/LazyMap'
+import { HeroSearch } from '@/components/ui/HeroSearch'
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
@@ -13,11 +14,11 @@ export function generateStaticParams() {
 export const dynamic = 'force-dynamic'
 
 const CATEGORIES = [
-  { id: 'self-guided', emoji: '⛵', bg: '#dbeafe', label: 'Self-guided',     count: 4 },
-  { id: 'canal-tour',  emoji: '🚣', bg: '#dcfce7', label: 'Canal tours',     count: 3 },
-  { id: 'watersport',  emoji: '🏄', bg: '#fef9c3', label: 'Watersport',      count: 3 },
-  { id: 'private',     emoji: '🍾', bg: '#ede9fe', label: 'Private & events', count: 2 },
-  { id: 'unique',      emoji: '🧘', bg: '#fce7f3', label: 'Unique',          count: 2 },
+  { id: 'self-guided', emoji: '⛵', bg: '#dbeafe', tkey: 'selfGuided',  count: 4 },
+  { id: 'canal-tour',  emoji: '🚣', bg: '#dcfce7', tkey: 'canalTour',   count: 3 },
+  { id: 'watersport',  emoji: '🏄', bg: '#fef9c3', tkey: 'watersport',  count: 3 },
+  { id: 'private',     emoji: '🍾', bg: '#ede9fe', tkey: 'private',     count: 2 },
+  { id: 'unique',      emoji: '🧘', bg: '#fce7f3', tkey: 'unique',      count: 2 },
 ]
 
 const REVIEWS = [
@@ -32,8 +33,19 @@ function lhref(locale: string, path: string) {
 
 export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
-  const featured = await getFeaturedActivities()
-  const settings = await getSiteSettings()
+  const t        = await getTranslations('hero')
+  const tTrust   = await getTranslations('trust')
+  const tCat     = await getTranslations('categories')
+  const tAct     = await getTranslations('activities')
+  const tStory   = await getTranslations('story')
+  const tMap     = await getTranslations('map')
+  const tRev     = await getTranslations('reviews')
+  const tCta     = await getTranslations('cta')
+  const [featured, settings, validSlugs] = await Promise.all([
+    getFeaturedActivities(),
+    getSiteSettings(),
+    getAllSlugs(),
+  ])
 
   return (
     <>
@@ -57,60 +69,45 @@ export default async function HomePage({ params: { locale } }: { params: { local
         <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-2 pt-32">
           <h1 className="font-display font-black text-white leading-[1.05] tracking-tight mb-3"
             style={{ fontSize: 'clamp(34px,5vw,58px)', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
-            Everything on the canals,<br />
-            <em className="text-sky-300 not-italic font-display">in one place</em>
+            {t('title')}<br />
+            <em className="text-sky-300 not-italic font-display">{t('titleEm')}</em>
           </h1>
 
           <p className="text-white/90 font-medium leading-relaxed mb-5 max-w-xl"
             style={{ fontSize: 'clamp(14px,1.6vw,16px)', textShadow: '0 1px 6px rgba(0,0,0,0.5)' }}>
-            From electric boat hire to sunset cruises — discover, compare and book every water activity on the Amsterdam canals. Prices from €14 p.p.
+            {t('sub')}
           </p>
 
-          <div className="bg-white rounded-2xl shadow-lg border border-canal/10 overflow-hidden max-w-[560px] mb-4">
-            <div className="flex items-center">
-              <div className="flex items-center gap-3 px-4 flex-1 min-w-0">
-                <span className="text-slate-400">🔍</span>
-                <input type="text" placeholder="Boat hire, canal tour, SUP lesson..."
-                  className="flex-1 py-4 text-sm text-slate-700 placeholder-slate-300 outline-none bg-transparent min-w-0" />
-              </div>
-              <div className="w-px h-7 bg-stone-200 flex-shrink-0" />
-              <div className="flex items-center gap-2 px-4 flex-shrink-0">
-                <span>📅</span>
-                <label htmlFor="date-select" className="sr-only">Select date</label>
-                <select id="date-select" className="text-sm font-medium text-slate-600 bg-transparent outline-none cursor-pointer">
-                  <option>Today</option>
-                  <option>This weekend</option>
-                  <option>Next week</option>
-                  <option>Any date</option>
-                </select>
-              </div>
-              <button className="bg-canal hover:bg-canal-dark text-white text-sm font-bold px-6 py-4 transition-colors flex-shrink-0">
-                Search →
-              </button>
-            </div>
-          </div>
+          <HeroSearch />
 
           <div className="flex flex-wrap gap-2 mb-5">
             {[
-              ['⛵ Boat hire', 'self-guided'],
-              ['🚣 Canal tour', 'canal-tour'],
-              ['🏄 SUP lesson', 'watersport'],
-              ['🍾 Private cruise', 'private'],
-              ['🛶 Kayak', 'watersport'],
-              ['🚲 Water bike', 'self-guided'],
-            ].map(([label, cat]) => (
+              ['⛵', t('chips.boat'),   'self-guided'],
+              ['🚣', t('chips.tour'),   'canal-tour'],
+              ['🏄', t('chips.sup'),    'watersport'],
+              ['🍾', t('chips.cruise'), 'private'],
+              ['🛶', t('chips.kayak'),  'watersport'],
+              ['🚲', t('chips.bike'),   'self-guided'],
+            ].map(([emoji, label, cat]) => (
               <NextLink key={label} href={lhref(locale, `/activities?cat=${cat}`)}
                 className="text-xs font-semibold text-white border-[1.5px] border-white/30 bg-white/15 backdrop-blur rounded-full px-4 py-1.5 hover:bg-white hover:text-canal-dark transition-all">
-                {label}
+                {emoji} {label}
               </NextLink>
             ))}
           </div>
 
           {/* Trust bar */}
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            {[['⭐','4.8','avg. rating'],['⚓','15+','verified providers'],['🌊','14+','activities'],['🌍','7 languages','available']].map(([icon,val,label]) => (
+            {[
+              { icon: '⭐', val: '4.8', label: tTrust('rating') },
+              { icon: '⚓', val: '15+', label: tTrust('providers') },
+              { icon: '🌊', val: '14+', label: tTrust('activities') },
+              { icon: '🌍', val: null,  label: tTrust('languages') },
+            ].map(({icon, val, label}) => (
               <div key={label} className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/70">
-                <span>{icon}</span><strong className="text-white font-semibold">{val}</strong><span>{label}</span>
+                <span>{icon}</span>
+                {val && <strong className="text-white font-semibold">{val}</strong>}
+                <span>{label}</span>
               </div>
             ))}
           </div>
@@ -122,11 +119,11 @@ export default async function HomePage({ params: { locale } }: { params: { local
         <div className="max-w-6xl mx-auto px-5">
           <div className="flex items-end justify-between mb-7">
             <div>
-              <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Choose your adventure</p>
-              <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>What suits you?</h2>
+              <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">{tCat('label')}</p>
+              <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>{tCat('title')}</h2>
             </div>
             <NextLink href={lhref(locale, '/activities')} className="text-sm font-semibold text-canal hover:text-canal-dark transition-colors hidden sm:block">
-              All categories →
+              {tCat('all')}
             </NextLink>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
@@ -137,8 +134,8 @@ export default async function HomePage({ params: { locale } }: { params: { local
                   {cat.emoji}
                 </div>
                 <div className="px-2 py-2.5">
-                  <p className="text-xs font-bold text-canal-dark leading-tight">{cat.label}</p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">{cat.count} options</p>
+                  <p className="text-xs font-bold text-canal-dark leading-tight">{tCat(cat.tkey)}</p>
+                  <p className="text-[11px] text-slate-400 mt-0.5">{cat.count} {tCat('options')}</p>
                 </div>
               </NextLink>
             ))}
@@ -151,11 +148,11 @@ export default async function HomePage({ params: { locale } }: { params: { local
         <div className="max-w-6xl mx-auto px-5">
           <div className="flex items-end justify-between mb-7">
             <div>
-              <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Popular this week</p>
-              <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>Top activities</h2>
+              <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">{tAct('label')}</p>
+              <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>{tAct('title')}</h2>
             </div>
             <NextLink href={lhref(locale, '/activities')} className="text-sm font-semibold text-canal hover:text-canal-dark transition-colors hidden sm:block">
-              All activities →
+              {tAct('seeAll')}
             </NextLink>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -180,15 +177,15 @@ export default async function HomePage({ params: { locale } }: { params: { local
               </div>
             </div>
             <div className="fade-up">
-              <p className="text-xs font-bold tracking-widest text-sky-300 uppercase mb-3">Why the canals?</p>
+              <p className="text-xs font-bold tracking-widest text-sky-300 uppercase mb-3">{tStory('label')}</p>
               <h2 className="font-display font-bold text-white leading-tight mb-4" style={{ fontSize: 'clamp(26px,3.5vw,38px)' }}>
-                Amsterdam is best seen<br /><em className="text-sky-300">from the water</em>
+                {tStory('title')}<br /><em className="text-sky-300">{tStory('titleEm')}</em>
               </h2>
               <p className="text-white font-medium leading-relaxed text-[17px] mb-8">
-                The Grachtengordel, Amsterdam's famous canal ring, is a UNESCO World Heritage site. Over 400 years old, lined with merchant houses, hidden courtyards, and drawbridges that only open by water.
+                {tStory('text')}
               </p>
               <div className="grid grid-cols-3 gap-4">
-                {[['165','canals'],['1,500+','houseboats'],['400+','bridges']].map(([num,lbl]) => (
+                {[['165', tStory('canals')], ['1,500+', tStory('houseboats')], ['400+', tStory('bridges')]].map(([num,lbl]) => (
                   <div key={lbl} style={{ textAlign: 'left' }}>
                     <p className="font-display font-bold text-sky-300 text-3xl">{num}</p>
                     <p className="text-white/50 text-xs mt-1">{lbl}</p>
@@ -204,11 +201,11 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <section id="map" className="bg-[#f2ece1] py-14">
         <div className="max-w-6xl mx-auto px-5">
           <div className="mb-7">
-            <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">Find your spot</p>
-            <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>Departure points</h2>
-            <p className="text-slate-500 text-sm mt-1">Click a pin to see details. Filter by activity type.</p>
+            <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">{tMap('label')}</p>
+            <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>{tMap('title')}</h2>
+            <p className="text-slate-500 text-sm mt-1">{tMap('tip')}</p>
           </div>
-          <LazyMap locale={locale} />
+          <LazyMap locale={locale} validSlugs={validSlugs} />
         </div>
       </section>
 
@@ -217,13 +214,13 @@ export default async function HomePage({ params: { locale } }: { params: { local
         <div className="max-w-6xl mx-auto px-5">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">What visitors say</p>
-              <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>Real experiences</h2>
+              <p className="text-xs font-bold tracking-widest text-canal uppercase mb-1.5">{tRev('label')}</p>
+              <h2 className="font-display font-bold text-canal-dark" style={{ fontSize: 'clamp(24px,3vw,32px)' }}>{tRev('title')}</h2>
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <span className="text-amber-400">★★★★★</span>
               <span className="text-sm font-bold text-slate-700">4.8</span>
-              <span className="text-sm text-slate-400">· 3,200+ reviews</span>
+              <span className="text-sm text-slate-400">· 3,200+ {tRev('reviews')}</span>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -249,19 +246,19 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
       {/* ── CTA ── */}
       <section className="bg-gradient-to-br from-canal-dark to-canal py-20 text-center px-5">
-        <p className="text-xs font-bold tracking-widest text-sky-300 uppercase mb-3">Ready to go?</p>
+        <p className="text-xs font-bold tracking-widest text-sky-300 uppercase mb-3">{tCta('label')}</p>
         <h2 className="font-display font-bold text-white mb-3" style={{ fontSize: 'clamp(26px,4vw,42px)' }}>
-          The canals are waiting
+          {tCta('title')}
         </h2>
         <p className="text-white/85 text-base font-bold max-w-md mx-auto mb-8 leading-relaxed">
-          Pick an activity, grab a spot, and experience Amsterdam the way it was meant to be seen — from the water.
+          {tCta('sub')}
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <NextLink href={lhref(locale, '/activities')} className="bg-amber hover:bg-amber-dark text-white font-bold text-[15px] px-8 py-4 rounded-xl transition-colors">
-            Browse all activities →
+            {tCta('browse')}
           </NextLink>
           <NextLink href={lhref(locale, '/contact')} className="text-white/80 hover:text-white border border-white/25 hover:border-white/50 font-medium text-[15px] px-8 py-4 rounded-xl transition-all">
-            Are you a provider?
+            {tCta('provider')}
           </NextLink>
         </div>
       </section>

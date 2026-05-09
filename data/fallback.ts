@@ -160,7 +160,7 @@ export const fallbackActivities: Activity[] = [
     popular: false, isNew: false, tags: [],
   },
   {
-    id: '351417fa-ee21-8177-a21d-e47ed230c5fd', slug: 'self-drive-boat-rental-canal-motorboats\n',
+    id: '351417fa-ee21-8177-a21d-e47ed230c5fd', slug: 'self-drive-boat-rental-canal-motorboats',
     title: 'Self-drive boat rental — Canal Motorboats', subtitle: 'Amsterdam\'s original since 1996 — you\'re the captain',
     category: 'self-guided', emoji: '⛵',
     photo: 'https://res.cloudinary.com/dlmvn1srk/image/upload/w_600,q_auto,f_auto/v1777408713/IMG_6557_2_gxplug.jpg',

@@ -3,7 +3,9 @@
     "activities": "Aktivitäten",
     "selfGuided": "Selbst fahren",
     "groups": "Gruppen",
-    "bookNow": "Jetzt buchen"
+    "bookNow": "Jetzt buchen",
+    "canalGuide": "Grachtenführer",
+    "about": "Über uns"
   },
   "hero": {
     "title": "Alles auf den Grachten,",
@@ -30,7 +32,7 @@
     "providers": "geprüfte Anbieter",
     "location": "Stadtzentrum",
     "booking": "Sicher buchen bei geprüften Anbietern",
-    "languages": "Verfügbar in 7 Sprachen"
+    "languages": "Website in 7 Sprachen"
   },
   "categories": {
     "label": "Wähle dein Abenteuer",
@@ -40,7 +42,8 @@
     "canalTour": "Kanalrundfahrten",
     "watersport": "Wassersport",
     "private": "Privat & Events",
-    "unique": "Einzigartig"
+    "unique": "Einzigartig",
+    "options": "Optionen"
   },
   "activities": {
     "label": "Diese Woche beliebt",
@@ -49,7 +52,10 @@
     "book": "Buchen →",
     "reviews": "Bewertungen",
     "people": "Personen",
-    "hrs": "Std."
+    "hrs": "Std.",
+    "popular": "Beliebt",
+    "new": "Neu",
+    "details": "Details"
   },
   "story": {
     "label": "Warum die Grachten?",
@@ -66,7 +72,9 @@
     "title": "Abfahrtsorte",
     "heading": "15+ Standorte in Amsterdam",
     "sub": "Alle Abfahrtsorte auf einer Karte — nach Aktivität filtern und den nächsten finden.",
-    "open": "Interaktive Karte öffnen →"
+    "open": "Interaktive Karte öffnen →",
+    "tip": "Klicke eine Markierung für Details. Filter nach Aktivitätstyp.",
+    "loading": "Karte wird geladen…"
   },
   "reviews": {
     "label": "Was Besucher sagen",
@@ -82,7 +90,7 @@
     "provider": "Bist du ein Anbieter?"
   },
   "footer": {
-    "desc": "Die Plattform für alle Wasseraktivitäten auf den Amsterdamer Grachten. Vergleichen, entdecken und buchen — in 7 Sprachen.",
+    "desc": "Die Plattform für alle Wasseraktivitäten auf den Amsterdamer Grachten. Vergleichen, entdecken, buchen.",
     "activitiesTitle": "Aktivitäten",
     "platformTitle": "Plattform",
     "about": "Über uns",
@@ -93,5 +101,105 @@
     "privacyLink": "Datenschutz",
     "terms": "AGB",
     "sitemap": "Sitemap"
+  },
+  "common": {
+    "enOnlyNotice": "Diese Seite ist nur auf Englisch verfügbar — eine übersetzte Version folgt später.",
+    "contentEnNotice": "Aktivitätsdetails und Artikel sind derzeit nur auf Englisch verfügbar."
+  },
+  "activitiesPage": {
+    "title": "Alle Aktivitäten",
+    "subtitle": "{count} Aktivitäten auf den Amsterdamer Grachten",
+    "searchPlaceholder": "Aktivität, Stil, Stichwort suchen...",
+    "maxLabel": "Max",
+    "sortPopular": "Beliebteste",
+    "sortRating": "Beste Bewertung",
+    "sortPriceAsc": "Preis: niedrig → hoch",
+    "sortPriceDesc": "Preis: hoch → niedrig",
+    "catAll": "Alle",
+    "noResultsTitle": "Keine Ergebnisse gefunden",
+    "noResultsDesc": "Probiere andere Suchbegriffe oder ändere die Filter.",
+    "clearFilters": "Filter zurücksetzen"
+  },
+  "about": {
+    "pageTitle": "Über OnTheCanals",
+    "pageSub": "Die Plattform für alle, die Amsterdam vom Wasser aus entdecken möchten.",
+    "storyTitle": "Unsere Geschichte",
+    "storyP1": "Amsterdam hat über 100 Kilometer Grachten und Dutzende Anbieter von Wasseraktivitäten. Aber als Tourist war es fast unmöglich, den Überblick zu behalten. Man musste zehn verschiedene Websites durchsuchen, Preise vergleichen, Bewertungen lesen — dabei wollte man eigentlich nur aufs Wasser.",
+    "storyP2": "OnTheCanals.Amsterdam löst das. Wir bringen alle Wasseraktivitäten auf einer Plattform zusammen: von klassischen Grachtenrundfahrten und Elektrobooten bis zu SUP-Kursen, Kajak und Privatkreuzfahrten. Vergleichen, auswählen, buchen — alles an einem Ort, in 7 Sprachen.",
+    "howTitle": "So funktioniert es",
+    "step1Title": "Entdecken",
+    "step1Desc": "Stöbere durch alle Aktivitäten auf den Grachten und filtere nach deinen Vorlieben.",
+    "step2Title": "Vergleichen",
+    "step2Desc": "Sieh Preise, Bewertungen und Details nebeneinander.",
+    "step3Title": "Buchen",
+    "step3Desc": "Buche direkt beim Anbieter über dessen sicheres System.",
+    "providerTitle": "Bist du ein Anbieter auf den Grachten?",
+    "providerSub": "Tritt OnTheCanals.Amsterdam bei und erreiche tausende Touristen pro Monat. Anmeldung kostenlos, Provisionsmodell.",
+    "statFreeLbl": "zur Anmeldung",
+    "statCommLbl": "Provision",
+    "statVisitorsLbl": "Besucher/Monat",
+    "stat24hLbl": "live nach Anmeldung",
+    "providerCta": "Als Anbieter anmelden →"
+  },
+  "contact": {
+    "pageTitle": "Kontakt",
+    "pageSub": "Fragen, Anregungen oder deine Aktivität anmelden? Melde dich.",
+    "getInTouch": "Kontakt aufnehmen",
+    "response": "Antwort innerhalb von 24 Stunden",
+    "providerTitle": "Anbieter werden?",
+    "providerSub": "Wähle „Ich bin Anbieter\" im Formular und beschreibe dein Angebot. Wir melden uns innerhalb von 24 Stunden.",
+    "benefitFree": "Kostenlose Anmeldung",
+    "benefitCommission": "Provisionsmodell",
+    "benefitListing": "Eigener Eintrag",
+    "benefitDirect": "Direkte Buchungslinks",
+    "sentTitle": "Nachricht gesendet!",
+    "sentSub": "Wir melden uns so schnell wie möglich.",
+    "nameLabel": "Name *",
+    "namePh": "Dein Name",
+    "emailLabel": "E-Mail *",
+    "emailPh": "deine@email.com",
+    "typeLabel": "Ich bin...",
+    "typeVisitor": "Tourist / Besucher",
+    "typeProvider": "Aktivitäts-Anbieter",
+    "typePress": "Presse / Journalist",
+    "typeOther": "Sonstige",
+    "companyLabel": "Firmenname",
+    "companyPh": "Dein Firmenname",
+    "messageLabel": "Nachricht *",
+    "messagePh": "Wie können wir helfen?",
+    "submit": "Nachricht senden →"
+  },
+  "activityDetail": {
+    "back": "← Zurück zu allen Aktivitäten",
+    "duration": "Dauer",
+    "groupSize": "Gruppengröße",
+    "location": "Ort",
+    "rating": "Bewertung",
+    "aboutTitle": "Über diese Aktivität",
+    "highlights": "Highlights",
+    "included": "Inbegriffen",
+    "provider": "Anbieter",
+    "bookNow": "Jetzt buchen →",
+    "bookingNotice": "Du wirst zur Website von {provider} weitergeleitet, um die Buchung abzuschließen.",
+    "similarTitle": "Ähnliche Aktivitäten",
+    "reviewsSuffix": "Bewertungen"
+  },
+  "blog": {
+    "eyebrow": "Amsterdam vom Wasser aus",
+    "pageTitle": "Grachtenführer",
+    "pageSub": "Tipps, Guides und Inspiration für dein Amsterdamer Grachtenerlebnis.",
+    "noPosts": "Noch keine Artikel. Schau bald wieder vorbei.",
+    "readMore": "Weiterlesen"
+  },
+  "blogPost": {
+    "back": "Zurück zum Grachtenführer",
+    "ctaTitle": "Bereit, die Grachten zu entdecken?",
+    "ctaSub": "Stöbere durch alle Wasseraktivitäten in Amsterdam",
+    "ctaBtn": "Aktivitäten ansehen"
+  },
+  "footerExtras": {
+    "affiliate": "Diese Seite enthält Affiliate-Links. Wenn du über unsere Links buchst, erhalten wir möglicherweise eine kleine Provision — ohne zusätzliche Kosten für dich.",
+    "learnMore": "Mehr erfahren",
+    "amsterdam": "Amsterdam, Niederlande"
   }
 }

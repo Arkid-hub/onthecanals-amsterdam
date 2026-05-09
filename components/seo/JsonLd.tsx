@@ -1,13 +1,15 @@
 import type { Activity } from '@/types'
+import { getLocationForSlug } from '@/data/map-locations'
 
 // Later: swap fallbackActivities for Notion data — structure stays identical
-export function ActivityJsonLd({ activity }: { activity: Activity }) {
+export function ActivityJsonLd({ activity, locale = 'en' }: { activity: Activity; locale?: string }) {
+  const localePrefix = locale === 'en' ? '' : `/${locale}`
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',
     name: activity.title,
     description: activity.description,
-    url: `https://onthecanals.nl/activities/${activity.slug}`,
+    url: `https://onthecanals.nl${localePrefix}/activities/${activity.slug}`,
     image: activity.photo,
     touristType: ['Tourist', 'Family', 'Couples'],
     location: {
@@ -20,8 +22,8 @@ export function ActivityJsonLd({ activity }: { activity: Activity }) {
       },
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: 52.3676,
-        longitude: 4.9041,
+        latitude:  getLocationForSlug(activity.slug)?.lat ?? 52.3676,
+        longitude: getLocationForSlug(activity.slug)?.lng ?? 4.9041,
       },
     },
     offers: {

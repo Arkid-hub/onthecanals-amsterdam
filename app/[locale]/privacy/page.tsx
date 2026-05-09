@@ -1,17 +1,23 @@
 import type { Metadata } from 'next'
-import { setRequestLocale } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'Privacy policy for OnTheCanals Amsterdam — how we handle your data.',
 }
 
-export default function PrivacyPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function PrivacyPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
+  const tc = await getTranslations('common')
 
   return (
     <div className="min-h-screen bg-[#faf7f2] pt-24 pb-16">
       <div className="max-w-2xl mx-auto px-5">
+        {locale !== 'en' && (
+          <div className="bg-canal-light border border-blue-100 rounded-xl px-4 py-3 mb-6 text-sm text-canal-dark">
+            🌐 {tc('enOnlyNotice')}
+          </div>
+        )}
         <h1 className="font-display font-black text-canal-dark text-3xl mb-2">Privacy Policy</h1>
         <p className="text-slate-400 text-sm mb-10">Last updated: April 2026</p>
 
@@ -75,12 +81,12 @@ export default function PrivacyPage({ params: { locale } }: { params: { locale: 
               <li>Object to processing of your data</li>
               <li>Lodge a complaint with the Dutch data protection authority (<a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer" className="text-canal hover:underline">Autoriteit Persoonsgegevens</a>)</li>
             </ul>
-            <p className="mt-3">To exercise your rights, contact us via the <a href="/contact" className="text-canal hover:underline">contact page</a>.</p>
+            <p className="mt-3">To exercise your rights, contact us via the <a href={locale === "en" ? "/contact" : `/${locale}/contact`} className="text-canal hover:underline">contact page</a>.</p>
           </section>
 
           <section>
             <h2 className="font-display font-bold text-canal-dark text-lg mb-3">7. Contact</h2>
-            <p>For privacy-related questions, please use our <a href="/contact" className="text-canal hover:underline">contact form</a> or email us at <a href="mailto:hello@onthecanals.nl" className="text-canal hover:underline">hello@onthecanals.nl</a>.</p>
+            <p>For privacy-related questions, please use our <a href={locale === "en" ? "/contact" : `/${locale}/contact`} className="text-canal hover:underline">contact form</a> or email us at <a href="mailto:hello@onthecanals.nl" className="text-canal hover:underline">hello@onthecanals.nl</a>.</p>
           </section>
 
         </div>

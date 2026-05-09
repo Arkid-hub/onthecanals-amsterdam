@@ -3,7 +3,9 @@
     "activities": "Activities",
     "selfGuided": "Self-guided",
     "groups": "Groups",
-    "bookNow": "Book now"
+    "bookNow": "Book now",
+    "canalGuide": "Canal Guide",
+    "about": "About"
   },
   "hero": {
     "title": "Everything on the canals,",
@@ -30,7 +32,7 @@
     "providers": "verified providers",
     "location": "city centre",
     "booking": "Book safely with verified providers",
-    "languages": "Available in 7 languages"
+    "languages": "Site in 7 languages"
   },
   "categories": {
     "label": "Choose your adventure",
@@ -40,7 +42,8 @@
     "canalTour": "Canal tours",
     "watersport": "Watersport",
     "private": "Private & events",
-    "unique": "Unique"
+    "unique": "Unique",
+    "options": "options"
   },
   "activities": {
     "label": "Popular this week",
@@ -49,7 +52,10 @@
     "book": "Book →",
     "reviews": "reviews",
     "people": "people",
-    "hrs": "hrs"
+    "hrs": "hrs",
+    "popular": "Popular",
+    "new": "New",
+    "details": "Details"
   },
   "story": {
     "label": "Why the canals?",
@@ -66,7 +72,9 @@
     "title": "Departure points",
     "heading": "15+ locations across Amsterdam",
     "sub": "All departure points in one map — filter by activity and find what's nearest to you.",
-    "open": "Open interactive map →"
+    "open": "Open interactive map →",
+    "tip": "Click a pin to see details. Filter by activity type.",
+    "loading": "Loading map…"
   },
   "reviews": {
     "label": "What visitors say",
@@ -82,7 +90,7 @@
     "provider": "Are you a provider?"
   },
   "footer": {
-    "desc": "The platform for all water activities on the Amsterdam canals. Compare, discover and book — in 7 languages.",
+    "desc": "The platform for all water activities on the Amsterdam canals. Compare, discover and book.",
     "activitiesTitle": "Activities",
     "platformTitle": "Platform",
     "about": "About us",
@@ -93,5 +101,105 @@
     "privacyLink": "Privacy",
     "terms": "Terms",
     "sitemap": "Sitemap"
+  },
+  "common": {
+    "enOnlyNotice": "This page is available in English only — a translated version may follow later.",
+    "contentEnNotice": "Activity details and articles are currently available in English only."
+  },
+  "activitiesPage": {
+    "title": "All activities",
+    "subtitle": "{count} activities on the Amsterdam canals",
+    "searchPlaceholder": "Search activity, style, keyword...",
+    "maxLabel": "Max",
+    "sortPopular": "Most popular",
+    "sortRating": "Highest rated",
+    "sortPriceAsc": "Price: low → high",
+    "sortPriceDesc": "Price: high → low",
+    "catAll": "All",
+    "noResultsTitle": "No results found",
+    "noResultsDesc": "Try different keywords or adjust the filters.",
+    "clearFilters": "Clear filters"
+  },
+  "about": {
+    "pageTitle": "About OnTheCanals",
+    "pageSub": "The platform for everyone who wants to discover Amsterdam on the water.",
+    "storyTitle": "Our story",
+    "storyP1": "Amsterdam has over 100 kilometres of canals and dozens of providers of water activities. But as a tourist it was nearly impossible to get an overview. You had to search ten different websites, compare prices, read reviews — while all you really wanted was to be on the water.",
+    "storyP2": "OnTheCanals.Amsterdam solves that. We bring all water activities together on one platform: from classic canal tours and electric boats to SUP lessons, kayak and private cruises. Compare, choose and book — all in one place, in 7 languages.",
+    "howTitle": "How it works",
+    "step1Title": "Discover",
+    "step1Desc": "Browse all activities on the canals and filter by your preferences.",
+    "step2Title": "Compare",
+    "step2Desc": "View prices, ratings and details side by side.",
+    "step3Title": "Book",
+    "step3Desc": "Book directly with the provider via their own secure system.",
+    "providerTitle": "Are you a provider on the canals?",
+    "providerSub": "Join OnTheCanals.Amsterdam and reach thousands of tourists per month. Free to sign up, commission-based model.",
+    "statFreeLbl": "to sign up",
+    "statCommLbl": "commission",
+    "statVisitorsLbl": "visitors/month",
+    "stat24hLbl": "live after signup",
+    "providerCta": "Sign up as a provider →"
+  },
+  "contact": {
+    "pageTitle": "Contact",
+    "pageSub": "Questions, suggestions or want to list your activity? Get in touch.",
+    "getInTouch": "Get in touch",
+    "response": "Response within 24 hours",
+    "providerTitle": "Become a provider?",
+    "providerSub": "Select \"I am a provider\" in the form and describe your service. We'll get back to you within 24 hours.",
+    "benefitFree": "Free to sign up",
+    "benefitCommission": "Commission-based model",
+    "benefitListing": "Manage your own listing",
+    "benefitDirect": "Direct booking links",
+    "sentTitle": "Message sent!",
+    "sentSub": "We'll get back to you as soon as possible.",
+    "nameLabel": "Name *",
+    "namePh": "Your name",
+    "emailLabel": "Email *",
+    "emailPh": "your@email.com",
+    "typeLabel": "I am a...",
+    "typeVisitor": "Tourist / visitor",
+    "typeProvider": "Activity provider",
+    "typePress": "Press / journalist",
+    "typeOther": "Other",
+    "companyLabel": "Company name",
+    "companyPh": "Your company name",
+    "messageLabel": "Message *",
+    "messagePh": "How can we help?",
+    "submit": "Send message →"
+  },
+  "activityDetail": {
+    "back": "← Back to all activities",
+    "duration": "Duration",
+    "groupSize": "Group size",
+    "location": "Location",
+    "rating": "Rating",
+    "aboutTitle": "About this activity",
+    "highlights": "Highlights",
+    "included": "What's included",
+    "provider": "Provider",
+    "bookNow": "Book now →",
+    "bookingNotice": "You'll be taken to {provider}'s website to complete your booking.",
+    "similarTitle": "Similar activities",
+    "reviewsSuffix": "reviews"
+  },
+  "blog": {
+    "eyebrow": "Amsterdam on the water",
+    "pageTitle": "Canal Guide",
+    "pageSub": "Tips, guides and inspiration for your Amsterdam canal experience.",
+    "noPosts": "No articles yet. Check back soon.",
+    "readMore": "Read more"
+  },
+  "blogPost": {
+    "back": "Back to Canal Guide",
+    "ctaTitle": "Ready to explore the canals?",
+    "ctaSub": "Browse all water activities in Amsterdam",
+    "ctaBtn": "Browse activities"
+  },
+  "footerExtras": {
+    "affiliate": "This site contains affiliate links. When you book via our links, we may earn a small commission — at no extra cost to you.",
+    "learnMore": "Learn more",
+    "amsterdam": "Amsterdam, Netherlands"
   }
 }

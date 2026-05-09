@@ -3,7 +3,9 @@
     "activities": "活动",
     "selfGuided": "自驾游",
     "groups": "团体",
-    "bookNow": "立即预订"
+    "bookNow": "立即预订",
+    "canalGuide": "运河指南",
+    "about": "关于我们"
   },
   "hero": {
     "title": "运河上的一切，",
@@ -30,7 +32,7 @@
     "providers": "家认证供应商",
     "location": "市中心",
     "booking": "安全预订认证供应商",
-    "languages": "支持7种语言"
+    "languages": "站点提供 7 种语言"
   },
   "categories": {
     "label": "选择您的冒险",
@@ -40,7 +42,8 @@
     "canalTour": "运河游览",
     "watersport": "水上运动",
     "private": "私人和活动",
-    "unique": "独特体验"
+    "unique": "独特体验",
+    "options": "个选项"
   },
   "activities": {
     "label": "本周热门",
@@ -49,7 +52,10 @@
     "book": "预订 →",
     "reviews": "条评价",
     "people": "人",
-    "hrs": "小时"
+    "hrs": "小时",
+    "popular": "热门",
+    "new": "新",
+    "details": "详情"
   },
   "story": {
     "label": "为何选择运河？",
@@ -66,7 +72,9 @@
     "title": "出发地点",
     "heading": "阿姆斯特丹15+个地点",
     "sub": "所有出发点一图览尽——按活动类型筛选，找到最近的地点。",
-    "open": "打开互动地图 →"
+    "open": "打开互动地图 →",
+    "tip": "点击图钉查看详情。按活动类型筛选。",
+    "loading": "加载地图…"
   },
   "reviews": {
     "label": "游客怎么说",
@@ -82,7 +90,7 @@
     "provider": "您是供应商？"
   },
   "footer": {
-    "desc": "阿姆斯特丹运河所有水上活动的平台。比较、发现并预订——支持7种语言。",
+    "desc": "阿姆斯特丹运河所有水上活动的平台。比较、发现、预订。",
     "activitiesTitle": "活动",
     "platformTitle": "平台",
     "about": "关于我们",
@@ -93,5 +101,105 @@
     "privacyLink": "隐私",
     "terms": "条款",
     "sitemap": "网站地图"
+  },
+  "common": {
+    "enOnlyNotice": "此页面仅提供英文版本——稍后将提供翻译版本。",
+    "contentEnNotice": "活动详情和文章目前仅提供英文版本。"
+  },
+  "activitiesPage": {
+    "title": "所有活动",
+    "subtitle": "阿姆斯特丹运河上 {count} 项活动",
+    "searchPlaceholder": "搜索活动、风格、关键词...",
+    "maxLabel": "最高",
+    "sortPopular": "最受欢迎",
+    "sortRating": "评分最高",
+    "sortPriceAsc": "价格:低 → 高",
+    "sortPriceDesc": "价格:高 → 低",
+    "catAll": "全部",
+    "noResultsTitle": "未找到结果",
+    "noResultsDesc": "尝试其他关键词或调整筛选。",
+    "clearFilters": "清除筛选"
+  },
+  "about": {
+    "pageTitle": "关于 OnTheCanals",
+    "pageSub": "为想要从水上探索阿姆斯特丹的每一个人打造的平台。",
+    "storyTitle": "我们的故事",
+    "storyP1": "阿姆斯特丹拥有超过 100 公里的运河和数十家水上活动提供商。但作为游客,几乎不可能获得全面概览。你必须搜索十个不同的网站,比较价格,阅读评论——而你真正想要的只是在水上。",
+    "storyP2": "OnTheCanals.Amsterdam 解决了这个问题。我们将所有水上活动汇集在一个平台:从经典运河游和电动船到 SUP 课程、皮划艇和私人游轮。比较、选择并预订——一站式服务,提供 7 种语言。",
+    "howTitle": "工作流程",
+    "step1Title": "发现",
+    "step1Desc": "浏览运河上的所有活动,按你的偏好筛选。",
+    "step2Title": "比较",
+    "step2Desc": "并排查看价格、评分和详情。",
+    "step3Title": "预订",
+    "step3Desc": "通过提供商自己的安全系统直接预订。",
+    "providerTitle": "你是运河上的提供商吗?",
+    "providerSub": "加入 OnTheCanals.Amsterdam,每月触达数千名游客。免费注册,佣金模式。",
+    "statFreeLbl": "注册",
+    "statCommLbl": "佣金",
+    "statVisitorsLbl": "访客/月",
+    "stat24hLbl": "注册后上线",
+    "providerCta": "注册为提供商 →"
+  },
+  "contact": {
+    "pageTitle": "联系",
+    "pageSub": "问题、建议或想列出你的活动?联系我们。",
+    "getInTouch": "联系我们",
+    "response": "24 小时内回复",
+    "providerTitle": "想成为提供商?",
+    "providerSub": "在表单中选择\"我是提供商\"并描述你的服务。我们将在 24 小时内回复。",
+    "benefitFree": "免费注册",
+    "benefitCommission": "佣金模式",
+    "benefitListing": "管理你自己的列表",
+    "benefitDirect": "直接预订链接",
+    "sentTitle": "消息已发送!",
+    "sentSub": "我们会尽快回复你。",
+    "nameLabel": "姓名 *",
+    "namePh": "你的姓名",
+    "emailLabel": "邮箱 *",
+    "emailPh": "your@email.com",
+    "typeLabel": "我是...",
+    "typeVisitor": "游客 / 访客",
+    "typeProvider": "活动提供商",
+    "typePress": "媒体 / 记者",
+    "typeOther": "其他",
+    "companyLabel": "公司名称",
+    "companyPh": "你的公司名称",
+    "messageLabel": "消息 *",
+    "messagePh": "我们如何提供帮助?",
+    "submit": "发送消息 →"
+  },
+  "activityDetail": {
+    "back": "← 返回所有活动",
+    "duration": "时长",
+    "groupSize": "团体规模",
+    "location": "地点",
+    "rating": "评分",
+    "aboutTitle": "关于此活动",
+    "highlights": "亮点",
+    "included": "包含内容",
+    "provider": "提供商",
+    "bookNow": "立即预订 →",
+    "bookingNotice": "你将被引导至 {provider} 的网站完成预订。",
+    "similarTitle": "类似活动",
+    "reviewsSuffix": "条评论"
+  },
+  "blog": {
+    "eyebrow": "水上的阿姆斯特丹",
+    "pageTitle": "运河指南",
+    "pageSub": "阿姆斯特丹运河体验的提示、指南和灵感。",
+    "noPosts": "暂无文章。稍后再来。",
+    "readMore": "阅读更多"
+  },
+  "blogPost": {
+    "back": "返回运河指南",
+    "ctaTitle": "准备好探索运河了吗?",
+    "ctaSub": "浏览阿姆斯特丹的所有水上活动",
+    "ctaBtn": "查看活动"
+  },
+  "footerExtras": {
+    "affiliate": "本网站包含联盟链接。当你通过我们的链接预订时,我们可能会获得少量佣金——你无需额外付费。",
+    "learnMore": "了解更多",
+    "amsterdam": "阿姆斯特丹,荷兰"
   }
 }

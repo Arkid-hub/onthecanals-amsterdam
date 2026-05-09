@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
 
 export default function ContactPage() {
+  const t = useTranslations('contact')
   const [form, setForm] = useState({ name: '', email: '', type: 'visitor', company: '', message: '' })
   const [sent, setSent] = useState(false)
 
@@ -16,8 +17,8 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#faf7f2] pt-16">
       <div className="bg-[#0a3d52] pt-12 pb-16 text-center">
         <div className="max-w-3xl mx-auto px-5">
-          <h1 className="font-display font-black text-white text-4xl mb-3">Contact</h1>
-          <p className="text-white/60">Questions, suggestions or want to list your activity? Get in touch.</p>
+          <h1 className="font-display font-black text-white text-4xl mb-3">{t('pageTitle')}</h1>
+          <p className="text-white/60">{t('pageSub')}</p>
         </div>
       </div>
 
@@ -30,21 +31,21 @@ export default function ContactPage() {
       <div className="max-w-3xl mx-auto px-5 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
-            <h2 className="font-display font-bold text-canal-dark text-xl mb-6">Get in touch</h2>
+            <h2 className="font-display font-bold text-canal-dark text-xl mb-6">{t('getInTouch')}</h2>
             <div className="space-y-4 text-sm text-slate-600 mb-8">
               <p className="flex items-start gap-3"><span className="text-xl">📧</span><span>info@onthecanals.amsterdam</span></p>
               <p className="flex items-start gap-3"><span className="text-xl">📍</span><span>Amsterdam, Netherlands</span></p>
-              <p className="flex items-start gap-3"><span className="text-xl">🕐</span><span>Response within 24 hours</span></p>
+              <p className="flex items-start gap-3"><span className="text-xl">🕐</span><span>{t('response')}</span></p>
             </div>
 
             <div id="provider" className="bg-canal-light border border-blue-100 rounded-2xl p-5">
-              <h3 className="font-bold text-canal-dark mb-2">Become a provider?</h3>
-              <p className="text-sm text-canal mb-3">Select "I am a provider" in the form and describe your service. We'll get back to you within 24 hours.</p>
+              <h3 className="font-bold text-canal-dark mb-2">{t('providerTitle')}</h3>
+              <p className="text-sm text-canal mb-3">{t('providerSub')}</p>
               <ul className="text-xs text-canal space-y-1">
-                <li>✓ Free to sign up</li>
-                <li>✓ Commission-based model</li>
-                <li>✓ Manage your own listing</li>
-                <li>✓ Direct booking links</li>
+                <li>✓ {t('benefitFree')}</li>
+                <li>✓ {t('benefitCommission')}</li>
+                <li>✓ {t('benefitListing')}</li>
+                <li>✓ {t('benefitDirect')}</li>
               </ul>
             </div>
           </div>
@@ -53,49 +54,49 @@ export default function ContactPage() {
             {sent ? (
               <div className="bg-white rounded-2xl border border-green-200 p-8 text-center">
                 <div className="text-4xl mb-3">✅</div>
-                <h3 className="font-bold text-canal-dark text-lg mb-2">Message sent!</h3>
-                <p className="text-sm text-slate-500">We'll get back to you as soon as possible.</p>
+                <h3 className="font-bold text-canal-dark text-lg mb-2">{t('sentTitle')}</h3>
+                <p className="text-sm text-slate-500">{t('sentSub')}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-stone-200 p-6 space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 mb-1">Name *</label>
+                  <label className="block text-xs font-semibold text-slate-500 mb-1">{t('nameLabel')}</label>
                   <input required type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})}
                     className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-canal bg-stone-50"
-                    placeholder="Your name" />
+                    placeholder={t('namePh')} />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 mb-1">Email *</label>
+                  <label className="block text-xs font-semibold text-slate-500 mb-1">{t('emailLabel')}</label>
                   <input required type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})}
                     className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-canal bg-stone-50"
-                    placeholder="your@email.com" />
+                    placeholder={t('emailPh')} />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 mb-1">I am a...</label>
+                  <label className="block text-xs font-semibold text-slate-500 mb-1">{t('typeLabel')}</label>
                   <select value={form.type} onChange={e => setForm({...form, type: e.target.value})}
                     className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none bg-stone-50 text-slate-700">
-                    <option value="visitor">Tourist / visitor</option>
-                    <option value="provider">Activity provider</option>
-                    <option value="press">Press / journalist</option>
-                    <option value="other">Other</option>
+                    <option value="visitor">{t('typeVisitor')}</option>
+                    <option value="provider">{t('typeProvider')}</option>
+                    <option value="press">{t('typePress')}</option>
+                    <option value="other">{t('typeOther')}</option>
                   </select>
                 </div>
                 {form.type === 'provider' && (
                   <div>
-                    <label className="block text-xs font-semibold text-slate-500 mb-1">Company name</label>
+                    <label className="block text-xs font-semibold text-slate-500 mb-1">{t('companyLabel')}</label>
                     <input type="text" value={form.company} onChange={e => setForm({...form, company: e.target.value})}
                       className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-canal bg-stone-50"
-                      placeholder="Your company name" />
+                      placeholder={t('companyPh')} />
                   </div>
                 )}
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 mb-1">Message *</label>
+                  <label className="block text-xs font-semibold text-slate-500 mb-1">{t('messageLabel')}</label>
                   <textarea required rows={4} value={form.message} onChange={e => setForm({...form, message: e.target.value})}
                     className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-canal bg-stone-50 resize-none"
-                    placeholder="How can we help?" />
+                    placeholder={t('messagePh')} />
                 </div>
                 <button type="submit" className="w-full bg-amber hover:bg-amber-dark text-white font-bold py-3 rounded-xl text-sm transition-colors">
-                  Send message →
+                  {t('submit')}
                 </button>
               </form>
             )}

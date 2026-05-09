@@ -3,7 +3,9 @@
     "activities": "Activités",
     "selfGuided": "Autonome",
     "groups": "Groupes",
-    "bookNow": "Réserver"
+    "bookNow": "Réserver",
+    "canalGuide": "Guide des canaux",
+    "about": "À propos"
   },
   "hero": {
     "title": "Tout sur les canaux,",
@@ -30,7 +32,7 @@
     "providers": "prestataires vérifiés",
     "location": "centre-ville",
     "booking": "Réservez en toute sécurité",
-    "languages": "Disponible en 7 langues"
+    "languages": "Site en 7 langues"
   },
   "categories": {
     "label": "Choisissez votre aventure",
@@ -40,7 +42,8 @@
     "canalTour": "Croisières canal",
     "watersport": "Sports nautiques",
     "private": "Privé & événements",
-    "unique": "Unique"
+    "unique": "Unique",
+    "options": "options"
   },
   "activities": {
     "label": "Populaire cette semaine",
@@ -49,7 +52,10 @@
     "book": "Réserver →",
     "reviews": "avis",
     "people": "personnes",
-    "hrs": "h"
+    "hrs": "h",
+    "popular": "Populaire",
+    "new": "Nouveau",
+    "details": "Détails"
   },
   "story": {
     "label": "Pourquoi les canaux ?",
@@ -66,7 +72,9 @@
     "title": "Points de départ",
     "heading": "15+ emplacements à Amsterdam",
     "sub": "Tous les points de départ sur une carte — filtrez par activité et trouvez le plus proche.",
-    "open": "Ouvrir la carte interactive →"
+    "open": "Ouvrir la carte interactive →",
+    "tip": "Cliquez sur une épingle pour voir les détails. Filtrer par type d'activité.",
+    "loading": "Chargement de la carte…"
   },
   "reviews": {
     "label": "Ce que disent les visiteurs",
@@ -82,7 +90,7 @@
     "provider": "Vous êtes prestataire ?"
   },
   "footer": {
-    "desc": "La plateforme pour toutes les activités nautiques sur les canaux d'Amsterdam. Comparez, découvrez et réservez — en 7 langues.",
+    "desc": "La plateforme pour toutes les activités nautiques sur les canaux d'Amsterdam. Comparez, découvrez, réservez.",
     "activitiesTitle": "Activités",
     "platformTitle": "Plateforme",
     "about": "À propos",
@@ -93,5 +101,105 @@
     "privacyLink": "Confidentialité",
     "terms": "CGU",
     "sitemap": "Plan du site"
+  },
+  "common": {
+    "enOnlyNotice": "Cette page n'est disponible qu'en anglais — une version traduite suivra plus tard.",
+    "contentEnNotice": "Les détails des activités et les articles ne sont actuellement disponibles qu'en anglais."
+  },
+  "activitiesPage": {
+    "title": "Toutes les activités",
+    "subtitle": "{count} activités sur les canaux d'Amsterdam",
+    "searchPlaceholder": "Rechercher une activité, un style, un mot-clé...",
+    "maxLabel": "Max",
+    "sortPopular": "Plus populaires",
+    "sortRating": "Mieux notées",
+    "sortPriceAsc": "Prix : bas → haut",
+    "sortPriceDesc": "Prix : haut → bas",
+    "catAll": "Toutes",
+    "noResultsTitle": "Aucun résultat",
+    "noResultsDesc": "Essayez d'autres mots-clés ou ajustez les filtres.",
+    "clearFilters": "Effacer les filtres"
+  },
+  "about": {
+    "pageTitle": "À propos d'OnTheCanals",
+    "pageSub": "La plateforme pour quiconque souhaite découvrir Amsterdam depuis l'eau.",
+    "storyTitle": "Notre histoire",
+    "storyP1": "Amsterdam compte plus de 100 kilomètres de canaux et des dizaines de prestataires d'activités nautiques. Mais en tant que touriste, il était presque impossible d'avoir une vue d'ensemble. Il fallait fouiller dix sites différents, comparer les prix, lire les avis — alors qu'on voulait simplement être sur l'eau.",
+    "storyP2": "OnTheCanals.Amsterdam résout cela. Nous réunissons toutes les activités nautiques sur une seule plateforme : des croisières classiques sur les canaux et bateaux électriques aux cours de SUP, kayak et croisières privées. Comparez, choisissez et réservez — tout au même endroit, en 7 langues.",
+    "howTitle": "Comment ça marche",
+    "step1Title": "Découvrir",
+    "step1Desc": "Parcourez toutes les activités sur les canaux et filtrez selon vos préférences.",
+    "step2Title": "Comparer",
+    "step2Desc": "Consultez les prix, les notes et les détails côte à côte.",
+    "step3Title": "Réserver",
+    "step3Desc": "Réservez directement auprès du prestataire via son propre système sécurisé.",
+    "providerTitle": "Êtes-vous un prestataire sur les canaux ?",
+    "providerSub": "Rejoignez OnTheCanals.Amsterdam et touchez des milliers de touristes par mois. Inscription gratuite, modèle à commission.",
+    "statFreeLbl": "à l'inscription",
+    "statCommLbl": "commission",
+    "statVisitorsLbl": "visiteurs/mois",
+    "stat24hLbl": "en ligne après inscription",
+    "providerCta": "Inscrivez-vous comme prestataire →"
+  },
+  "contact": {
+    "pageTitle": "Contact",
+    "pageSub": "Questions, suggestions ou envie d'inscrire votre activité ? Contactez-nous.",
+    "getInTouch": "Nous contacter",
+    "response": "Réponse sous 24 heures",
+    "providerTitle": "Devenir prestataire ?",
+    "providerSub": "Sélectionnez « Je suis prestataire » dans le formulaire et décrivez votre service. Nous vous répondrons sous 24 heures.",
+    "benefitFree": "Inscription gratuite",
+    "benefitCommission": "Modèle à commission",
+    "benefitListing": "Gérez votre annonce",
+    "benefitDirect": "Liens de réservation directs",
+    "sentTitle": "Message envoyé !",
+    "sentSub": "Nous vous répondrons dès que possible.",
+    "nameLabel": "Nom *",
+    "namePh": "Votre nom",
+    "emailLabel": "E-mail *",
+    "emailPh": "votre@email.com",
+    "typeLabel": "Je suis...",
+    "typeVisitor": "Touriste / visiteur",
+    "typeProvider": "Prestataire d'activité",
+    "typePress": "Presse / journaliste",
+    "typeOther": "Autre",
+    "companyLabel": "Nom de l'entreprise",
+    "companyPh": "Le nom de votre entreprise",
+    "messageLabel": "Message *",
+    "messagePh": "Comment pouvons-nous aider ?",
+    "submit": "Envoyer le message →"
+  },
+  "activityDetail": {
+    "back": "← Retour à toutes les activités",
+    "duration": "Durée",
+    "groupSize": "Taille du groupe",
+    "location": "Lieu",
+    "rating": "Note",
+    "aboutTitle": "À propos de cette activité",
+    "highlights": "Points forts",
+    "included": "Inclus",
+    "provider": "Prestataire",
+    "bookNow": "Réserver →",
+    "bookingNotice": "Vous serez redirigé vers le site de {provider} pour finaliser votre réservation.",
+    "similarTitle": "Activités similaires",
+    "reviewsSuffix": "avis"
+  },
+  "blog": {
+    "eyebrow": "Amsterdam depuis l'eau",
+    "pageTitle": "Guide des canaux",
+    "pageSub": "Conseils, guides et inspiration pour votre expérience sur les canaux d'Amsterdam.",
+    "noPosts": "Aucun article pour le moment. Revenez bientôt.",
+    "readMore": "Lire la suite"
+  },
+  "blogPost": {
+    "back": "Retour au Guide des canaux",
+    "ctaTitle": "Prêt à explorer les canaux ?",
+    "ctaSub": "Parcourez toutes les activités nautiques à Amsterdam",
+    "ctaBtn": "Voir les activités"
+  },
+  "footerExtras": {
+    "affiliate": "Ce site contient des liens d'affiliation. Lorsque vous réservez via nos liens, nous pouvons percevoir une petite commission — sans frais supplémentaires pour vous.",
+    "learnMore": "En savoir plus",
+    "amsterdam": "Amsterdam, Pays-Bas"
   }
 }
