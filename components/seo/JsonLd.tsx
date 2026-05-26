@@ -1,56 +1,52 @@
 import type { Activity } from '@/types'
-import { getLocationForSlug } from '@/data/map-locations'
 
-// Later: swap fallbackActivities for Notion data — structure stays identical
-export function ActivityJsonLd({ activity, locale = 'en' }: { activity: Activity; locale?: string }) {
-  const localePrefix = locale === 'en' ? '' : `/${locale}`
+// Per-activity JSON-LD — uses LocalBusiness as parent so Google Review snippets validate
+export function ActivityJsonLd({ activity }: { activity: Activity }) {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'TouristAttraction',
+    '@type': 'LocalBusiness',
+    '@id': `https://onthecanals.nl/activities/${activity.slug}`,
     name: activity.title,
     description: activity.description,
-    url: `https://onthecanals.nl${localePrefix}/activities/${activity.slug}`,
+    url: `https://onthecanals.nl/activities/${activity.slug}`,
     image: activity.photo,
-    touristType: ['Tourist', 'Family', 'Couples'],
-    location: {
-      '@type': 'Place',
-      name: activity.location,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Amsterdam',
-        addressCountry: 'NL',
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude:  getLocationForSlug(activity.slug)?.lat ?? 52.3676,
-        longitude: getLocationForSlug(activity.slug)?.lng ?? 4.9041,
-      },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Amsterdam',
+      addressCountry: 'NL',
     },
-    offers: {
-      '@type': 'Offer',
-      price: activity.price,
-      priceCurrency: 'EUR',
-      priceSpecification: {
-        '@type': 'UnitPriceSpecification',
-        price: activity.price,
-        priceCurrency: 'EUR',
-        unitText: activity.priceUnit,
-      },
-      availability: 'https://schema.org/InStock',
-      url: activity.bookingUrl,
-      seller: {
-        '@type': 'LocalBusiness',
-        name: activity.provider,
-        url: activity.providerUrl,
-      },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 52.3676,
+      longitude: 4.9041,
     },
-    aggregateRating: activity.reviewCount > 0 ? {
-      '@type': 'AggregateRating',
-      ratingValue: activity.rating,
-      reviewCount: activity.reviewCount,
-      bestRating: 5,
-      worstRating: 1,
-    } : undefined,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: activity.title,
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          price: activity.price,
+          priceCurrency: 'EUR',
+          availability: 'https://schema.org/InStock',
+          url: activity.bookingUrl,
+          seller: {
+            '@type': 'Organization',
+            name: activity.provider,
+            url: activity.providerUrl,
+          },
+        },
+      ],
+    },
+    ...(activity.reviewCount > 0 && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: activity.rating,
+        bestRating: 5,
+        worstRating: 1,
+        reviewCount: activity.reviewCount,
+      },
+    }),
   }
 
   return (
@@ -61,34 +57,20 @@ export function ActivityJsonLd({ activity, locale = 'en' }: { activity: Activity
   )
 }
 
-// For the homepage — list of activities
+// Homepage ItemList — links to each activity detail page
 export function ActivityListJsonLd({ activities }: { activities: Activity[] }) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: 'Water activities on the Amsterdam canals',
-    description: 'All water activities available on the Amsterdam canals',
+    name: 'Amsterdam Canal Activities',
+    description: 'Water activities on the Amsterdam canals: boat rentals, canal tours, SUP, kayak, private cruises and more.',
     url: 'https://onthecanals.nl/activities',
     numberOfItems: activities.length,
     itemListElement: activities.map((activity, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      item: {
-        '@type': 'TouristAttraction',
-        name: activity.title,
-        url: `https://onthecanals.nl/activities/${activity.slug}`,
-        image: activity.photo,
-        offers: {
-          '@type': 'Offer',
-          price: activity.price,
-          priceCurrency: 'EUR',
-        },
-        aggregateRating: activity.reviewCount > 0 ? {
-          '@type': 'AggregateRating',
-          ratingValue: activity.rating,
-          reviewCount: activity.reviewCount,
-        } : undefined,
-      },
+      url: `https://onthecanals.nl/activities/${activity.slug}`,
+      name: activity.title,
     })),
   }
 
@@ -100,7 +82,7 @@ export function ActivityListJsonLd({ activities }: { activities: Activity[] }) {
   )
 }
 
-// For the website itself — local business
+// Website-level JSON-LD
 export function WebsiteJsonLd() {
   const schema = {
     '@context': 'https://schema.org',
@@ -108,7 +90,7 @@ export function WebsiteJsonLd() {
     name: 'OnTheCanals Amsterdam',
     url: 'https://onthecanals.nl',
     description: 'All water activities on the Amsterdam canals in one place',
-    inLanguage: ['en', 'de', 'fr', 'it', 'es', 'zh', 'nl'],
+    inLanguage: 'en',
     potentialAction: {
       '@type': 'SearchAction',
       target: {

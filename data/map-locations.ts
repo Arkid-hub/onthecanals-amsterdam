@@ -18,7 +18,7 @@ export const LOCATIONS: MapLocation[] = [
 
   // Canal Motorboats (5 locaties)
   { id: 1,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Zandhoek 22',            lat: 52.3879, lng: 4.8903, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
-  { id: 2,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Nassaukade 341',         lat: 52.3678, lng: 4.8768, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
+  { id: 2,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Nassaukade 341',         lat: 52.3779, lng: 4.8810, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
   { id: 3,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Westerdoksdijk 705',     lat: 52.3891, lng: 4.8913, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
   { id: 4,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Polonceaukade 20',       lat: 52.3858, lng: 4.8719, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
   { id: 5,  name: 'Canal Motorboats',     category: 'self-guided', emoji: '⛵', address: 'Borneosteiger 8',        lat: 52.3698, lng: 4.9377, price: '€89/boat',  slug: 'self-drive-boat-rental-canal-motorboats' },
@@ -75,7 +75,7 @@ export const LOCATIONS: MapLocation[] = [
   { id: 24, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Mauritskade 1-E (Amstel)',    lat: 52.3596, lng: 4.9075, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
   { id: 25, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Mauritskade 65 (Oost)',      lat: 52.3598, lng: 4.9242, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
   { id: 26, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Schollenbrugstraat 1 (Weesper)', lat: 52.3527, lng: 4.9132, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
-  { id: 27, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Nassaukade 351 (Centrum)',   lat: 52.3786, lng: 4.8800, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
+  { id: 27, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Nassaukade 351 (Centrum)',   lat: 52.3776, lng: 4.8804, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
   { id: 28, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Jozef Israëlskade (De Pijp)', lat: 52.3470, lng: 4.8967, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
   { id: 29, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Stadionkade 73b (Zuid)',     lat: 52.3434, lng: 4.8689, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
   { id: 33, name: 'Mokumboot', category: 'self-guided', emoji: '⛵', address: 'Wielingenstraat 9 (RAI)',  lat: 52.3393, lng: 4.8915, price: '€97.50/boat', slug: 'sloep-rental-amsterdam' },
