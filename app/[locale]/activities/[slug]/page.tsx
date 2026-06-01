@@ -64,7 +64,7 @@ export default async function ActivityDetailPage({ params: { locale, slug } }: P
 
   return (
     <div className="min-h-screen bg-[#faf7f2] pt-16">
-      <ActivityJsonLd activity={activity} locale={locale} />
+      <ActivityJsonLd activity={activity} />
 
       {/* Hero */}
       <div className="bg-[#0a3d52] pt-12 pb-0">
