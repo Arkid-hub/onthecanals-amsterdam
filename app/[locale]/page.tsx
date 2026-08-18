@@ -49,7 +49,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
   const rawHero = settings.heroPhoto || ''
   const heroSrc = rawHero.includes('res.cloudinary.com')
-    ? rawHero.replace('/upload/', '/upload/w_1400,q_70,f_webp/')
+    ? rawHero.replace(/\/upload\/[^/]*\//, '/upload/w_1200,q_60,f_webp/')
     : rawHero || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1400&q=70&fm=webp'
 
   return (
