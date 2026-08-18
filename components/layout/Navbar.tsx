@@ -4,6 +4,7 @@ import { useState, useEffect, useTransition } from 'react'
 import NextLink from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
 const LANGS = [
   { code: 'en', flag: '🇬🇧', label: 'English' },
@@ -38,7 +39,7 @@ function Logo({ scrolled }: { scrolled: boolean }) {
   )
 }
 
-export function Navbar() {
+function NavbarInner() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
@@ -161,5 +162,13 @@ export function Navbar() {
         )}
       </header>
     </>
+  )
+}
+
+export function Navbar() {
+  return (
+    <Suspense fallback={null}>
+      <NavbarInner />
+    </Suspense>
   )
 }
