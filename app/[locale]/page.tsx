@@ -47,15 +47,23 @@ export default async function HomePage({ params: { locale } }: { params: { local
     getAllSlugs(),
   ])
 
+  const rawHero = settings.heroPhoto || ''
+  const heroSrc = rawHero.includes('res.cloudinary.com')
+    ? rawHero.replace('/upload/', '/upload/w_1400,q_70,f_webp/')
+    : rawHero || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1400&q=70&fm=webp'
+
   return (
     <>
       <WebsiteJsonLd />
       <ActivityListJsonLd activities={featured} />
 
+      {/* Preload hero image so browser discovers it before CSS parsing */}
+      <link rel="preload" as="image" href={heroSrc} fetchPriority="high" />
+
       {/* ── HERO ── */}
       <section className="relative overflow-hidden" style={{ minHeight: 'clamp(520px, 65vh, 680px)' }}>
         <img
-          src={settings.heroPhoto || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1200&q=75&fm=webp'}
+          src={heroSrc}
           alt=""
           aria-hidden="true"
           fetchPriority="high"
