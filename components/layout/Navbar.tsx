@@ -3,8 +3,7 @@
 import { useState, useEffect, useTransition } from 'react'
 import NextLink from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 
 const LANGS = [
   { code: 'en', flag: '🇬🇧', label: 'English' },
@@ -39,7 +38,7 @@ function Logo({ scrolled }: { scrolled: boolean }) {
   )
 }
 
-function NavbarInner() {
+export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
@@ -51,7 +50,6 @@ function NavbarInner() {
   const tFoot    = useTranslations('footer')
   const router   = useRouter()
   const pathname = usePathname()
-  const sp       = useSearchParams()
   const active   = LANGS.find(l => l.code === locale) || LANGS[0]
 
   // Only homepage gets transparent navbar — all other pages start solid
@@ -72,9 +70,8 @@ function NavbarInner() {
     setLangOpen(false)
     const stripped = pathname.replace(/^\/(en|de|fr|it|es|zh|nl)/, '') || '/'
     const basePath = next === 'en' ? stripped : `/${next}${stripped}`
-    const qs       = sp?.toString()
     const hash     = typeof window !== 'undefined' ? window.location.hash : ''
-    const newPath  = `${basePath}${qs ? `?${qs}` : ''}${hash}`
+    const newPath  = `${basePath}${hash}`
     startTransition(() => router.push(newPath, { scroll: false }))
   }
 
@@ -162,13 +159,5 @@ function NavbarInner() {
         )}
       </header>
     </>
-  )
-}
-
-export function Navbar() {
-  return (
-    <Suspense fallback={null}>
-      <NavbarInner />
-    </Suspense>
   )
 }
