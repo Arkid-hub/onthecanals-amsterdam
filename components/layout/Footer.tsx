@@ -52,7 +52,7 @@ export async function Footer() {
             </p>
             <p className="text-xs text-white/30 leading-relaxed max-w-xs mt-3">
               {tFx('affiliate')}{' '}
-              <Link href={lhref(locale, "/privacy#affiliate")} className="underline hover:text-white/60 transition-colors">{tFx('learnMore')}</Link>
+              <Link href={lhref(locale, "/privacy#affiliate")} className="underline hover:text-white/60 transition-colors">Read our affiliate disclaimer</Link>
             </p>
           </div>
 

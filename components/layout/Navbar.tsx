@@ -146,6 +146,7 @@ export function Navbar() {
               { path: '/activities?cat=canal-tour',       label: tCat('canalTour') },
               { path: '/activities?cat=watersport',       label: tCat('watersport') },
               { path: '/activities?cat=private',          label: tCat('private') },
+              { path: '/blog',                            label: t('canalGuide') },
               { path: '/about',                           label: t('about') },
               { path: '/contact',                         label: tFoot('contact') },
             ].map(({ path, label }) => (
