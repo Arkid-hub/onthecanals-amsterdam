@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
 
-type Props = { params: { locale: string; slug: string } }
+type Props = { params: Promise<{ locale: string; slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getBlogPostBySlug(params.slug)
@@ -95,7 +95,8 @@ function Block({ block, index }: { block: BlogBlock; index: number }) {
   }
 }
 
-export default async function BlogPostPage({ params: { locale, slug } }: Props) {
+export default async function BlogPostPage({ params }: Props) {
+  const { locale } = await params
   setRequestLocale(locale)
   const t  = await getTranslations('blogPost')
   const tc = await getTranslations('common')

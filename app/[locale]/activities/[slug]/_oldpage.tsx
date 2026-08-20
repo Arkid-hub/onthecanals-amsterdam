@@ -13,7 +13,7 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-type Props = { params: Promise<{ locale: string; slug: string }> }
+type Props = { params: { locale: string; slug: string } }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const activity = await getActivityBySlug(params.slug)
@@ -48,8 +48,7 @@ function lhref(locale: string, path: string) {
   return locale === 'en' ? path : `/${locale}${path}`
 }
 
-export default async function ActivityDetailPage({ params }: Props) {
-  const { locale } = await params
+export default async function ActivityDetailPage({ params: { locale, slug } }: Props) {
   setRequestLocale(locale)
   const t    = await getTranslations('activityDetail')
   const tCat = await getTranslations('categories')
@@ -65,7 +64,7 @@ export default async function ActivityDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-[#faf7f2] pt-16">
-      <ActivityJsonLd activity={activity} />
+      <ActivityJsonLd activity={activity} locale={locale} />
 
       {/* Hero */}
       <div className="bg-[#0a3d52] pt-12 pb-0">
