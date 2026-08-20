@@ -10,7 +10,8 @@ export const dynamic = 'force-dynamic'
 type Props = { params: Promise<{ locale: string; slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getBlogPostBySlug(params.slug)
+  const { locale, slug } = await params
+  const post = await getBlogPostBySlug(slug)
   if (!post) return {}
   return {
     title: post.title,

@@ -16,7 +16,8 @@ export function generateStaticParams() {
 type Props = { params: Promise<{ locale: string; slug: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const activity = await getActivityBySlug(params.slug)
+  const { locale, slug } = await params
+  const activity = await getActivityBySlug(slug)
   if (!activity) return {}
   return {
     title: activity.title,
