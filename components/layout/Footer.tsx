@@ -94,7 +94,7 @@ export async function Footer() {
               <ul id="QMBKMAWEFb" className="TA_links N6oAxDAZ">
                 <li id="Llp2COE" className="rDbJWsIL">
                   <a target="_blank" rel="noopener noreferrer" href="https://www.tripadvisor.nl/Attraction_Review-g188590-d34610149-Reviews-OnTheCanals-Amsterdam_North_Holland_Province.html">
-                    <img src="https://www.tripadvisor.nl/img/cdsi/img2/badges/ollie-11424-2.gif" alt="TripAdvisor" />
+                    <img src="https://www.tripadvisor.nl/img/cdsi/img2/badges/ollie-11424-2.gif" alt="TripAdvisor" width="150" height="60" style={{ display: 'block' }} />
                   </a>
                 </li>
               </ul>
