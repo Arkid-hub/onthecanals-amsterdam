@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Script from 'next/script'
 import { getTranslations, getLocale } from 'next-intl/server'
 
 const ACTIVITY_CATEGORIES: { tkey: string, href: string }[] = [
@@ -55,6 +54,15 @@ export async function Footer() {
               {tFx('affiliate')}{' '}
               <Link href={lhref(locale, "/privacy#affiliate")} className="underline hover:text-white/60 transition-colors">Read our affiliate disclaimer</Link>
             </p>
+            <a
+              href="https://www.tripadvisor.nl/Attraction_Review-g188590-d34610149-Reviews-OnTheCanals-Amsterdam_North_Holland_Province.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-4 opacity-60 hover:opacity-100 transition-opacity"
+            >
+              <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg" alt="TripAdvisor" width="24" height="24" />
+              <span className="text-xs text-white/60">TripAdvisor</span>
+            </a>
           </div>
 
           {/* Activities */}
@@ -88,18 +96,7 @@ export async function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
-          <div className="flex flex-col gap-3">
-            <span>© {new Date().getFullYear()} OnTheCanals.Amsterdam. {tFoot('rights')}</span>
-            <div id="TA_rated920" className="TA_rated">
-              <ul id="QMBKMAWEFb" className="TA_links N6oAxDAZ">
-                <li id="Llp2COE" className="rDbJWsIL">
-                  <a target="_blank" rel="noopener noreferrer" href="https://www.tripadvisor.nl/Attraction_Review-g188590-d34610149-Reviews-OnTheCanals-Amsterdam_North_Holland_Province.html">
-                    <img src="https://www.tripadvisor.nl/img/cdsi/img2/badges/ollie-11424-2.gif" alt="TripAdvisor" width="150" height="60" style={{ display: 'block' }} />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <span>© {new Date().getFullYear()} OnTheCanals.Amsterdam. {tFoot('rights')}</span>
           <div className="flex gap-4">
             <Link href={lhref(locale, "/privacy")} className="hover:text-white transition-colors">{tFoot('privacyLink')}</Link>
             <Link href={lhref(locale, "/terms")} className="hover:text-white transition-colors">{tFoot('terms')}</Link>
@@ -107,10 +104,6 @@ export async function Footer() {
           </div>
         </div>
       </div>
-      <Script
-        src="https://www.jscache.com/wejs?wtype=rated&uniq=920&locationId=34610149&lang=nl&display_version=2"
-        strategy="lazyOnload"
-      />
     </footer>
   )
 }
