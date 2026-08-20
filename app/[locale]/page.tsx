@@ -14,11 +14,11 @@ export function generateStaticParams() {
 export const dynamic = 'force-dynamic'
 
 const CATEGORIES = [
-  { id: 'self-guided', emoji: '⛵', bg: '#dbeafe', tkey: 'selfGuided',  count: 4 },
-  { id: 'canal-tour',  emoji: '🚣', bg: '#dcfce7', tkey: 'canalTour',   count: 3 },
-  { id: 'watersport',  emoji: '🏄', bg: '#fef9c3', tkey: 'watersport',  count: 3 },
-  { id: 'private',     emoji: '🍾', bg: '#ede9fe', tkey: 'private',     count: 2 },
-  { id: 'unique',      emoji: '🧘', bg: '#fce7f3', tkey: 'unique',      count: 2 },
+  { id: 'self-guided', emoji: '⛵', tkey: 'selfGuided', count: 4, photoKey: 'catPhotoSelfGuided' },
+  { id: 'canal-tour',  emoji: '🚣', tkey: 'canalTour',  count: 3, photoKey: 'catPhotoCanalTour' },
+  { id: 'watersport',  emoji: '🏄', tkey: 'watersport', count: 3, photoKey: 'catPhotoWatersport' },
+  { id: 'private',     emoji: '🍾', tkey: 'private',    count: 2, photoKey: 'catPhotoPrivate' },
+  { id: 'unique',      emoji: '🧘', tkey: 'unique',     count: 2, photoKey: 'catPhotoUnique' },
 ]
 
 const REVIEWS = [
@@ -77,9 +77,8 @@ export default async function HomePage({ params: { locale } }: { params: { local
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        {/* Dark overlay for contrast — stronger at bottom where text is */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/60 to-transparent" />
+        {/* Dark overlay — strong gradient for readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-2 pt-32">
           <h1 className="font-display font-black text-white leading-[1.05] tracking-tight mb-3"
@@ -142,18 +141,30 @@ export default async function HomePage({ params: { locale } }: { params: { local
             </NextLink>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
-            {CATEGORIES.map((cat) => (
-              <NextLink key={cat.id} href={lhref(locale, `/activities?cat=${cat.id}`)}
-                className="card-hover bg-white rounded-2xl border border-stone-200 overflow-hidden text-center">
-                <div className="h-24 flex items-center justify-center text-4xl" style={{ backgroundColor: cat.bg }}>
-                  {cat.emoji}
-                </div>
-                <div className="px-2 py-2.5">
-                  <p className="text-xs font-bold text-canal-dark leading-tight">{tCat(cat.tkey)}</p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">{cat.count} {tCat('options')}</p>
-                </div>
-              </NextLink>
-            ))}
+            {CATEGORIES.map((cat) => {
+              const photo = settings[cat.photoKey]
+              return (
+                <NextLink key={cat.id} href={lhref(locale, `/activities?cat=${cat.id}`)}
+                  className="card-hover rounded-2xl overflow-hidden relative group" style={{ height: '140px' }}>
+                  {photo ? (
+                    <img
+                      src={photo.includes('res.cloudinary.com') ? photo.replace('/upload/', '/upload/w_400,q_70,f_webp/') : photo}
+                      alt={tCat(cat.tkey)}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-canal-dark flex items-center justify-center text-4xl">
+                      {cat.emoji}
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-2.5">
+                    <p className="text-xs font-bold text-white leading-tight">{tCat(cat.tkey)}</p>
+                    <p className="text-[10px] text-white/60 mt-0.5">{cat.count} {tCat('options')}</p>
+                  </div>
+                </NextLink>
+              )
+            })}
           </div>
         </div>
       </section>
