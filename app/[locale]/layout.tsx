@@ -2,7 +2,6 @@ import { Playfair_Display, DM_Sans, Caveat } from 'next/font/google'
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { getLocale } from 'next-intl/server'
-import './globals.css'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
