@@ -58,9 +58,9 @@ export async function Footer() {
               href="https://www.tripadvisor.nl/Attraction_Review-g188590-d34610149-Reviews-OnTheCanals-Amsterdam_North_Holland_Province.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-4 opacity-60 hover:opacity-100 transition-opacity"
+              className="inline-flex items-center gap-2 mt-4 hover:opacity-80 transition-opacity"
             >
-              <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg" alt="TripAdvisor" width="24" height="24" />
+              <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark_green-PPT.png" alt="TripAdvisor" width="32" height="32" />
               <span className="text-xs text-white/60">TripAdvisor</span>
             </a>
           </div>
