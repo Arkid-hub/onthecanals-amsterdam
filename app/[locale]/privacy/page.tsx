@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   setRequestLocale(locale)
   const tc = await getTranslations('common')
 
