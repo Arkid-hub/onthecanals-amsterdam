@@ -97,7 +97,7 @@ function Block({ block, index }: { block: BlogBlock; index: number }) {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { locale } = await params
+  const { locale, slug } = await params
   setRequestLocale(locale)
   const t  = await getTranslations('blogPost')
   const tc = await getTranslations('common')
