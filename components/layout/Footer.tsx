@@ -60,17 +60,9 @@ export async function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-4 hover:opacity-80 transition-opacity"
             >
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="16" cy="16" r="16" fill="#34E0A1"/>
-                <circle cx="11" cy="16" r="4" fill="white"/>
-                <circle cx="21" cy="16" r="4" fill="white"/>
-                <circle cx="11" cy="16" r="2" fill="#000"/>
-                <circle cx="21" cy="16" r="2" fill="#000"/>
-                <circle cx="11.8" cy="15.2" r="0.7" fill="white"/>
-                <circle cx="21.8" cy="15.2" r="0.7" fill="white"/>
-                <path d="M8 12 Q11 9 16 10 Q21 9 24 12" stroke="#000" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-                <path d="M13 20.5 Q16 22.5 19 20.5" stroke="#000" strokeWidth="1" fill="none" strokeLinecap="round"/>
-              </svg>
+              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '50%', backgroundColor: '#34E0A1' }}>
+                <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg" alt="" width="20" height="20" style={{ display: 'block' }} />
+              </span>
               <span className="text-xs text-white/60">TripAdvisor</span>
             </a>
           </div>
