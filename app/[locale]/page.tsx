@@ -48,9 +48,14 @@ export default async function HomePage({ params: { locale } }: { params: { local
   ])
 
   const rawHero = settings.heroPhoto || ''
-  const heroSrc = rawHero.includes('res.cloudinary.com')
-    ? rawHero.replace(/\/upload\/[^/]*\//, '/upload/w_1200,q_60,f_webp/')
-    : rawHero || 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1400&q=70&fm=webp'
+  const makeCloudinary = (raw: string, w: number, q: number) =>
+    raw.replace(/\/upload\/[^/]*\//, `/upload/w_${w},q_${q},f_webp/`)
+  const heroSrcSm = rawHero.includes('res.cloudinary.com')
+    ? makeCloudinary(rawHero, 800, 55)
+    : 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=800&q=55&fm=webp'
+  const heroSrcLg = rawHero.includes('res.cloudinary.com')
+    ? makeCloudinary(rawHero, 1400, 60)
+    : 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=1400&q=60&fm=webp'
 
   return (
     <>
@@ -58,12 +63,14 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <ActivityListJsonLd activities={featured} />
 
       {/* Preload hero image so browser discovers it before CSS parsing */}
-      <link rel="preload" as="image" href={heroSrc} fetchPriority="high" />
+      <link rel="preload" as="image" href={heroSrcLg} imageSrcSet={`${heroSrcSm} 800w, ${heroSrcLg} 1400w`} imageSizes="100vw" fetchPriority="high" />
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden" style={{ minHeight: 'clamp(520px, 65vh, 680px)' }}>
         <img
-          src={heroSrc}
+          src={heroSrcLg}
+          srcSet={`${heroSrcSm} 800w, ${heroSrcLg} 1400w`}
+          sizes="100vw"
           alt=""
           aria-hidden="true"
           fetchPriority="high"
