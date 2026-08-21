@@ -16,8 +16,7 @@ export const metadata: Metadata = {
   description: 'Browse and book all water activities on the Amsterdam canals. Electric boat hire, canal tours, SUP lessons, kayak, private cruises and water bikes. Prices from €14 p.p.',
 }
 
-export default async function ActivitiesPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
+export default async function ActivitiesPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const activities = await getAllActivitiesData()
 

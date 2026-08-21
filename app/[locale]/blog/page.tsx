@@ -19,8 +19,7 @@ function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
-export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
+export default async function BlogPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const t  = await getTranslations('blog')
   const tc = await getTranslations('common')

@@ -31,8 +31,7 @@ function lhref(locale: string, path: string) {
   return locale === 'en' ? path : `/${locale}${path}`
 }
 
-export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
+export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const t        = await getTranslations('hero')
   const tTrust   = await getTranslations('trust')

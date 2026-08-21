@@ -1,67 +1,30 @@
-import { Playfair_Display, DM_Sans, Caveat } from 'next/font/google'
-import type { Metadata } from 'next'
-import Script from 'next/script'
-import { getLocale } from 'next-intl/server'
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages, setRequestLocale } from 'next-intl/server'
+import { locales } from '@/i18n'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['700', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-})
-
-const caveat = Caveat({
-  subsets: ['latin'],
-  weight: ['700'],
-  variable: '--font-caveat',
-  display: 'swap',
-})
-
-const siteUrl = 'https://onthecanals.nl'
-
-export const metadata: Metadata = {
-  title: {
-    template: '%s | OnTheCanals Amsterdam',
-    default: 'OnTheCanals Amsterdam — All water activities in one place',
-  },
-  description: 'Discover, compare and book every water activity on the Amsterdam canals. Electric boat hire, canal tours, SUP lessons, kayak, private cruises and more.',
-  metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: siteUrl,
-  },
-  icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/icon.svg',
-  },
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = await getLocale()
+export default async function LocaleLayout({
+  children,
+  params: { locale },
+}: {
+  children: React.ReactNode
+  params: { locale: string }
+}) {
+  // Enable static rendering
+  setRequestLocale(locale)
+
+  const messages = await getMessages()
 
   return (
-    <html lang={locale} className={`${playfair.variable} ${dmSans.variable} ${caveat.variable}`}>
-      <head>
-        {/* Only preconnect to origins actually used on page load */}
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://api.mapbox.com" />
-      </head>
-      <body>
-        {children}
-        <Script
-          src="https://widget.getyourguide.com/dist/pa.umd.production.min.js"
-          data-gyg-partner-id="SA8A0PZ"
-          strategy="lazyOnload"
-        />
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </NextIntlClientProvider>
   )
 }

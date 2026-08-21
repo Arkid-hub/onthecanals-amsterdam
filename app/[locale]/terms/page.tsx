@@ -5,8 +5,7 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export default async function TermsPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
+export default async function TermsPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const tc = await getTranslations('common')
 

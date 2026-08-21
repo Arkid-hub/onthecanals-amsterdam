@@ -6,8 +6,7 @@ export const metadata: Metadata = {
   description: 'Privacy policy for OnTheCanals Amsterdam — how we handle your data.',
 }
 
-export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
+export default async function PrivacyPage({ params: { locale } }: { params: { locale: string } }) {
   setRequestLocale(locale)
   const tc = await getTranslations('common')
 
