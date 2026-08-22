@@ -158,6 +158,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-amber/0 group-hover:bg-amber/50 transition-all duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-2.5">
                     <p className="text-xs font-bold text-white leading-tight">{tCat(cat.tkey)}</p>
                     <p className="text-[10px] text-white/60 mt-0.5">{cat.count} {tCat('options')}</p>
