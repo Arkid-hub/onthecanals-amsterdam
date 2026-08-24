@@ -54,17 +54,30 @@ export async function Footer() {
               {tFx('affiliate')}{' '}
               <Link href={lhref(locale, "/privacy#affiliate")} className="underline hover:text-white/60 transition-colors">Read our affiliate disclaimer</Link>
             </p>
-            <a
-              href="https://www.tripadvisor.nl/Attraction_Review-g188590-d34610149-Reviews-OnTheCanals-Amsterdam_North_Holland_Province.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-4 hover:opacity-80 transition-opacity"
-            >
-              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '50%', backgroundColor: '#34E0A1' }}>
-                <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg" alt="" width="20" height="20" style={{ display: 'block' }} />
-              </span>
-              <span className="text-xs text-white/60">TripAdvisor</span>
-            </a>
+            <div className="flex items-center gap-4 mt-4">
+              <a
+                href="https://www.tripadvisor.nl/Attraction_Review-g188590-d34610149-Reviews-OnTheCanals-Amsterdam_North_Holland_Province.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
+              >
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '50%', backgroundColor: '#34E0A1' }}>
+                  <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logomark.svg" alt="" width="20" height="20" style={{ display: 'block' }} />
+                </span>
+                <span className="text-xs text-white/60">TripAdvisor</span>
+              </a>
+              <a
+                href="https://www.getyourguide.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
+              >
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '50%', backgroundColor: '#FF6B35' }}>
+                  <img src="https://cdn.getyourguide.com/pp/assets/compiled/common/assets/gyg-C24m5bOE.svg" alt="" width="20" height="20" style={{ display: 'block' }} />
+                </span>
+                <span className="text-xs text-white/60">GetYourGuide</span>
+              </a>
+            </div>
           </div>
 
           {/* Activities */}
