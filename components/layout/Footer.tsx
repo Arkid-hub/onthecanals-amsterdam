@@ -72,7 +72,7 @@ export async function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
               >
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '50%', backgroundColor: '#FF6B35' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '50%', backgroundColor: '#ffffff' }}>
                   <img src="https://cdn.getyourguide.com/pp/assets/compiled/common/assets/gyg-C24m5bOE.svg" alt="" width="20" height="20" style={{ display: 'block' }} />
                 </span>
                 <span className="text-xs text-white/60">GetYourGuide</span>
