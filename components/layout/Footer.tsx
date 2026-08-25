@@ -77,17 +77,6 @@ export async function Footer() {
                 </span>
                 <span className="text-xs text-white/60">GetYourGuide</span>
               </a>
-              <a
-                href="https://www.yelp.com/biz/onthecanals-amsterdam"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
-              >
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '50%', backgroundColor: '#FF1A1A' }}>
-                  <img src="https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_styleguide/514f6997a318/assets/img/logos/yelp_logo_white.png" alt="" width="18" height="12" style={{ display: 'block' }} />
-                </span>
-                <span className="text-xs text-white/60">Yelp</span>
-              </a>
             </div>
           </div>
 
