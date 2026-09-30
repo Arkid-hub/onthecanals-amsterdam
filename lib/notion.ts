@@ -53,6 +53,8 @@ function mapPage(page: any): Activity {
     popular:      bool(p['Popular']),
     isNew:        bool(p['IsNew']),
     tags:         multi(p['Tags']),
+    seoTitle:     text(p['SeoTitle']) || undefined,
+    seoDescription: text(p['SeoDescription']) || undefined,
   }
 }
 

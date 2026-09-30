@@ -18,12 +18,14 @@ type Props = { params: { locale: string; slug: string } }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const activity = await getActivityBySlug(params.slug)
   if (!activity) return {}
+  const seoTitle = activity.seoTitle || activity.title
+  const seoDescription = activity.seoDescription || activity.description
   return {
-    title: activity.title,
-    description: activity.description,
+    title: seoTitle,
+    description: seoDescription,
     openGraph: {
-      title: activity.title,
-      description: activity.description,
+      title: seoTitle,
+      description: seoDescription,
       images: [{ url: activity.photo, alt: activity.photoAlt || activity.title }],
     },
   }

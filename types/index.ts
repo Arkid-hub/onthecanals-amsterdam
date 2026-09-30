@@ -29,4 +29,6 @@ export interface Activity {
   popular?: boolean
   isNew?: boolean
   tags: string[]
+  seoTitle?: string
+  seoDescription?: string
 }
