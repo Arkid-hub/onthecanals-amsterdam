@@ -1,4 +1,4 @@
-import { setRequestLocale, getTranslations } from 'next-intl/server'
+import { setRequestLocale } from 'next-intl/server'
 import { locales } from '@/i18n'
 import NextLink from 'next/link'
 import type { Metadata } from 'next'
@@ -128,15 +128,10 @@ export default async function ElectricBoatRentalPage({ params }: Props) {
             className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-6 transition-colors">
             Back to all activities
           </NextLink>
-
           <div className="mb-8">
             <div className="flex flex-wrap gap-2 mb-3">
-              <span className="text-xs font-semibold bg-white/10 text-white/80 px-3 py-1 rounded-full">
-                Self-guided
-              </span>
-              <span className="text-xs font-semibold bg-white/10 text-white/80 px-3 py-1 rounded-full">
-                No license needed
-              </span>
+              <span className="text-xs font-semibold bg-white/10 text-white/80 px-3 py-1 rounded-full">Self-guided</span>
+              <span className="text-xs font-semibold bg-white/10 text-white/80 px-3 py-1 rounded-full">No license needed</span>
             </div>
             <h1 className="font-display font-black text-white text-3xl md:text-4xl mb-2">
               Electric boat rental Amsterdam
@@ -187,7 +182,6 @@ export default async function ElectricBoatRentalPage({ params }: Props) {
             <h2 className="font-display font-bold text-canal-dark text-2xl">All electric boat rentals in Amsterdam</h2>
             <p className="text-slate-500 mt-1 text-sm">All boats are electric. No boating license required for any of these.</p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {PROVIDERS.map((p) => (
               <div key={p.slug} className="bg-white rounded-2xl border border-stone-200 p-6 flex flex-col card-hover">
