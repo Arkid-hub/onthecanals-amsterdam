@@ -14,7 +14,6 @@ function localePath(locale: string, path: string) {
 }
 
 function alternatesFor(path: string) {
-  // path is relative (e.g. '/activities' or '/activities/some-slug' or '')
   return {
     languages: Object.fromEntries(
       locales.map((l) => [l, url(localePath(l, path))])
@@ -25,8 +24,11 @@ function alternatesFor(path: string) {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
-  // ── Static pages ───────────────────────────────────────────
+  // Static pages
   const staticPages = ['', '/activities', '/about', '/contact', '/blog', '/privacy', '/terms']
+
+  // Custom landing pages
+  const landingPages = ['/electric-boat-rental-amsterdam']
 
   const staticEntries = locales.flatMap((locale) =>
     staticPages.map((page) => ({
@@ -38,13 +40,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   )
 
-  // ── Activity detail pages — fetched via data layer (Notion + fallback) ──
+  const landingEntries = locales.flatMap((locale) =>
+    landingPages.map((page) => ({
+      url: url(localePath(locale, page)),
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+      alternates: alternatesFor(page),
+    }))
+  )
+
+  // Activity detail pages
   let activitySlugs: string[] = []
   try {
     const activities = await getAllActivitiesData()
     activitySlugs = activities.map((a) => a.slug)
   } catch {
-    // sitemap should never fail the build — silent fallback to nothing
+    // silent fallback
   }
 
   const activityEntries = locales.flatMap((locale) =>
@@ -57,7 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   )
 
-  // ── Blog posts — same treatment (English-only content but URLs exist per locale) ──
+  // Blog posts
   let blogSlugs: string[] = []
   try {
     const posts = await getAllBlogPosts()
@@ -76,5 +88,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   )
 
-  return [...staticEntries, ...activityEntries, ...blogEntries]
+  return [...staticEntries, ...landingEntries, ...activityEntries, ...blogEntries]
 }
