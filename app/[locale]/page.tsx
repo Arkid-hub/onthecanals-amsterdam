@@ -170,6 +170,24 @@ export default async function HomePage({ params: { locale } }: { params: { local
         </div>
       </section>
 
+      {/* ── ELECTRIC BOAT RENTAL HIGHLIGHT ── */}
+      <section className="bg-white py-6 px-5 border-b border-stone-100">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">⚡</span>
+            <div>
+              <p className="font-bold text-canal-dark text-sm">Electric boat rental Amsterdam</p>
+              <p className="text-xs text-slate-500">Compare all providers, prices and departure points in one overview</p>
+            </div>
+          </div>
+          <NextLink
+            href={lhref(locale, '/electric-boat-rental-amsterdam')}
+            className="text-sm font-semibold text-canal hover:text-canal-dark transition-colors whitespace-nowrap flex items-center gap-1">
+            See all options →
+          </NextLink>
+        </div>
+      </section>
+
       {/* ── FEATURED ACTIVITIES ── */}
       <section className="py-14">
         <div className="max-w-6xl mx-auto px-5">
