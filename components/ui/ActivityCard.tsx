@@ -109,6 +109,11 @@ export function ActivityCard({ activity, delay = 0 }: Props) {
           <span>({activity.reviewCount.toLocaleString()} {t('reviews')})</span>
         </div>
 
+        {/* Free cancellation */}
+        <p className="text-[11px] text-green-600 font-semibold mb-3 flex items-center gap-1">
+          <span>✓</span> Free cancellation up to 24 hrs
+        </p>
+
         {/* Footer */}
         <div className="flex items-center justify-between border-t border-stone-100 pt-3.5 mt-auto">
           <div>
