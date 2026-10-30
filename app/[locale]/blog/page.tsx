@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import { getAllBlogPosts } from '@/lib/notion'
 import type { Metadata } from 'next'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Amsterdam Canal Guide',

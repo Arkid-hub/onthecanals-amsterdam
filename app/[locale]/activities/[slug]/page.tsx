@@ -7,7 +7,7 @@ import { ActivityCard } from '@/components/ui/ActivityCard'
 import { locales } from '@/i18n'
 import type { Metadata } from 'next'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))

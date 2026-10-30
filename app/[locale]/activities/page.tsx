@@ -9,7 +9,7 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 export const metadata: Metadata = {
   title: 'Amsterdam canal activities — boat hire, tours, SUP & more',

@@ -5,7 +5,7 @@ import { getBlogPostBySlug, getBlogPostBlocks } from '@/lib/notion'
 import type { BlogBlock, BlogInline } from '@/lib/notion'
 import type { Metadata } from 'next'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 type Props = { params: { locale: string; slug: string } }
 

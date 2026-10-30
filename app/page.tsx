@@ -10,7 +10,7 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 const CATEGORIES = [
   { id: 'self-guided', emoji: '⛵', bg: '#dbeafe', label: 'Self-guided',     count: 4 },
