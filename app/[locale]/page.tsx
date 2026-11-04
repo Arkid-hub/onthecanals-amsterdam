@@ -94,7 +94,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
           <HeroSearch />
 
-          <div className="flex justify-between max-w-[560px] mb-5">
+          <div className="flex justify-between max-w-[540px] mb-5">
             {[
               [t('chips.boat'),   'self-guided'],
               [t('chips.tour'),   'canal-tour'],
