@@ -26,7 +26,7 @@ function Logo({ scrolled }: { scrolled: boolean }) {
   return (
     <span style={{
       display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
-      background: bg, borderRadius: 10, padding: '12px 22px', lineHeight: 1,
+      background: bg, borderRadius: 10, padding: '27px 22px 12px', lineHeight: 1,
     }}>
       <span style={{
         fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
@@ -87,7 +87,7 @@ export function Navbar() {
         <div className="max-w-6xl mx-auto px-5 flex items-start justify-between h-20">
 
           <NextLink href={lhref(locale, '/')} aria-label="OnTheCanals Amsterdam — homepage"
-            className="flex-shrink-0" style={{ marginBottom: '-30px', paddingTop: 0 }}>
+            className="flex-shrink-0" style={{ marginBottom: '-45px', marginTop: '-15px' }}>
             <Logo scrolled={scrolled} />
           </NextLink>
 
