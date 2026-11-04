@@ -34,19 +34,19 @@ export async function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
           {/* Brand */}
           <div>
-            <div className="mb-7">
+            <div className="mb-3">
               <span style={{
-                display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start',
-                textAlign: 'left', lineHeight: 1,
-                borderRadius: 10, padding: '12px 22px',
+                display: 'inline-flex', flexDirection: 'column', alignItems: 'center',
+                textAlign: 'center', lineHeight: 1,
+                border: '1px solid rgba(255,255,255,0.2)', borderRadius: 8, padding: '10px 18px',
               }}>
                 <span style={{
                   fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
-                  fontSize: 22, color: '#fff', letterSpacing: '0.04em', lineHeight: 1,
+                  fontSize: 18, color: '#fff', letterSpacing: '0.04em', lineHeight: 1,
                 }}>OnTheCanals</span>
-                <span style={{ width: '70%', height: 1, background: 'rgba(255,255,255,0.25)', margin: '7px 0', display: 'block' }} />
+                <span style={{ width: '70%', height: 1, background: 'rgba(255,255,255,0.25)', margin: '6px auto', display: 'block' }} />
                 <span style={{
-                  fontSize: 9, fontWeight: 600, letterSpacing: '0.38em',
+                  fontSize: 8, fontWeight: 600, letterSpacing: '0.38em',
                   textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)',
                 }}>Amsterdam</span>
               </span>

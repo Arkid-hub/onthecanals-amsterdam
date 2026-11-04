@@ -51,9 +51,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={locale} className={`${playfair.variable} ${dmSans.variable} ${caveat.variable}`}>
       <head>
-        <link rel="preconnect" href="https://images.unsplash.com" />
+        {/* Only preconnect to origins actually used on page load */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="preconnect" href="https://api.mapbox.com" />
         <link rel="dns-prefetch" href="https://api.mapbox.com" />
       </head>
       <body>
