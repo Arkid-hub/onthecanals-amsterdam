@@ -26,15 +26,15 @@ function Logo({ scrolled }: { scrolled: boolean }) {
   return (
     <span style={{
       display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
-      background: bg, borderRadius: 8, padding: '10px 18px', lineHeight: 1,
+      background: bg, borderRadius: 10, padding: '12px 22px', lineHeight: 1,
     }}>
       <span style={{
         fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
-        fontSize: 18, color: '#fff', letterSpacing: '0.04em', lineHeight: 1,
+        fontSize: 22, color: '#fff', letterSpacing: '0.04em', lineHeight: 1,
       }}>OnTheCanals</span>
-      <span style={{ width: '70%', height: 1, background: rule, margin: '6px auto', display: 'block' }} />
+      <span style={{ width: '70%', height: 1, background: rule, margin: '7px auto', display: 'block' }} />
       <span style={{
-        fontSize: 8, fontWeight: 600, letterSpacing: '0.38em',
+        fontSize: 9, fontWeight: 600, letterSpacing: '0.38em',
         textTransform: 'uppercase', color: sub,
       }}>Amsterdam</span>
     </span>
@@ -84,10 +84,10 @@ export function Navbar() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-stone-100' : ''}`}>
-        <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
+        <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-20">
 
           <NextLink href={lhref(locale, '/')} aria-label="OnTheCanals Amsterdam — homepage"
-            className="flex-shrink-0" style={{ marginBottom: '-14px' }}>
+            className="flex-shrink-0" style={{ marginTop: '-2px', marginBottom: '-22px' }}>
             <Logo scrolled={scrolled} />
           </NextLink>
 

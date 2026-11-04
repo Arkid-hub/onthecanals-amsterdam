@@ -35,17 +35,21 @@ export async function Footer() {
           {/* Brand */}
           <div>
             <div className="mb-3">
-              <svg width="200" height="52" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="4"  y1="2"  x2="18" y2="16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-                <line x1="18" y1="2"  x2="4"  y2="16" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-                <line x1="4"  y1="20" x2="18" y2="34" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-                <line x1="18" y1="20" x2="4"  y2="34" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-                <line x1="4"  y1="38" x2="18" y2="52" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-                <line x1="18" y1="38" x2="4"  y2="52" stroke="white" strokeWidth="3" strokeLinecap="round"/>
-                <path d="M6,59 C8,55 10,62 11,59 C12,56 14,61 16,59" stroke="#7dd3ea" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.85"/>
-                <text x="28" y="30" fontFamily="var(--font-caveat), cursive" fontSize="34" fontWeight="700" fill="white" letterSpacing="-0.5">OnTheCanals</text>
-                <text x="33" y="47" fontFamily="var(--font-dm-sans), sans-serif" fontSize="9" fill="rgba(255,255,255,0.35)" letterSpacing="2.5">of Amsterdam</text>
-              </svg>
+              <span style={{
+                display: 'inline-flex', flexDirection: 'column', alignItems: 'center',
+                textAlign: 'center', lineHeight: 1,
+                border: '1px solid rgba(255,255,255,0.2)', borderRadius: 10, padding: '12px 22px',
+              }}>
+                <span style={{
+                  fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
+                  fontSize: 22, color: '#fff', letterSpacing: '0.04em', lineHeight: 1,
+                }}>OnTheCanals</span>
+                <span style={{ width: '70%', height: 1, background: 'rgba(255,255,255,0.25)', margin: '7px auto', display: 'block' }} />
+                <span style={{
+                  fontSize: 9, fontWeight: 600, letterSpacing: '0.38em',
+                  textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)',
+                }}>Amsterdam</span>
+              </span>
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
               {tFoot('desc')}

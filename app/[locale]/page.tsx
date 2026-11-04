@@ -84,7 +84,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           <h1 className="font-display font-black text-white leading-[1.05] tracking-tight mb-3"
             style={{ fontSize: 'clamp(34px,5vw,58px)', textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
             {t('title')}<br />
-            <em className="text-sky-300 not-italic font-display">{t('titleEm')}</em>
+            <em className="text-amber not-italic font-display">{t('titleEm')}</em>
           </h1>
 
           <p className="text-white/90 font-medium leading-relaxed mb-5 max-w-xl"
@@ -99,10 +99,11 @@ export default async function HomePage({ params: { locale } }: { params: { local
               [t('chips.boat'),   'self-guided'],
               [t('chips.tour'),   'canal-tour'],
               [t('chips.cruise'), 'private'],
-              [t('chips.paddle'), 'watersport'],
+              [t('chips.paddle'), '__water-bike__'],
               [t('chips.sup'),    'watersport'],
             ].map(([label, cat]) => (
-              <NextLink key={label} href={lhref(locale, `/activities?cat=${cat}`)}
+              <NextLink key={label}
+                href={cat === '__water-bike__' ? lhref(locale, '/water-bike-rental-amsterdam') : lhref(locale, `/activities?cat=${cat}`)}
                 className="text-sm font-medium text-white/80 underline underline-offset-2 decoration-white/30 hover:text-white hover:decoration-white/70 transition-all">
                 {label}
               </NextLink>
