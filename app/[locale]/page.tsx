@@ -75,7 +75,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           aria-hidden="true"
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover object-[65%]"
+          className="absolute inset-0 w-full h-full object-cover object-[80%]"
         />
         {/* Dark overlay — strong gradient for readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/15" />
