@@ -23,7 +23,12 @@ export default async function BlogPage({ params: { locale } }: { params: { local
   setRequestLocale(locale)
   const t  = await getTranslations('blog')
   const tc = await getTranslations('common')
-  const posts = await getAllBlogPosts()
+  let posts: Awaited<ReturnType<typeof getAllBlogPosts>> = []
+  try {
+    posts = await getAllBlogPosts()
+  } catch (err) {
+    console.warn('[blog] Notion error, using empty fallback:', err)
+  }
 
   return (
     <div className="min-h-screen bg-[#faf7f2] pt-16">
