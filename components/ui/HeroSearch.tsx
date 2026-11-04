@@ -24,10 +24,10 @@ export function HeroSearch() {
 
   return (
     <form onSubmit={handleSubmit}
-      className="bg-white rounded-2xl shadow-lg border border-canal/10 overflow-hidden max-w-[560px] mb-4">
+      className="bg-white rounded-xl shadow-md border border-slate-100 overflow-hidden max-w-[540px] mb-4">
       <div className="flex items-center">
         <div className="flex items-center gap-3 px-4 flex-1 min-w-0">
-          <span className="text-slate-400">🔍</span>
+          <svg className="w-4 h-4 text-slate-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="11" cy="11" r="7"/><path strokeLinecap="round" d="M21 21l-4.35-4.35"/></svg>
           <input type="text" placeholder={t('searchPlaceholder')}
             value={q} onChange={e => setQ(e.target.value)}
             className="flex-1 py-4 text-sm text-slate-700 placeholder-slate-300 outline-none bg-transparent min-w-0" />

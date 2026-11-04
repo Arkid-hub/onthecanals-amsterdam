@@ -22,7 +22,7 @@ const CATEGORIES = [
 ]
 
 const REVIEWS = [
-  { stars: 5, text: "We had the most amazing afternoon on the electric sloep. Super easy to book — everything in one place. Saw parts of the city we'd never have found otherwise.", name: 'Sophie van Dijk', origin: 'Amsterdam', activity: 'Electric boat hire', initials: 'SvD', color: '#0f5e7a', source: 'Google Reviews' },
+  { stars: 5, text: "We had the most amazing afternoon on the electric sloep. Super easy to book — everything in one place. Saw parts of the city we'd never have found otherwise.", name: 'Sophie van Dijk', origin: 'Amsterdam', activity: 'Electric boat hire', initials: 'SD', color: '#0f5e7a', source: 'Google Reviews' },
   { stars: 5, text: "Finally one website that shows everything! Booked the SUP lesson for my partner's birthday. Easy and exactly as expected.", name: 'Thomas Meyer', origin: 'Berlin, Germany', activity: 'SUP lesson', initials: 'TM', color: '#d97706', source: 'Trustpilot' },
   { stars: 5, text: "We organized a hen party on a private cruise — booked in 5 minutes. The canal at sunset was absolutely stunning.", name: 'Anouk Peeters', origin: 'Antwerp, Belgium', activity: 'Private cruise', initials: 'AP', color: '#7c3aed', source: 'Google Reviews' },
 ]
@@ -66,7 +66,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <link rel="preload" as="image" href={heroSrcLg} imageSrcSet={`${heroSrcSm} 800w, ${heroSrcLg} 1400w`} imageSizes="100vw" fetchPriority="high" />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: 'clamp(520px, 65vh, 680px)' }}>
+      <section className="relative overflow-hidden" style={{ minHeight: 'clamp(400px, 50vh, 520px)' }}>
         <img
           src={heroSrcLg}
           srcSet={`${heroSrcSm} 800w, ${heroSrcLg} 1400w`}
@@ -78,7 +78,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         {/* Dark overlay — strong gradient for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/15" />
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-5 flex flex-col justify-end h-full pb-2 pt-32">
           <h1 className="font-display font-black text-white leading-[1.05] tracking-tight mb-3"
@@ -96,31 +96,30 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
           <div className="flex flex-wrap gap-2 mb-5">
             {[
-              ['⛵', t('chips.boat'),   'self-guided'],
-              ['🚣', t('chips.tour'),   'canal-tour'],
-              ['🏄', t('chips.sup'),    'watersport'],
-              ['🍾', t('chips.cruise'), 'private'],
-              ['🛶', t('chips.kayak'),  'watersport'],
-              ['🚲', t('chips.bike'),   'self-guided'],
-            ].map(([emoji, label, cat]) => (
+              [t('chips.boat'),   'self-guided'],
+              [t('chips.tour'),   'canal-tour'],
+              [t('chips.sup'),    'watersport'],
+              [t('chips.cruise'), 'private'],
+              [t('chips.kayak'),  'watersport'],
+              [t('chips.bike'),   'self-guided'],
+            ].map(([label, cat]) => (
               <NextLink key={label} href={lhref(locale, `/activities?cat=${cat}`)}
-                className="text-xs font-semibold text-white border-[1.5px] border-white/30 bg-white/15 backdrop-blur rounded-full px-4 py-1.5 hover:bg-white hover:text-canal-dark transition-all">
-                {emoji} {label}
+                className="text-xs font-medium text-white/80 border border-white/25 rounded-full px-4 py-1.5 hover:bg-white hover:text-canal-dark transition-all">
+                {label}
               </NextLink>
             ))}
           </div>
 
           {/* Trust bar */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {[
-              { icon: '⭐', val: '4.8', label: tTrust('rating') },
-              { icon: '⚓', val: '15+', label: tTrust('providers') },
-              { icon: '🌊', val: '14+', label: tTrust('activities') },
-              { icon: '🌍', val: null,  label: tTrust('languages') },
-            ].map(({icon, val, label}) => (
-              <div key={label} className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/70">
-                <span>{icon}</span>
-                {val && <strong className="text-white font-semibold">{val}</strong>}
+              { val: '4.8', label: tTrust('rating') },
+              { val: '15+', label: tTrust('providers') },
+              { val: '14+', label: tTrust('activities') },
+              { val: null,  label: tTrust('languages') },
+            ].map(({val, label}) => (
+              <div key={label} className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/60">
+                {val && <strong className="text-white/90 font-semibold">{val}</strong>}
                 <span>{label}</span>
               </div>
             ))}
@@ -174,7 +173,6 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <section className="bg-white py-6 px-5 border-b border-stone-100">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <span className="text-2xl">⚡</span>
             <div>
               <p className="font-bold text-canal-dark text-sm">Electric boat rental Amsterdam</p>
               <p className="text-xs text-slate-500">Compare all providers, prices and departure points in one overview</p>
@@ -270,12 +268,12 @@ export default async function HomePage({ params: { locale } }: { params: { local
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {REVIEWS.map((r, i) => (
-              <div key={i} className="bg-[#faf7f2] rounded-2xl border border-stone-200 p-5 fade-up"
+              <div key={i} className="bg-[#faf7f2] rounded-2xl border border-stone-200 p-5 fade-up overflow-visible"
                 style={{ animationDelay: `${i * 0.08}s`, animationFillMode: 'both' }}>
                 <div className="text-amber-400 text-sm mb-3">{'★'.repeat(r.stars)}</div>
                 <p className="text-sm text-slate-600 italic leading-relaxed mb-4">"{r.text}"</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
+                  <div className="w-10 h-10 min-w-[40px] rounded-full flex items-center justify-center text-[11px] font-bold text-white flex-shrink-0 uppercase tracking-wide"
                     style={{ backgroundColor: r.color }}>{r.initials}</div>
                   <div>
                     <p className="text-sm font-bold text-canal-dark">{r.name}</p>
