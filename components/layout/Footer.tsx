@@ -38,7 +38,7 @@ export async function Footer() {
               <span style={{
                 display: 'inline-flex', flexDirection: 'column', alignItems: 'center',
                 textAlign: 'center', lineHeight: 1,
-                border: '1px solid rgba(255,255,255,0.2)', borderRadius: 8, padding: '10px 18px',
+                borderRadius: 8, padding: '10px 18px',
               }}>
                 <span style={{
                   fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
