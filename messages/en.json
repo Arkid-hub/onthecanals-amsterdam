@@ -10,7 +10,7 @@
   "hero": {
     "title": "Everything on the canals,",
     "titleEm": "in one place",
-    "sub": "From electric boat hire to sunset cruises — discover, compare and book every water activity on the Amsterdam canals.",
+    "sub": "From electric boat hire to sunset cruises: discover, compare and book every water activity on the Amsterdam canals.",
     "searchPlaceholder": "Boat hire, canal tour, SUP lesson...",
     "today": "Today",
     "weekend": "This weekend",
@@ -24,7 +24,7 @@
       "cruise": "Private cruise",
       "kayak": "Kayak",
       "bike": "Water bike",
-      "paddle": "Paddle boat"
+      "paddle": "Water bike rental"
     }
   },
   "trust": {
