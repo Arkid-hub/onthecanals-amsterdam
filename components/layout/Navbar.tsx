@@ -20,21 +20,24 @@ function lhref(locale: string, path: string) {
 }
 
 function Logo({ scrolled }: { scrolled: boolean }) {
-  const c = scrolled ? '#0a3d52' : 'white'
-  const w = scrolled ? '#0f7a9e' : '#7dd3ea'
-  const s = scrolled ? '#9ca3af' : 'rgba(255,255,255,0.6)'
+  const bg   = scrolled ? '#0a3d52' : '#e8843a'
+  const rule = scrolled ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.4)'
+  const sub  = scrolled ? 'rgba(255,255,255,0.6)'  : 'rgba(255,255,255,0.75)'
   return (
-    <svg width="230" height="56" viewBox="0 0 260 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="4"  y1="2"  x2="18" y2="16" stroke={c} strokeWidth="3" strokeLinecap="round"/>
-      <line x1="18" y1="2"  x2="4"  y2="16" stroke={c} strokeWidth="3" strokeLinecap="round"/>
-      <line x1="4"  y1="20" x2="18" y2="34" stroke={c} strokeWidth="3" strokeLinecap="round"/>
-      <line x1="18" y1="20" x2="4"  y2="34" stroke={c} strokeWidth="3" strokeLinecap="round"/>
-      <line x1="4"  y1="38" x2="18" y2="52" stroke={c} strokeWidth="3" strokeLinecap="round"/>
-      <line x1="18" y1="38" x2="4"  y2="52" stroke={c} strokeWidth="3" strokeLinecap="round"/>
-      <path d="M6,59 C8,55 10,62 11,59 C12,56 14,61 16,59" stroke={w} strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.85"/>
-      <text x="28" y="30" fontFamily="var(--font-caveat), cursive" fontSize="34" fontWeight="700" fill={c} letterSpacing="-0.5">OnTheCanals</text>
-      <text x="33" y="47" fontFamily="var(--font-dm-sans), sans-serif" fontSize="9" fill={s} letterSpacing="2.5">of Amsterdam</text>
-    </svg>
+    <span style={{
+      display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
+      background: bg, borderRadius: 8, padding: '10px 18px', lineHeight: 1,
+    }}>
+      <span style={{
+        fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
+        fontSize: 18, color: '#fff', letterSpacing: '0.04em', lineHeight: 1,
+      }}>OnTheCanals</span>
+      <span style={{ width: '70%', height: 1, background: rule, margin: '6px auto', display: 'block' }} />
+      <span style={{
+        fontSize: 8, fontWeight: 600, letterSpacing: '0.38em',
+        textTransform: 'uppercase', color: sub,
+      }}>Amsterdam</span>
+    </span>
   )
 }
 
@@ -80,10 +83,11 @@ export function Navbar() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-stone-100' : ''}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-stone-100' : ''}`}>
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
 
-          <NextLink href={lhref(locale, '/')} aria-label="OnTheCanals Amsterdam — homepage" className="mt-1">
+          <NextLink href={lhref(locale, '/')} aria-label="OnTheCanals Amsterdam — homepage"
+            className="flex-shrink-0" style={{ marginBottom: '-14px' }}>
             <Logo scrolled={scrolled} />
           </NextLink>
 
