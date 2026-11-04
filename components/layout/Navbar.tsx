@@ -84,14 +84,14 @@ export function Navbar() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-stone-100' : ''}`}>
-        <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-20">
+        <div className="max-w-6xl mx-auto px-5 flex items-start justify-between h-20">
 
           <NextLink href={lhref(locale, '/')} aria-label="OnTheCanals Amsterdam — homepage"
-            className="flex-shrink-0" style={{ marginTop: '-2px', marginBottom: '-22px' }}>
+            className="flex-shrink-0" style={{ marginBottom: '-30px', paddingTop: 0 }}>
             <Logo scrolled={scrolled} />
           </NextLink>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6 self-center">
             <NextLink href={lhref(locale, '/activities')} className={linkCls}>{t('activities')}</NextLink>
             <NextLink href={lhref(locale, '/activities?cat=self-guided')} className={linkCls}>{t('selfGuided')}</NextLink>
             <NextLink href={lhref(locale, '/activities?cat=private')} className={linkCls}>{t('groups')}</NextLink>
@@ -99,7 +99,7 @@ export function Navbar() {
             <NextLink href={lhref(locale, '/about')} className={linkCls}>{t('about')}</NextLink>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 self-center">
             <div className="relative">
               <button onClick={() => setLangOpen(!langOpen)}
                 className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full transition-all ${
