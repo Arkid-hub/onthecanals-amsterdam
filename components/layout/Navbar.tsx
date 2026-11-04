@@ -134,7 +134,7 @@ export function Navbar() {
               className={`hidden md:inline-flex items-center text-[13px] font-semibold px-4 py-2 rounded-lg transition-all ${
                 scrolled
                   ? 'bg-amber text-white hover:bg-amber-dark'
-                  : 'bg-white/15 border border-white/30 text-white hover:bg-white/25'
+                  : 'bg-canal text-white hover:bg-canal-dark'
               }`}>
               {t('bookNow')}
             </NextLink>

@@ -33,7 +33,7 @@ export function HeroSearch() {
             className="flex-1 py-4 text-sm text-slate-700 placeholder-slate-300 outline-none bg-transparent min-w-0" />
         </div>
         <button type="submit"
-          className="bg-canal hover:bg-canal-dark text-white text-sm font-bold px-6 py-4 transition-colors flex-shrink-0">
+          className="bg-amber hover:bg-amber-dark text-white text-sm font-bold px-6 self-stretch transition-colors flex-shrink-0 flex items-center">
           {t('search')}
         </button>
       </div>

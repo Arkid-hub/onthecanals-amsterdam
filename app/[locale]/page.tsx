@@ -94,17 +94,16 @@ export default async function HomePage({ params: { locale } }: { params: { local
 
           <HeroSearch />
 
-          <div className="flex flex-wrap gap-2 mb-5">
+          <div className="flex justify-between max-w-[560px] mb-5">
             {[
               [t('chips.boat'),   'self-guided'],
               [t('chips.tour'),   'canal-tour'],
-              [t('chips.sup'),    'watersport'],
               [t('chips.cruise'), 'private'],
-              [t('chips.kayak'),  'watersport'],
-              [t('chips.bike'),   'self-guided'],
+              [t('chips.paddle'), 'watersport'],
+              [t('chips.sup'),    'watersport'],
             ].map(([label, cat]) => (
               <NextLink key={label} href={lhref(locale, `/activities?cat=${cat}`)}
-                className="text-xs font-medium text-white/80 border border-white/25 rounded-full px-4 py-1.5 hover:bg-white hover:text-canal-dark transition-all">
+                className="text-sm font-medium text-white/80 underline underline-offset-2 decoration-white/30 hover:text-white hover:decoration-white/70 transition-all">
                 {label}
               </NextLink>
             ))}
@@ -170,8 +169,8 @@ export default async function HomePage({ params: { locale } }: { params: { local
       </section>
 
       {/* ── ELECTRIC BOAT RENTAL HIGHLIGHT ── */}
-      <section className="bg-white py-6 px-5 border-b border-stone-100">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <section className="bg-white py-6 border-b border-stone-100">
+        <div className="max-w-6xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div>
               <p className="font-bold text-canal-dark text-sm">Electric boat rental Amsterdam</p>

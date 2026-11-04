@@ -23,7 +23,8 @@
       "sup": "SUP-Kurs",
       "cruise": "Privatkreuzfahrt",
       "kayak": "Kajak",
-      "bike": "Tretboot"
+      "bike": "Tretboot",
+      "paddle": "Tretboot"
     }
   },
   "trust": {
