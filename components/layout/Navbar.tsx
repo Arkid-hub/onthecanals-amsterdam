@@ -20,13 +20,21 @@ function lhref(locale: string, path: string) {
 }
 
 function Logo({ scrolled }: { scrolled: boolean }) {
-  const bg   = scrolled ? '#0a3d52' : '#e8843a'
+  const bg     = scrolled ? '#0a3d52' : '#e8843a'
+  const shadow = scrolled
+    ? '0 4px 0 #061f29, 0 6px 14px rgba(0,0,0,0.35)'
+    : '0 4px 0 #b8622a, 0 6px 14px rgba(0,0,0,0.25)'
   const rule = scrolled ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.4)'
   const sub  = scrolled ? 'rgba(255,255,255,0.6)'  : 'rgba(255,255,255,0.75)'
   return (
     <span style={{
       display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
-      background: bg, borderRadius: 10, padding: '27px 22px 12px', lineHeight: 1,
+      background: bg,
+      borderRadius: '0 0 10px 10px',
+      padding: '10px 22px 16px',
+      lineHeight: 1,
+      boxShadow: shadow,
+      minWidth: 148,
     }}>
       <span style={{
         fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
@@ -87,7 +95,7 @@ export function Navbar() {
         <div className="max-w-6xl mx-auto px-5 flex items-start justify-between h-20">
 
           <NextLink href={lhref(locale, '/')} aria-label="OnTheCanals Amsterdam — homepage"
-            className="flex-shrink-0" style={{ marginBottom: '-45px', marginTop: '-15px' }}>
+            className="flex-shrink-0" style={{ marginBottom: '-40px' }}>
             <Logo scrolled={scrolled} />
           </NextLink>
 
