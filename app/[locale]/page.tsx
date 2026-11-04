@@ -103,7 +103,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
               [t('chips.sup'),    'watersport'],
             ].map(([label, cat]) => (
               <NextLink key={label}
-                href={cat === '__water-bike__' ? lhref(locale, '/water-bike-rental-amsterdam') : lhref(locale, `/activities?cat=${cat}`)}
+                href={cat === '__water-bike__' ? lhref(locale, '/activities/water-bike-canal-bike') : lhref(locale, `/activities?cat=${cat}`)}
                 className="text-sm font-medium text-white/80 underline underline-offset-2 decoration-white/30 hover:text-white hover:decoration-white/70 transition-all">
                 {label}
               </NextLink>
