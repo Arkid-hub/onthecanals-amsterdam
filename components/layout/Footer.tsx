@@ -36,15 +36,15 @@ export async function Footer() {
           <div>
             <div className="mb-7">
               <span style={{
-                display: 'inline-flex', flexDirection: 'column', alignItems: 'center',
-                textAlign: 'center', lineHeight: 1,
+                display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start',
+                textAlign: 'left', lineHeight: 1,
                 borderRadius: 10, padding: '12px 22px',
               }}>
                 <span style={{
                   fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
                   fontSize: 22, color: '#fff', letterSpacing: '0.04em', lineHeight: 1,
                 }}>OnTheCanals</span>
-                <span style={{ width: '70%', height: 1, background: 'rgba(255,255,255,0.25)', margin: '7px auto', display: 'block' }} />
+                <span style={{ width: '70%', height: 1, background: 'rgba(255,255,255,0.25)', margin: '7px 0', display: 'block' }} />
                 <span style={{
                   fontSize: 9, fontWeight: 600, letterSpacing: '0.38em',
                   textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)',
