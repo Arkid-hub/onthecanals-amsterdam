@@ -34,11 +34,11 @@ export async function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
           {/* Brand */}
           <div>
-            <div className="mb-3">
+            <div className="mb-7">
               <span style={{
                 display: 'inline-flex', flexDirection: 'column', alignItems: 'center',
                 textAlign: 'center', lineHeight: 1,
-                border: '1px solid rgba(255,255,255,0.2)', borderRadius: 10, padding: '12px 22px',
+                borderRadius: 10, padding: '12px 22px',
               }}>
                 <span style={{
                   fontFamily: 'var(--font-playfair), serif', fontWeight: 900,
