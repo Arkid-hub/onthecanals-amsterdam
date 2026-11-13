@@ -40,7 +40,7 @@ const nextConfig = {
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://widget.getyourguide.com https://cdn.getyourguide.com https://maps.googleapis.com https://api.mapbox.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: https://res.cloudinary.com https://*.cloudinary.com https://images.unsplash.com https://*.notion.so https://onthecanals.nl",
+              "img-src 'self' data: https://res.cloudinary.com https://*.cloudinary.com https://images.unsplash.com https://*.notion.so https://onthecanals.nl https://cdn.getyourguide.com https://*.getyourguide.com",
               "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://widget.getyourguide.com",
               "frame-src https://www.getyourguide.com https://widget.getyourguide.com",
               "media-src 'self'",
