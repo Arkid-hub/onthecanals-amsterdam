@@ -51,7 +51,7 @@ export function ActivityCard({ activity, delay = 0 }: Props) {
       <div className="relative h-44 overflow-hidden flex-shrink-0">
         <div
           className="photo-zoom absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${optimizeImage(activity.photo)}')` }}
+          style={{ backgroundImage: `url('${optimizeImage(activity.photo) || 'https://res.cloudinary.com/dlmvn1srk/image/upload/w_800,q_70,f_webp/onthecanals_montelbaantoren_hero-canal_aatn36.webp'}')` }}
           role="img"
           aria-label={altText}
         />
