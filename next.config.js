@@ -11,6 +11,45 @@ const nextConfig = {
       { protocol: 'https', hostname: 'onthecanals.nl' },
     ],
   },
+
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(self), browsing-topics=()',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://widget.getyourguide.com https://cdn.getyourguide.com https://maps.googleapis.com https://api.mapbox.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com",
+              "img-src 'self' data: https://res.cloudinary.com https://*.cloudinary.com https://images.unsplash.com https://*.notion.so https://onthecanals.nl",
+              "connect-src 'self' https://api.mapbox.com https://events.mapbox.com https://widget.getyourguide.com",
+              "frame-src https://www.getyourguide.com https://widget.getyourguide.com",
+              "media-src 'self'",
+            ].join('; '),
+          },
+        ],
+      },
+    ]
+  },
   async redirects() {
     return [
       // Blog slug rename: boat-hire -> boat-rental
